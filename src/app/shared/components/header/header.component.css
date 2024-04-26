@@ -1,0 +1,5 @@
+.header{
+  display: flex;
+  width: full;
+  gap: 1rem;
+}
