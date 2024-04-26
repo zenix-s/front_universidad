@@ -1,0 +1,45 @@
+<aside class="sidebar flex-col" [ngClass]="isOpen ? 'sidebar--open': 'sidebar--close'">
+  <div>
+    <button (click)="close()" class="close-button">
+      close sidebar
+    </button>
+    <span>icon</span>
+  </div>
+  <div class="grow-1">
+    <ul>
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <a href="#">RRII</a>
+      </li>
+      <li>
+        <a href="#">Informes</a>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul>
+      <li>
+        <button>
+          Modo oscuro
+        </button>
+      </li>
+      <li>
+        <Button>
+          Ajustes
+        </Button>
+      </li>
+      <li>
+        <button>
+          Salir
+        </button>
+      </li>
+    </ul>
+  </div>
+</aside>
+<div
+  class="sidebar__overlay grow-1"
+  [ngClass]="isOpen ? 'sidebar__overlay--open': 'sidebar__overlay--close'"
+  (click)="close()"
+></div>

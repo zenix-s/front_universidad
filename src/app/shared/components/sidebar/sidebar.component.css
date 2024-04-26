@@ -1,0 +1,49 @@
+:host {
+  display: flex;
+}
+.sidebar--open {
+  width: 250px;
+  transition: width 0.3s;
+}
+
+.sidebar--close {
+  display: none !important;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #333;
+  color: #fff;
+  transition: width 0.3s;
+}
+
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.grow-1{
+  flex-grow: 1;
+}
+
+.sidebar__overlay {
+  background-color: rgb(var(--color-secondary), 0.3);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 250px;
+}
+
+.sidebar__overlay--close {
+  display: none;
+}
+
+.sidebar__overlay--open {
+  display: flex;
+}
