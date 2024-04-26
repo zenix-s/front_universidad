@@ -4,6 +4,7 @@ import {
   HostListener,
   OnInit,
   WritableSignal,
+  effect,
   inject,
   signal,
 } from '@angular/core';
@@ -33,6 +34,14 @@ export class SidebarComponent implements OnInit {
 
   open() {
     this.sidebarService.open();
+  }
+
+  constructor() {
+    effect(() => {
+      if (this.isOpen) {
+      } else {
+      }
+    });
   }
 
   ngOnInit(): void {
