@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { InputComponent } from './components/input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SectionComponent } from './components/section/section.component';
+import { IconsModule } from './icons/icons.module';
+
 
 
 
@@ -11,16 +14,20 @@ import { HeaderComponent } from './components/header/header.component';
   declarations: [
     InputComponent,
     SidebarComponent,
-    HeaderComponent
+    HeaderComponent,
+    SectionComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IconsModule,
+    NgOptimizedImage
   ],
   exports: [
     InputComponent,
     SidebarComponent,
-    HeaderComponent
+    HeaderComponent,
+    SectionComponent
   ]
 })
 export class SharedModule { }

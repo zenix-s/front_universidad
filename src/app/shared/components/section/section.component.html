@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="flex title">
+    <!-- icon title -->
+    <ng-content select="[role=icon]"></ng-content>
+    <div class="title">
+      <h2>{{ title }}</h2>
+    </div>
+  </div>
+  <hr class="solid">
+  <div>
+    <ng-content select="[role=content]"></ng-content>
+  </div>
+</div>
+

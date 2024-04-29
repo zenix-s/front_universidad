@@ -16,18 +16,28 @@
   left: 0;
   height: 100%;
   width: 250px;
-  background-color: #333;
+  background-color: #fff;
   color: #fff;
   transition: width 0.3s;
 }
 
+.header-aside {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+}
+.close-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
 
 .flex-col {
   display: flex;
   flex-direction: column;
 }
 
-.grow-1{
+.grow-1 {
   flex-grow: 1;
 }
 

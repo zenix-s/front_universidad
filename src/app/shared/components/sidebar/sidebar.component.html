@@ -1,9 +1,9 @@
 <aside class="sidebar flex-col" [ngClass]="isOpen ? 'sidebar--open': 'sidebar--close'">
-  <div>
+  <div class="header-aside">
     <button (click)="close()" class="close-button">
-      close sidebar
+      <app-menu-icon></app-menu-icon>
     </button>
-    <span>Logo</span>
+    <img src="https://universidadeuropea.com/resources/static/img/ue-logo-new.svg" height="30">
   </div>
   <div class="grow-1">
     <ul>
@@ -38,8 +38,5 @@
     </ul>
   </div>
 </aside>
-<div
-  class="sidebar__overlay grow-1"
-  [ngClass]="isOpen ? 'sidebar__overlay--open': 'sidebar__overlay--close'"
-  (click)="close()"
-></div>
+<div class="sidebar__overlay grow-1" [ngClass]="isOpen ? 'sidebar__overlay--open': 'sidebar__overlay--close'"
+  (click)="close()"></div>
