@@ -1,23 +1,30 @@
-<aside class="sidebar flex-col" [ngClass]="isOpen ? 'sidebar--open': 'sidebar--close'">
+<aside class="sidebar" [ngClass]="isOpen ? 'sidebar--open': 'sidebar--close'">
   <div class="header-aside">
     <button (click)="close()" class="close-button">
       <app-menu-icon></app-menu-icon>
     </button>
     <img src="https://universidadeuropea.com/resources/static/img/ue-logo-new.svg" height="30">
   </div>
-  <div class="grow-1">
+  <nav class="sidebar-nav">
     <ul>
-      <li>
-        <a href="#">Home</a>
-      </li>
-      <li>
-        <a href="#">RRII</a>
-      </li>
-      <li>
-        <a href="#">Informes</a>
-      </li>
+      <app-sidebar-nav-item [label]="'Home'" [url]="'/'"></app-sidebar-nav-item>
+      <app-sidebar-nav-item [label]="'RRII'" [hasSubmenu]="true">
+        <ul>
+          <li><a href="">Consulta RRII</a></li>
+          <li><a href="">Expediente</a></li>
+          <li><a href="">Expediente Academico</a></li>
+          <li><a href="">Consulta de profesores</a></li>
+          <li><a href="">Carga de ficheros</a></li>
+        </ul>
+      </app-sidebar-nav-item>
+      <app-sidebar-nav-item [label]="'Informes'" [hasSubmenu]="true">
+        <ul>
+          <li><a href="">6º7º Convocatoria</a></li>
+          <li><a href="">Paso de curso/ciclo</a></li>
+        </ul>
+      </app-sidebar-nav-item>
     </ul>
-  </div>
+  </nav>
   <div>
     <ul>
       <li>

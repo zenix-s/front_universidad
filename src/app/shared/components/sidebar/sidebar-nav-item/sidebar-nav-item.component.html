@@ -1,0 +1,25 @@
+<li class="sidebar-nav-item">
+  @if(hasSubmenu) {
+  <div
+    class="sidebar-nav-item__submenu__item"
+    [ngClass]="isActive() ? 'sidebar-nav-item__submenu__item--active': ''"
+    (click)="toggleCollapsed()"
+  >
+    <app-menu-icon
+      [color]="isActive() ? 'white' : 'red'"
+    ></app-menu-icon>
+    <span >{{ label }}</span>
+  </div>
+  <div class="sidebar-nav-item__submenu"
+    [ngClass]="isOpen ? 'sidebar-nav-item__submenu--open': 'sidebar-nav-item__submenu--close'">
+    <ng-content></ng-content>
+  </div>
+  } @else {
+  <div class="sidebar-nav-item__submenu__item">
+    <app-paper-icon
+      [color]="isActive() ? 'white' : 'red'"
+    ></app-paper-icon>
+    <a href="{{ url }}">{{ label }}</a>
+  </div>
+  }
+</li>

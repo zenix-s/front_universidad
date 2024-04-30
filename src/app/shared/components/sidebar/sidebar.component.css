@@ -12,6 +12,8 @@
 
 .sidebar {
   position: fixed;
+  display: flex;
+  flex-direction: column;
   top: 0;
   left: 0;
   height: 100%;
@@ -19,11 +21,11 @@
   background-color: #fff;
   color: #fff;
   transition: width 0.3s;
+  padding: 0.5rem 1rem;
 }
 
 .header-aside {
   display: flex;
-  padding: 1rem;
   gap: 1rem;
 }
 .close-button {
@@ -32,13 +34,18 @@
   cursor: pointer;
 }
 
-.flex-col {
+
+.sidebar-nav {
   display: flex;
-  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
 }
 
-.grow-1 {
-  flex-grow: 1;
+.sidebar-nav > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 .sidebar__overlay {
