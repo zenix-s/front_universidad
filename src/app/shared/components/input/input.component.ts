@@ -6,13 +6,12 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
   templateUrl: './input.component.html',
   styleUrl: './input.component.css',
 })
-// export class InputComponent implements ControlValueAccessor{
-export class InputComponent {
-  // ngControl = inject(NgControl);
+export class InputComponent implements ControlValueAccessor{
+  ngControl = inject(NgControl);
 
-  // constructor() {
-  //   this.ngControl.valueAccessor = this;
-  // }
+  constructor() {
+    this.ngControl.valueAccessor = this;
+  }
 
   @Input()
   label: string = '';

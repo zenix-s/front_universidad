@@ -10,6 +10,17 @@
       <app-sidebar-nav-item [label]="'Home'" [url]="'/'">
         <app-home-icon role="icon"></app-home-icon>
       </app-sidebar-nav-item>
+      <app-sidebar-nav-item [label]="'Alumnos'" [hasSubmenu]="true">
+        <app-group-icon role="icon"></app-group-icon>
+        <app-submenu role="submenu">
+          <li>
+            <app-sidebar-nav-item [label]="'Nuevo expediente'" [url]="'/student/search'"></app-sidebar-nav-item>
+          </li>
+          <li>
+            <app-sidebar-nav-item [label]="'Consulta Alumnos'" [url]="'/student/search'"></app-sidebar-nav-item>
+          </li>
+        </app-submenu>
+      </app-sidebar-nav-item>
       <app-sidebar-nav-item [label]="'RRII'" [hasSubmenu]="true">
         <app-paper-icon role="icon"></app-paper-icon>
         <app-submenu role="submenu">

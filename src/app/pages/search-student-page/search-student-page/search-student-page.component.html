@@ -1,0 +1,49 @@
+<form [formGroup]="searchForm" class="flex gap-x-2 ">
+  <div class="flex flex-col filter-container">
+    <!-- TIPO DE ALUMNO -->
+    <app-section [title]="'Tipo de alumnos'">
+      <app-group-icon role="icon" color="red"></app-group-icon>
+      <div role="content">
+        <app-input
+          formControlName="tipoAlumno"
+        />
+      </div>
+    </app-section>
+    <!-- CALIFICACIONES -->
+    <app-section [title]="'Calificaciones'">
+      <app-checklist-icon role="icon" color="red"></app-checklist-icon>
+      <div role="content">
+        <app-input
+          formControlName="calificaciones"
+        />
+      </div>
+    </app-section>
+    <app-section [title]="'Periodo'">
+      <app-clock-icon role="icon" color="red"></app-clock-icon>
+      <div role="content">
+        <app-input
+          formControlName="periodo"
+        />
+      </div>
+    </app-section>
+    <app-section [title]="'Provincia'">
+      <app-location-icon role="icon" color="red"></app-location-icon>
+      <div role="content">
+        <app-input
+          formControlName="provincia"
+        />
+      </div>
+    </app-section>
+  </div>
+  <div class="grow filter-container">
+    <app-section [title]="'Criterios Alumnos'">
+      <app-paper-icon role="icon" color="red"></app-paper-icon>
+      <div role="content">
+        <app-input
+          formControlName="expediente"
+          [label]="'Expediente'"
+        />
+      </div>
+    </app-section>
+  </div>
+</form>
