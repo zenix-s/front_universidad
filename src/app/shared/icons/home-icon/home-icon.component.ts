@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-paper-icon',
-  templateUrl: './paper-icon.component.html',
-  styleUrl: './paper-icon.component.css'
+  selector: 'app-home-icon',
+  templateUrl: './home-icon.component.html',
+  styleUrl: './home-icon.component.css'
 })
-export class PaperIconComponent {
+export class HomeIconComponent {
   @Input()
   width = '24';
   @Input()

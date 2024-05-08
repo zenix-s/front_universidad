@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SectionComponent } from './components/section/section.component';
 import { IconsModule } from './icons/icons.module';
 import { SidebarNavItemComponent } from './components/sidebar/sidebar-nav-item/sidebar-nav-item.component';
+import { SubmenuComponent } from './components/sidebar/submenu/submenu.component';
 
 
 
@@ -17,7 +18,8 @@ import { SidebarNavItemComponent } from './components/sidebar/sidebar-nav-item/s
     SidebarComponent,
     HeaderComponent,
     SectionComponent,
-    SidebarNavItemComponent
+    SidebarNavItemComponent,
+    SubmenuComponent
   ],
   imports: [
     CommonModule,

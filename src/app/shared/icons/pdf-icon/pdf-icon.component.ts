@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-menu-icon',
-  templateUrl: './menu-icon.component.html',
-  styleUrl: './menu-icon.component.css'
+  selector: 'app-pdf-icon',
+  templateUrl: './pdf-icon.component.html',
+  styleUrl: './pdf-icon.component.css'
 })
-export class MenuIconComponent {
+export class PdfIconComponent {
   @Input()
   color: string = 'currentcolor';
   @Input()

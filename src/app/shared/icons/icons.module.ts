@@ -7,6 +7,12 @@ import { LocationIconComponent } from './location-icon/location-icon.component';
 import { PaperIconComponent } from './paper-icon/paper-icon.component';
 import { UeIconComponent } from './ue-icon/ue-icon.component';
 import { MenuIconComponent } from './menu-icon/menu-icon.component';
+import { HomeIconComponent } from './home-icon/home-icon.component';
+import { PdfIconComponent } from './pdf-icon/pdf-icon.component';
+import { ExpandMoreIconComponent } from './expand-more-icon/expand-more-icon.component';
+import { ExpandLessIconComponent } from './expand-less-icon/expand-less-icon.component';
+import { LogoutIconComponent } from './logout-icon/logout-icon.component';
+import { SettingsIconComponent } from './settings-icon/settings-icon.component';
 
 
 
@@ -18,7 +24,13 @@ import { MenuIconComponent } from './menu-icon/menu-icon.component';
     LocationIconComponent,
     PaperIconComponent,
     UeIconComponent,
-    MenuIconComponent
+    MenuIconComponent,
+    HomeIconComponent,
+    PdfIconComponent,
+    ExpandMoreIconComponent,
+    ExpandLessIconComponent,
+    LogoutIconComponent,
+    SettingsIconComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +42,13 @@ import { MenuIconComponent } from './menu-icon/menu-icon.component';
     LocationIconComponent,
     PaperIconComponent,
     UeIconComponent,
-    MenuIconComponent
+    MenuIconComponent,
+    HomeIconComponent,
+    PdfIconComponent,
+    ExpandMoreIconComponent,
+    ExpandLessIconComponent,
+    LogoutIconComponent,
+    SettingsIconComponent
   ]
 })
 export class IconsModule { }

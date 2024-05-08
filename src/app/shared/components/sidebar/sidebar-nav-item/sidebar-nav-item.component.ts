@@ -16,7 +16,7 @@ export class SidebarNavItemComponent {
   isOpen  = false ;
 
   isActive(): boolean {
-    return true;
+    return false;
   }
 
   toggleCollapsed(): void {

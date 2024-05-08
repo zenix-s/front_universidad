@@ -1,25 +1,25 @@
 <li class="sidebar-nav-item">
-  @if(hasSubmenu) {
-  <div
-    class="sidebar-nav-item__submenu__item"
-    [ngClass]="isActive() ? 'sidebar-nav-item__submenu__item--active': ''"
-    (click)="toggleCollapsed()"
-  >
-    <app-menu-icon
-      [color]="isActive() ? 'white' : 'red'"
-    ></app-menu-icon>
-    <span >{{ label }}</span>
+  <div class="sidebar-nav-item__submenu__item" [ngClass]="isActive() ? 'sidebar-nav-item__submenu__item--active': ''"
+    (click)="toggleCollapsed()">
+    <div [style.color]="isActive() ? 'white' : 'red'">
+      <ng-content select="[role=icon]"></ng-content>
+    </div>
+    @if(hasSubmenu) {
+    <span>{{ label }}</span>
+    @if (isOpen) {
+    <app-expand-less-icon [width]="20" [height]="20" [color]="isActive() ? 'white' : 'red'"></app-expand-less-icon>
+    } @else {
+    <app-expand-more-icon [width]="20" [height]="20" [color]="isActive() ? 'white' : 'red'"></app-expand-more-icon>
+    }
+    } @else {
+    <a href="{{ url }}">{{ label }}</a>
+    }
   </div>
+  @if(hasSubmenu) {
   <div class="sidebar-nav-item__submenu"
     [ngClass]="isOpen ? 'sidebar-nav-item__submenu--open': 'sidebar-nav-item__submenu--close'">
-    <ng-content></ng-content>
-  </div>
-  } @else {
-  <div class="sidebar-nav-item__submenu__item">
-    <app-paper-icon
-      [color]="isActive() ? 'white' : 'red'"
-    ></app-paper-icon>
-    <a href="{{ url }}">{{ label }}</a>
+    <ng-content select="[role=submenu]"></ng-content>
+    <hr class="h-divider">
   </div>
   }
 </li>

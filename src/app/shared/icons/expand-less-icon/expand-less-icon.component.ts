@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-group-icon',
-  templateUrl: './group-icon.component.html',
-  styleUrl: './group-icon.component.css',
+  selector: 'app-expand-less-icon',
+  templateUrl: './expand-less-icon.component.html',
+  styleUrl: './expand-less-icon.component.css'
 })
-export class GroupIconComponent {
+export class ExpandLessIconComponent {
   @Input()
   color: string = 'currentcolor';
   @Input()

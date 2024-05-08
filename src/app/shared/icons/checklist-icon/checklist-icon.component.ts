@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ChecklistIconComponent {
   @Input()
-  color: string = 'black';
+  color: string = 'currentcolor';
   @Input()
   height: number = 24;
   @Input()

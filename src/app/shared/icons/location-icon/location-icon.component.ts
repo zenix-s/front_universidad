@@ -11,5 +11,5 @@ export class LocationIconComponent {
   @Input()
   height = '24';
   @Input()
-  color = 'black';
+  color = 'currentcolor';
 }

@@ -11,5 +11,5 @@ export class ClockIconComponent {
   @Input()
   height = '24';
   @Input()
-  color = 'black';
+  color = 'currentcolor';
 }

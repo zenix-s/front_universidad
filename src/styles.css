@@ -90,3 +90,12 @@ table {
 .gap-x-2 {
   column-gap: 0.5rem;
 }
+
+
+.h-divider {
+  border-top: 1px solid rgb(var(--color-secondary));
+}
+
+.v-divider {
+  border-left: 1px solid rgb(var(--color-secondary));
+}
