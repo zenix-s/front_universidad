@@ -8,6 +8,8 @@ import { SectionComponent } from './components/section/section.component';
 import { IconsModule } from './icons/icons.module';
 import { SidebarNavItemComponent } from './components/sidebar/sidebar-nav-item/sidebar-nav-item.component';
 import { SubmenuComponent } from './components/sidebar/submenu/submenu.component';
+import { SelectComponent } from './components/select/select.component';
+import { ButtonComponent } from './components/button/button.component';
 
 
 
@@ -19,7 +21,9 @@ import { SubmenuComponent } from './components/sidebar/submenu/submenu.component
     HeaderComponent,
     SectionComponent,
     SidebarNavItemComponent,
-    SubmenuComponent
+    SubmenuComponent,
+    SelectComponent,
+    ButtonComponent
   ],
   imports: [
     CommonModule,
