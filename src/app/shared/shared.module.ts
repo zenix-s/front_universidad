@@ -35,7 +35,9 @@ import { ButtonComponent } from './components/button/button.component';
     InputComponent,
     SidebarComponent,
     HeaderComponent,
-    SectionComponent
+    SectionComponent,
+    ButtonComponent,
+    SelectComponent
   ]
 })
 export class SharedModule { }

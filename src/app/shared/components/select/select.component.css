@@ -1,0 +1,51 @@
+
+.select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+}
+
+.select__label > button{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  background-color: #f4f4f4;
+}
+
+.options {
+  position: absolute;
+  top: 110%;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  background-color: #f4f4f4;
+  z-index: 1;
+  width: max-content;
+}
+
+.options--visible {
+  display: flex;
+}
+.options--hidden {
+  display: none;
+}
+
+.option > button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  background-color: #f4f4f4;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.option > button:hover {
+  background-color: #e4e4e4;
+}

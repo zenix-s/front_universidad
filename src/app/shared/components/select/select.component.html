@@ -1,1 +1,38 @@
-<p>select works!</p>
+<div class="select">
+  @if(label){
+  <div class="select__label">
+    {{label}}
+  </div>
+  }
+  <div class="select__label">
+    <button (click)="toggleOptionsVisibility()">
+      <!-- {{label}} -->
+      @if (selectedOption()) {
+      {{selectedOption().label}}
+      } @else {
+      Seleccionar
+      }
+      @if(isOptionsVisible){
+      <app-expand-less-icon></app-expand-less-icon>
+      }@else {
+      <app-expand-more-icon></app-expand-more-icon>
+      }
+    </button>
+  </div>
+  <ul class="options" [class]="isOptionsVisible ? 'options--visible' : 'options--hidden'">
+    @if(selectedOption() !== null){
+    <li class="option">
+      <button (click)="selectOption(null)">
+        Deshacer selección
+      </button>
+    </li>
+    }
+    @for (option of options; track $index) {
+    <li class="option">
+      <button (click)="selectOption(option)" [class]="selectedOption === option ? 'option--selected' : ''">
+        {{option.label}}
+      </button>
+    </li>
+    }
+  </ul>
+</div>

@@ -1,1 +1,18 @@
-<p>button works!</p>
+<button
+  [ngClass]="{
+    'btn': true,
+    'btn-primary': themeType === 'primary',
+    'btn-secondary': themeType === 'secondary',
+    'btn-outline': themeType === 'outline',
+    'btn-light': themeType === 'light',
+    'btn-dark': themeType === 'dark',
+    'btn-sm': size === 'sm',
+    'btn-md': size === 'md',
+    'btn-lg': size === 'lg',
+  }"
+  [disabled]="disabled"
+  [type]="htmlType"
+  (click)="onClick.emit()"
+>
+  <ng-content></ng-content>
+</button>

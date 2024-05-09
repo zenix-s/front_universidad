@@ -4,34 +4,26 @@
     <app-section [title]="'Tipo de alumnos'">
       <app-group-icon role="icon" color="red"></app-group-icon>
       <div role="content">
-        <app-input
-          formControlName="tipoAlumno"
-        />
+        <app-input formControlName="tipoAlumno" />
       </div>
     </app-section>
     <!-- CALIFICACIONES -->
     <app-section [title]="'Calificaciones'">
       <app-checklist-icon role="icon" color="red"></app-checklist-icon>
       <div role="content">
-        <app-input
-          formControlName="calificaciones"
-        />
+        <app-input formControlName="calificaciones" />
       </div>
     </app-section>
     <app-section [title]="'Periodo'">
       <app-clock-icon role="icon" color="red"></app-clock-icon>
       <div role="content">
-        <app-input
-          formControlName="periodo"
-        />
+        <app-input formControlName="periodo" />
       </div>
     </app-section>
     <app-section [title]="'Provincia'">
       <app-location-icon role="icon" color="red"></app-location-icon>
       <div role="content">
-        <app-input
-          formControlName="provincia"
-        />
+        <app-input formControlName="provincia" />
       </div>
     </app-section>
   </div>
@@ -39,10 +31,31 @@
     <app-section [title]="'Criterios Alumnos'">
       <app-paper-icon role="icon" color="red"></app-paper-icon>
       <div role="content">
-        <app-input
-          formControlName="expediente"
-          [label]="'Expediente'"
-        />
+        <app-input formControlName="expediente" [label]="'Expediente'" />
+        <app-select formControlName="carrera" [label]="'Carrera'" [options]="[
+            {
+              value: '1',
+              label: 'Ingeniería en Sistemas Computacionales'
+            },
+            {
+              value: '2',
+              label: 'Ingeniería en Mecatrónica'
+            },
+            {
+              value: '3',
+              label: 'Ingeniería en Electrónica'
+            },
+            {
+              value: '4',
+              label: 'Ingeniería en Informática'
+            }
+          ]"></app-select>
+        <app-button [themeType]="'primary'">
+          Buscar
+        </app-button>
+        <app-button [themeType]="'outline'">
+          Limpiar
+        </app-button>
       </div>
     </app-section>
   </div>
