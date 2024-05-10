@@ -1,0 +1,6 @@
+:host{
+  display: flex;
+  height: 20px;
+  outline: 1px solid red;
+  margin: 5px;
+}

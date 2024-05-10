@@ -6,7 +6,7 @@
   cursor: pointer;
   border-radius: 5px;
   font-size: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 4px rgb(var(--color-black), 0.5);
 }
 .btn-primary {
   background-color: rgb(var(--color-primary), 0.9);

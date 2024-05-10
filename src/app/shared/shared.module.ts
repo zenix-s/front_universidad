@@ -10,6 +10,9 @@ import { SidebarNavItemComponent } from './components/sidebar/sidebar-nav-item/s
 import { SubmenuComponent } from './components/sidebar/submenu/submenu.component';
 import { SelectComponent } from './components/select/select.component';
 import { ButtonComponent } from './components/button/button.component';
+import { TableComponent } from './components/table/table.component';
+import { TableBodyComponent } from './components/table-body/table-body.component';
+import { TableHeadComponent } from './components/table-head/table-head.component';
 
 
 
@@ -23,7 +26,10 @@ import { ButtonComponent } from './components/button/button.component';
     SidebarNavItemComponent,
     SubmenuComponent,
     SelectComponent,
-    ButtonComponent
+    ButtonComponent,
+    TableComponent,
+    TableBodyComponent,
+    TableHeadComponent,
   ],
   imports: [
     CommonModule,
@@ -37,7 +43,10 @@ import { ButtonComponent } from './components/button/button.component';
     HeaderComponent,
     SectionComponent,
     ButtonComponent,
-    SelectComponent
+    SelectComponent,
+    TableComponent,
+    TableBodyComponent,
+    TableHeadComponent,
   ]
 })
 export class SharedModule { }

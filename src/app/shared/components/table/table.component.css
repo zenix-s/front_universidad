@@ -1,0 +1,11 @@
+:host{
+  display: flex;
+  flex-grow: 1;
+  outline: 1px solid red;
+  margin: 5px;
+}
+.table{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

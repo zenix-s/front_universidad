@@ -1,4 +1,14 @@
-interface Alumno {
+// enum TipoConvenio {
+//   Propio = 'propio',
+//   Extranjero = 'extranjero',
+// }
+type TipoConvenio = 'propio' | 'extranjero';
+type EstadoMatriculacion = 'Activo' | 'Prematrícula' | 'Anulada';
+
+export const listTipoConvenio: TipoConvenio[] = ['propio', 'extranjero'];
+export const listEstadoMatriculacion: EstadoMatriculacion[] = ['Activo', 'Prematrícula', 'Anulada'];
+
+export interface Alumno {
   numeroExpediente: string;
   nombre: string;
   apellidos: string;
@@ -7,34 +17,34 @@ interface Alumno {
   nacionalidad: string;
   direccion: string;
   sexo: string;
-  tipoConvenio: 'propio' | 'extranjero';
-  estadoMatriculacion: 'Activo' | 'Prematrícula' | 'Anulada';
+  tipoConvenio: TipoConvenio;
+  estadoMatriculacion: EstadoMatriculacion;
 }
 
-interface Matricula {
+export interface Matricula {
   numeroMatricula: string;
-  estadoMatriculacion: 'Activo' | 'Prematrícula' | 'Anulada';
+  estadoMatriculacion: EstadoMatriculacion;
   fechaMatriculacion: Date;
   universidad: string;
   campus: string;
   titulacion: string;
 }
 
-interface Asignatura {
+export interface Asignatura {
   nombre: string;
   creditos: number;
   titulacion: string;
 }
 
-interface Universidad {
+export interface Universidad {
   nombre: string;
 }
 
-interface Campus {
+export interface Campus {
   nombre: string;
   universidad: string;
 }
 
-interface Titulacion {
+export interface Titulacion {
   nombre: string;
 }

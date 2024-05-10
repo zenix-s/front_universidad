@@ -3,7 +3,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: max-content;
+  width: 100%;
 }
 
 .select__label > button{
@@ -26,7 +26,7 @@
   border-radius: 0.25rem;
   background-color: #f4f4f4;
   z-index: 1;
-  width: max-content;
+  width: 100%;
 }
 
 .options--visible {

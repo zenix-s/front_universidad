@@ -24,6 +24,7 @@
     ],
     "paths": {
       "@app/*": ["./src/app/*"],
+      "@types": ["./src/app/core/entities/interfaces.ts"]
     }
   },
   "angularCompilerOptions": {
