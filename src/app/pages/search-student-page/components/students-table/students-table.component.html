@@ -1,32 +1,33 @@
-<div class="section-container">
+<div class="wrapper">
   <div class="table-wrapper">
     <table>
       <thead>
-        <!-- <th>Expediente</th>
-        <th>Nombre</th>
-        <th>Apellidos</th> -->
         <th>
-          <button
-            class="table-head"
-            (click)="filterByColumn('numeroExpediente')"
-          >
-            Expediente @if (this.searchStudentsService.filters.orderBy ===
-            'numeroExpediente') { @if (this.searchStudentsService.filters.order
-            === 'asc') {
-            <app-expand-more-icon></app-expand-more-icon>
+          <button class="table-head" (click)="filterByColumn('numeroExpediente')">
+            <span>Nº Expediente</span>
+            @if (this.searchStudentsService.filters.orderBy === 'numeroExpediente') {
+            @if (this.searchStudentsService.filters.order
+            === 'asc') { <app-expand-more-icon></app-expand-more-icon>
             }@else {
             <app-expand-less-icon></app-expand-less-icon>
-            } }
+            }
+            }@else {
+              <app-menu-icon></app-menu-icon>
+            }
           </button>
         </th>
         <th>
           <button class="table-head" (click)="filterByColumn('nombre')">
-            Nombre @if (this.searchStudentsService.filters.orderBy === 'nombre')
-            { @if (this.searchStudentsService.filters.order === 'asc') {
+            <span>Nombre</span>
+            @if (this.searchStudentsService.filters.orderBy === 'nombre') {
+            @if(this.searchStudentsService.filters.order === 'asc') {
             <app-expand-more-icon></app-expand-more-icon>
             }@else {
             <app-expand-less-icon></app-expand-less-icon>
-            } }
+            }
+            }@else {
+              <app-menu-icon></app-menu-icon>
+            }
           </button>
         </th>
         <th>
@@ -37,18 +38,22 @@
             <app-expand-more-icon></app-expand-more-icon>
             }@else {
             <app-expand-less-icon></app-expand-less-icon>
-            } }
+            } }@else {
+              <app-menu-icon></app-menu-icon>
+            }
           </button>
         </th>
         <th>
           <button class="table-head" (click)="filterByColumn('tipoConvenio')">
-            <span>Tipo Convenio</span> @if
-            (this.searchStudentsService.filters.orderBy === 'tipoConvenio') {
+            <span>Tipo Convenio</span>
+            @if(this.searchStudentsService.filters.orderBy === 'tipoConvenio') {
             @if (this.searchStudentsService.filters.order === 'asc') {
             <app-expand-more-icon></app-expand-more-icon>
             }@else {
             <app-expand-less-icon></app-expand-less-icon>
-            } }
+            } }@else {
+              <app-menu-icon></app-menu-icon>
+            }
           </button>
         </th>
         <th>
@@ -59,7 +64,9 @@
             <app-expand-more-icon></app-expand-more-icon>
             }@else {
             <app-expand-less-icon></app-expand-less-icon>
-            } }
+            } }@else {
+              <app-menu-icon></app-menu-icon>
+            }
           </button>
         </th>
       </thead>
@@ -75,30 +82,125 @@
         }
       </tbody>
     </table>
+    <!-- <div class="table">
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+        <div><span>No hay resultados</span></div>
+      </div> -->
   </div>
+</div>
+<div>
   <div>
-    <div>
-      <span>
-        Página {{ this.searchStudentsService.filters.page }} de
-        {{ this.searchStudentsService.totalPage }}
-      </span>
-    </div>
-    <app-button
-      (onClick)="previousPage()"
-      [themeType]="'outline'"
-      [disabled]="this.searchStudentsService.filters.page === 1"
-    >
-      Anterior
-    </app-button>
-    <app-button
-      (onClick)="nextPage()"
-      [themeType]="'outline'"
-      [disabled]="
-        this.searchStudentsService.filters.page ===
-        this.searchStudentsService.totalPage
-      "
-    >
-      Siguiente
-    </app-button>
+    <span>
+      Página {{ this.searchStudentsService.filters.page }} de
+      {{ this.searchStudentsService.totalPage }}
+    </span>
   </div>
+  <app-button (onClick)="previousPage()" [themeType]="'outline'"
+    [disabled]="this.searchStudentsService.filters.page === 1">
+    Anterior
+  </app-button>
+  <app-button (onClick)="nextPage()" [themeType]="'outline'" [disabled]="
+      this.searchStudentsService.filters.page ===
+      this.searchStudentsService.totalPage
+    ">
+    Siguiente
+  </app-button>
 </div>
