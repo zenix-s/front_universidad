@@ -15,6 +15,8 @@ export interface SearchFilters {
   orderBy: keyof Alumno;
 }
 
+export type orderType = 'asc' | 'desc';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -28,9 +30,9 @@ export class SearchStudentsService {
     tipoConvenio: '',
     numeroExpediente: '',
     page: 1,
-    pageSize: 100,
+    pageSize: 15,
     order: 'asc',
-    orderBy: 'apellidos',
+    orderBy: 'numeroExpediente',
   };
 
   nextPage() {
@@ -41,25 +43,59 @@ export class SearchStudentsService {
     this.filters.page--;
   }
 
+  setTotalPage(totalPage: number) {
+    this.totalPage = totalPage;
+  }
+
+  setPageSize(pageSize: number) {
+    this.filters.pageSize = pageSize;
+  }
+
+  goToPage(page: number) {
+    if (page > this.totalPage) this.filters.page = this.totalPage;
+    if (page < 1) this.filters.page = 1;
+
+    this.filters.page = page;
+  }
+
+  filterByColumn(column: keyof Alumno) {
+    if (this.filters.orderBy === column) {
+      this.filters.order = this.filters.order === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.filters.order = 'asc';
+    }
+    this.filters.orderBy = column;
+  }
+
   filterStudents(students: Alumno[]): Alumno[] {
-    const startIndex = (this.filters.page - 1) * this.filters.pageSize;
+    const {
+      nombre,
+      apellidos,
+      universidad,
+      estadoMatricula,
+      tipoConvenio,
+      numeroExpediente,
+      orderBy,
+      order,
+      page,
+      pageSize,
+    } = this.filters;
+    const startIndex = (page - 1) * pageSize;
 
-    const endIndex = Math.min(
-      startIndex + this.filters.pageSize,
-      students.length
-    );
-
-    const nombre: string = '';
+    const endIndex = Math.min(startIndex + pageSize, students.length);
 
     const newFilteredStudents = students
       .filter((student) => {
-        if (
-          nombre.length > 0 &&
-          !student.nombre.toLowerCase().includes(nombre.toLowerCase())
-        ) {
-          return false;
-        }
-        return true;
+        return (
+          student.numeroExpediente
+            .toLowerCase()
+            .includes(numeroExpediente.toLowerCase()) &&
+          student.nombre.toLowerCase().includes(nombre.toLowerCase()) &&
+          student.apellidos.toLowerCase().includes(apellidos.toLowerCase()) &&
+          student.tipoConvenio
+            .toLowerCase()
+            .includes(tipoConvenio.toLowerCase())
+        );
       })
       .sort((a: Alumno, b: Alumno) => {
         const valueA = a[this.filters.orderBy] as string;

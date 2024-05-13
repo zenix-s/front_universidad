@@ -10,8 +10,10 @@ import {
 import {
   SearchFilters,
   SearchStudentsService,
+  orderType
 } from '@app/core/services/search-student-service/search-students.service';
 import { StudentsService } from '@app/core/services/students-service/students.service';
+import { IconsModule } from '@app/shared/icons/icons.module';
 import { SharedModule } from '@app/shared/shared.module';
 import { Alumno } from '@types';
 import { Subscription } from 'rxjs';
@@ -21,7 +23,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-students-table',
   templateUrl: './students-table.component.html',
   styleUrl: './students-table.component.css',
-  imports: [SharedModule],
+  imports: [SharedModule, IconsModule],
 })
 export class StudentsTableComponent implements OnInit, OnDestroy {
   searchStudentsService = inject(SearchStudentsService);
@@ -32,6 +34,8 @@ export class StudentsTableComponent implements OnInit, OnDestroy {
 
   studentsSubscription!: Subscription;
 
+
+
   nextPage() {
     this.searchStudentsService.nextPage();
     this.filteredStudents.set(
@@ -41,6 +45,14 @@ export class StudentsTableComponent implements OnInit, OnDestroy {
 
   previousPage() {
     this.searchStudentsService.previousPage();
+    this.filteredStudents.set(
+      this.searchStudentsService.filterStudents(this.students())
+    );
+  }
+
+  filterByColumn(column: keyof Alumno) {
+    console.log('filtering by column', column);
+    this.searchStudentsService.filterByColumn(column);
     this.filteredStudents.set(
       this.searchStudentsService.filterStudents(this.students())
     );
