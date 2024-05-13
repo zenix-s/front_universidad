@@ -1,0 +1,28 @@
+<div class="section-container">
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <th>Expediente</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+      </thead>
+      @for (estudiante of filteredStudents(); track $index) {
+      <tr>
+        <td>{{ estudiante.numeroExpediente }}</td>
+        <td>{{ estudiante.nombre }}</td>
+        <td>{{ estudiante.apellidos }}</td>
+      </tr>
+      }
+    </table>
+  </div>
+  <div>
+    <app-button (onClick)="previousPage()" [themeType]="'outline'"
+      [disabled]="this.searchStudentsService.filters.page === 1">
+      Anterior
+    </app-button>
+    <app-button (onClick)="nextPage()" [themeType]="'outline'"
+      [disabled]="this.searchStudentsService.filters.page === this.searchStudentsService.totalPage">
+      Siguiente
+    </app-button>
+  </div>
+</div>

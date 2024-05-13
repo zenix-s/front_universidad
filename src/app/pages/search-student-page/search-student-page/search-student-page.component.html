@@ -1,21 +1,22 @@
-<form [formGroup]="searchForm" class="filter-form-container">
-  <!-- CONTAINER 1 -->
-  <div class="container">
-    <div class="filter-container">
-      <!-- TIPO DE CONVENIO -->
-      <app-section [title]="'Tipo de alumnos'">
-        <app-group-icon role="icon" color="red"></app-group-icon>
-        <app-select role="content" formControlName="tipoConvenio" [options]="listTipoConvenio"></app-select>
-      </app-section>
-      <!-- ESTADO MATRICULA -->
-      <app-section [title]="'Estado matrícula'">
-        <app-group-icon role="icon" color="red"></app-group-icon>
-        <app-select role="content" formControlName="estadoMatricula" [options]="listEstadoMatriculacion"></app-select>
-      </app-section>
-      <!-- UNIVERSIDAD -->
-      <app-section [title]="'Universidad'">
-        <app-group-icon role="icon" color="red"></app-group-icon>
-        <app-select role="content" formControlName="universidad" [options]="[
+<div class="page-container">
+  <form [formGroup]="searchForm" class="filter-form-container">
+    <!-- CONTAINER 1 -->
+    <div class="container">
+      <div class="filter-container">
+        <!-- TIPO DE CONVENIO -->
+        <app-section [title]="'Tipo de alumnos'">
+          <app-group-icon role="icon" color="red"></app-group-icon>
+          <app-select role="content" formControlName="tipoConvenio" [options]="listTipoConvenio"></app-select>
+        </app-section>
+        <!-- ESTADO MATRICULA -->
+        <app-section [title]="'Estado matrícula'">
+          <app-group-icon role="icon" color="red"></app-group-icon>
+          <app-select role="content" formControlName="estadoMatricula" [options]="listEstadoMatriculacion"></app-select>
+        </app-section>
+        <!-- UNIVERSIDAD -->
+        <app-section [title]="'Universidad'">
+          <app-group-icon role="icon" color="red"></app-group-icon>
+          <app-select role="content" formControlName="universidad" [options]="[
           {
             value: '1',
             label: 'Universidad de Sevilla'
@@ -25,63 +26,32 @@
             label: 'Universidad de Huelva'
           }
         ]"></app-select>
+        </app-section>
+      </div>
+    </div>
+    <!-- CONTAINER 2 -->
+    <div class="container">
+      <app-section [title]="'Criterios Alumnos'">
+        <app-paper-icon role="icon" color="red"></app-paper-icon>
+        <div class="filter-container" role="content">
+          <div class="flex" style="width: 100%;">
+            <!-- NOMBRE -->
+            <app-input formControlName="nombre" [label]="'nombre'"></app-input>
+            <!-- APELLIDOS -->
+            <app-input formControlName="apellidos" [label]="'apellidos'"></app-input>
+            <!--NºEXPEDIENTE  -->
+            <app-input formControlName="numeroExpediente" [label]="'Nº expediente'"></app-input>
+            <!--  -->
+          </div>
+          <app-button [themeType]="'primary'">
+            Buscar
+          </app-button>
+          <app-button [themeType]="'outline'">
+            Limpiar
+          </app-button>
+        </div>
       </app-section>
     </div>
-  </div>
-  <!-- CONTAINER 2 -->
-  <div class="container">
-    <app-section [title]="'Criterios Alumnos'">
-      <app-paper-icon role="icon" color="red"></app-paper-icon>
-      <div class="filter-container" role="content">
-        <div class="flex" style="width: 100%;">
-          <!-- NOMBRE -->
-          <app-input formControlName="nombre" [label]="'nombre'"></app-input>
-          <!-- APELLIDOS -->
-          <app-input formControlName="apellidos" [label]="'apellidos'"></app-input>
-          <!--NºEXPEDIENTE  -->
-          <app-input formControlName="numeroExpediente" [label]="'Nº expediente'"></app-input>
-          <!--  -->
-        </div>
-        <app-button [themeType]="'primary'">
-          Buscar
-        </app-button>
-        <app-button [themeType]="'outline'">
-          Limpiar
-        </app-button>
-      </div>
-    </app-section>
-  </div>
-</form>
-
-<table>
-  <thead>
-    <th>Expediente</th>
-    <th>Nombre</th>
-    <th>Apellidos</th>
-  </thead>
-  <tbody>
-    @for (estudiante of filteredStudents(); track $index) {
-    <tr>
-      <td>{{ estudiante.numeroExpediente }}</td>
-      <td>{{ estudiante.nombre }}</td>
-      <td>{{ estudiante.apellidos }}</td>
-    </tr>
-    }
-  </tbody>
-</table>
-<div>
-  <app-button
-    (onClick)="previousPage()"
-    [themeType]="'outline'"
-    [disabled]="page === 1"
-  >
-    Anterior
-  </app-button>
-  <app-button
-    (onClick)="nextPage()"
-    [themeType]="'outline'"
-    [disabled]="page === totalPage"
-  >
-    Siguiente
-  </app-button>
+  </form>
+  <app-students-table></app-students-table>
 </div>
