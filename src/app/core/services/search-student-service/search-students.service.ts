@@ -34,7 +34,7 @@ export class SearchStudentsService {
     tipoConvenio: '',
     numeroExpediente: '',
     page: 1,
-    pageSize: 5,
+    pageSize: 10,
     order: 'asc',
     orderBy: 'numeroExpediente',
   };
@@ -82,6 +82,10 @@ export class SearchStudentsService {
       .slice(startIndex, endIndex);
 
     return newFilteredStudents;
+  }
+
+  get totalStudents() {
+    return this._filteredStudents.value.length;
   }
 
   filterStudents(students: Alumno[]) {

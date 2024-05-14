@@ -4,13 +4,16 @@
       <button class="table-head" (click)="filterByColumn('numeroExpediente')">
         <span>Nº Expediente</span>
         @if (this.searchStudentsService.filters.orderBy === 'numeroExpediente') {
-        @if (this.searchStudentsService.filters.order
-        === 'asc') { <app-expand-more-icon></app-expand-more-icon>
+        @if (this.searchStudentsService.filters.order === 'asc') {
+        <!-- <app-expand-more-icon></app-expand-more-icon> -->
+        <i class="material-icons">expand_more</i>
         }@else {
-        <app-expand-less-icon></app-expand-less-icon>
+        <!-- <app-expand-less-icon></app-expand-less-icon> -->
+        <i class="material-icons">expand_less</i>
         }
         }@else {
-        <app-menu-icon></app-menu-icon>
+        <!-- <app-menu-icon></app-menu-icon> -->
+        <i class="material-icons">more_horiz</i>
         }
       </button>
     </th>
@@ -19,12 +22,14 @@
         <span>Nombre</span>
         @if (this.searchStudentsService.filters.orderBy === 'nombre') {
         @if(this.searchStudentsService.filters.order === 'asc') {
-        <app-expand-more-icon></app-expand-more-icon>
+        <i class="material-icons">expand_more</i>
         }@else {
-        <app-expand-less-icon></app-expand-less-icon>
+        <!-- <app-expand-less-icon></app-expand-less-icon> -->
+        <i class="material-icons">expand_less</i>
         }
         }@else {
-        <app-menu-icon></app-menu-icon>
+        <!-- <app-menu-icon></app-menu-icon> -->
+        <i class="material-icons">more_horiz</i>
         }
       </button>
     </th>
@@ -33,11 +38,14 @@
         <span>Apellidos</span>
         @if (this.searchStudentsService.filters.orderBy === 'apellidos') {
         @if (this.searchStudentsService.filters.order === 'asc') {
-        <app-expand-more-icon></app-expand-more-icon>
+        <!-- <app-expand-more-icon></app-expand-more-icon> -->
+        <i class="material-icons">expand_more</i>
         }@else {
-        <app-expand-less-icon></app-expand-less-icon>
+        <!-- <app-expand-less-icon></app-expand-less-icon> -->
+        <i class="material-icons">expand_less</i>
         } }@else {
-        <app-menu-icon></app-menu-icon>
+        <!-- <app-menu-icon></app-menu-icon> -->
+        <i class="material-icons">more_horiz</i>
         }
       </button>
     </th>
@@ -46,11 +54,14 @@
         <span>Tipo Convenio</span>
         @if(this.searchStudentsService.filters.orderBy === 'tipoConvenio') {
         @if (this.searchStudentsService.filters.order === 'asc') {
-        <app-expand-more-icon></app-expand-more-icon>
+        <!-- <app-expand-more-icon></app-expand-more-icon> -->
+        <i class="material-icons">expand_more</i>
         }@else {
-        <app-expand-less-icon></app-expand-less-icon>
+        <!-- <app-expand-less-icon></app-expand-less-icon> -->
+        <i class="material-icons">expand_less</i>
         } }@else {
-        <app-menu-icon></app-menu-icon>
+        <!-- <app-menu-icon></app-menu-icon> -->
+        <i class="material-icons">more_horiz</i>
         }
       </button>
     </th>
@@ -59,11 +70,14 @@
         <span>Nacionalidad</span>
         @if(this.searchStudentsService.filters.orderBy === 'nacionalidad') {
         @if (this.searchStudentsService.filters.order === 'asc') {
-        <app-expand-more-icon></app-expand-more-icon>
+        <!-- <app-expand-more-icon></app-expand-more-icon> -->
+        <i class="material-icons">expand_more</i>
         }@else {
-        <app-expand-less-icon></app-expand-less-icon>
+        <!-- <app-expand-less-icon></app-expand-less-icon> -->
+        <i class="material-icons">expand_less</i>
         } }@else {
-        <app-menu-icon></app-menu-icon>
+        <!-- <app-menu-icon></app-menu-icon> -->
+        <i class="material-icons">more_horiz</i>
         }
       </button>
     </th>
@@ -71,11 +85,31 @@
   <tbody>
     @for (estudiante of filteredStudents(); track $index) {
     <tr>
-      <td>{{ estudiante.numeroExpediente }}</td>
-      <td>{{ estudiante.nombre }}</td>
-      <td>{{ estudiante.apellidos }}</td>
-      <td>{{ estudiante.tipoConvenio }}</td>
-      <td>{{ estudiante.nacionalidad }}</td>
+      <td>
+        <span>
+          {{ estudiante.numeroExpediente }}
+        </span>
+      </td>
+      <td>
+        <span>
+          {{ estudiante.nombre }}
+        </span>
+      </td>
+      <td>
+        <span>
+          {{ estudiante.apellidos }}
+        </span>
+      </td>
+      <td>
+        <span>
+          {{ estudiante.tipoConvenio }}
+        </span>
+      </td>
+      <td>
+        <span>
+          {{ estudiante.nacionalidad }}
+        </span>
+      </td>
     </tr>
     }
   </tbody>

@@ -11,6 +11,10 @@ export class StudentsService {
 
   students$ = this._students.asObservable();
 
+  get totalStudents() {
+    return estudiantes.length;
+  }
+
   getstudents() {
     // console.log(students);
     this._students.next(estudiantes);

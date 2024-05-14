@@ -1,5 +1,6 @@
 <app-pagination [currentPage]="this.searchStudentsService.filters.page"
-  [totalPages]="this.searchStudentsService.totalPage" [totalItems]="160"
+  [totalPages]="this.searchStudentsService.totalPage"
+  [totalItems]="this.StudentsService.totalStudents"
   [itemsPerPage]="this.searchStudentsService.filters.pageSize"
   (nextPage)="nextPage()"
   (previousPage)="previousPage()"
