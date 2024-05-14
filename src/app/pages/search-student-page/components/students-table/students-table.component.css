@@ -1,40 +1,9 @@
-:host{
+:host {
   flex-grow: 1;
   overflow: auto;
-
 }
 
-.section-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-}
-
-.wrapper{
-  display: block;
-  width: 100%;
-  height: 400px;
-  padding: 1rem;
-  overflow: scroll;
-}
-
-.table-wrapper{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  /* overflow: scroll; */
-}
-
-.table{
-  flex-grow: 1;
-  overflow-y: scroll;
-}
-
-
-
-.table-head{
+.table-head {
   width: 100%;
   height: 30px;
   background-color: rgb(var(--color-secondary), 0.3);
@@ -44,18 +13,18 @@
   justify-content: center;
   gap: 1rem;
 }
-span{
+span {
   padding: 0.5rem;
 }
 
-table{
+table {
   border-collapse: collapse;
 }
 
-table > tbody{
+table > tbody {
 }
 
-table > tbody > tr > td{
+table > tbody > tr > td {
   text-align: start;
   padding: 1rem;
 }

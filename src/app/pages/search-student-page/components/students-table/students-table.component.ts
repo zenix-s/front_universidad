@@ -10,7 +10,7 @@ import {
 import {
   SearchFilters,
   SearchStudentsService,
-  orderType
+  orderType,
 } from '@app/core/services/search-student-service/search-students.service';
 import { StudentsService } from '@app/core/services/students-service/students.service';
 import { IconsModule } from '@app/shared/icons/icons.module';
@@ -33,36 +33,11 @@ export class StudentsTableComponent implements OnInit, OnDestroy {
   filteredStudents: WritableSignal<Alumno[]> = signal<Alumno[]>([]);
 
   studentsSubscription!: Subscription;
-
-
-
-  nextPage() {
-    this.searchStudentsService.nextPage();
-    this.filteredStudents.set(
-      this.searchStudentsService.filterStudents(this.students())
-    );
-  }
-
-  previousPage() {
-    this.searchStudentsService.previousPage();
-    this.filteredStudents.set(
-      this.searchStudentsService.filterStudents(this.students())
-    );
-  }
-
-  goToPage(page: number) {
-    this.searchStudentsService.goToPage(page);
-    this.filteredStudents.set(
-      this.searchStudentsService.filterStudents(this.students())
-    );
-  }
+  filterStudentsSubscription!: Subscription;
 
   filterByColumn(column: keyof Alumno) {
-    console.log('filtering by column', column);
     this.searchStudentsService.filterByColumn(column);
-    this.filteredStudents.set(
-      this.searchStudentsService.filterStudents(this.students())
-    );
+    this.searchStudentsService.filterStudents(this.students());
   }
 
   ngOnInit(): void {
@@ -70,17 +45,20 @@ export class StudentsTableComponent implements OnInit, OnDestroy {
     this.studentsSubscription = this.studentsService.students$.subscribe(
       (students) => {
         this.students.set(students);
-        this.filteredStudents.set(
-          this.searchStudentsService.filterStudents(students)
-        );
+        this.searchStudentsService.filterStudents(students);
         this.searchStudentsService.totalPage = Math.ceil(
           students.length / this.searchStudentsService.filters.pageSize
         );
       }
     );
+    this.filterStudentsSubscription =
+      this.searchStudentsService.filteredStudents$.subscribe((students) => {
+        this.filteredStudents.set(students);
+      });
   }
 
   ngOnDestroy(): void {
     this.studentsSubscription.unsubscribe();
+    this.filterStudentsSubscription.unsubscribe();
   }
 }

@@ -33,6 +33,7 @@ import { StudentsTableComponent } from '../components/students-table/students-ta
   styleUrl: './search-student-page.component.css',
   imports: [
     ReactiveFormsModule,
+    SearchStudentPageModule,
     SharedModule,
     IconsModule,
     StudentsTableComponent,

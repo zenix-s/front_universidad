@@ -21,6 +21,10 @@ export type orderType = 'asc' | 'desc';
   providedIn: 'root',
 })
 export class SearchStudentsService {
+  private _filteredStudents = new BehaviorSubject<Alumno[]>([]);
+
+  filteredStudents$ = this._filteredStudents.asObservable();
+
   totalPage: number = 0;
   filters: SearchFilters = {
     nombre: '',
@@ -30,44 +34,13 @@ export class SearchStudentsService {
     tipoConvenio: '',
     numeroExpediente: '',
     page: 1,
-    pageSize: 20,
+    pageSize: 5,
     order: 'asc',
     orderBy: 'numeroExpediente',
   };
 
-  nextPage() {
-    this.filters.page++;
-  }
 
-  previousPage() {
-    this.filters.page--;
-  }
-
-  setTotalPage(totalPage: number) {
-    this.totalPage = totalPage;
-  }
-
-  setPageSize(pageSize: number) {
-    this.filters.pageSize = pageSize;
-  }
-
-  goToPage(page: number) {
-    if (page > this.totalPage) this.filters.page = this.totalPage;
-    if (page < 1) this.filters.page = 1;
-
-    this.filters.page = page;
-  }
-
-  filterByColumn(column: keyof Alumno) {
-    if (this.filters.orderBy === column) {
-      this.filters.order = this.filters.order === 'asc' ? 'desc' : 'asc';
-    } else {
-      this.filters.order = 'asc';
-    }
-    this.filters.orderBy = column;
-  }
-
-  filterStudents(students: Alumno[]): Alumno[] {
+  private _filterStudents(students: Alumno[]): Alumno[] {
     const {
       nombre,
       apellidos,
@@ -109,5 +82,42 @@ export class SearchStudentsService {
       .slice(startIndex, endIndex);
 
     return newFilteredStudents;
+  }
+
+  filterStudents(students: Alumno[]) {
+    const newFilteredStudents = this._filterStudents(students);
+    this._filteredStudents.next(newFilteredStudents);
+  }
+
+  nextPage() {
+    this.filters.page++;
+  }
+
+  previousPage() {
+    this.filters.page--;
+  }
+
+  setTotalPage(totalPage: number) {
+    this.totalPage = totalPage;
+  }
+
+  setPageSize(pageSize: number) {
+    this.filters.pageSize = pageSize;
+  }
+
+  goToPage(page: number) {
+    if (page > this.totalPage) this.filters.page = this.totalPage;
+    if (page < 1) this.filters.page = 1;
+
+    this.filters.page = page;
+  }
+
+  filterByColumn(column: keyof Alumno) {
+    if (this.filters.orderBy === column) {
+      this.filters.order = this.filters.order === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.filters.order = 'asc';
+    }
+    this.filters.orderBy = column;
   }
 }

@@ -5,28 +5,17 @@
       <!-- TIPO DE CONVENIO -->
       <app-section [title]="'Tipo de alumnos'">
         <app-group-icon role="icon" color="red"></app-group-icon>
-        <app-select
-          role="content"
-          formControlName="tipoConvenio"
-          [options]="listTipoConvenio"
-        ></app-select>
+        <app-select role="content" formControlName="tipoConvenio" [options]="listTipoConvenio"></app-select>
       </app-section>
       <!-- ESTADO MATRICULA -->
       <app-section [title]="'Estado matrícula'">
         <app-group-icon role="icon" color="red"></app-group-icon>
-        <app-select
-          role="content"
-          formControlName="estadoMatricula"
-          [options]="listEstadoMatriculacion"
-        ></app-select>
+        <app-select role="content" formControlName="estadoMatricula" [options]="listEstadoMatriculacion"></app-select>
       </app-section>
       <!-- UNIVERSIDAD -->
       <app-section [title]="'Universidad'">
         <app-group-icon role="icon" color="red"></app-group-icon>
-        <app-select
-          role="content"
-          formControlName="universidad"
-          [options]="[
+        <app-select role="content" formControlName="universidad" [options]="[
             {
               value: '1',
               label: 'Universidad de Sevilla'
@@ -35,8 +24,7 @@
               value: '2',
               label: 'Universidad de Huelva'
             }
-          ]"
-        ></app-select>
+          ]"></app-select>
       </app-section>
     </div>
   </div>
@@ -49,15 +37,9 @@
           <!-- NOMBRE -->
           <app-input formControlName="nombre" [label]="'nombre'"></app-input>
           <!-- APELLIDOS -->
-          <app-input
-            formControlName="apellidos"
-            [label]="'apellidos'"
-          ></app-input>
+          <app-input formControlName="apellidos" [label]="'apellidos'"></app-input>
           <!--NºEXPEDIENTE  -->
-          <app-input
-            formControlName="numeroExpediente"
-            [label]="'Nº expediente'"
-          ></app-input>
+          <app-input formControlName="numeroExpediente" [label]="'Nº expediente'"></app-input>
           <!--  -->
         </div>
         <app-button [themeType]="'primary'"> Buscar </app-button>
@@ -67,3 +49,4 @@
   </div>
 </form>
 <app-students-table></app-students-table>
+<app-pagination-table></app-pagination-table>
