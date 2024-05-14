@@ -13,6 +13,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { TableComponent } from './components/table/table.component';
 import { TableBodyComponent } from './components/table-body/table-body.component';
 import { TableHeadComponent } from './components/table-head/table-head.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 
@@ -30,6 +31,7 @@ import { TableHeadComponent } from './components/table-head/table-head.component
     TableComponent,
     TableBodyComponent,
     TableHeadComponent,
+    PaginationComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ import { TableHeadComponent } from './components/table-head/table-head.component
     TableComponent,
     TableBodyComponent,
     TableHeadComponent,
+    PaginationComponent,
   ]
 })
 export class SharedModule { }

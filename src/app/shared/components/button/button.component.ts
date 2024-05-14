@@ -16,6 +16,9 @@ export class ButtonComponent {
   @Input()
   disabled: boolean = false;
 
+  @Input()
+  shadow: boolean = false;
+
   @Output()
   onClick = new EventEmitter<void>();
 }

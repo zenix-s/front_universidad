@@ -50,6 +50,13 @@ export class StudentsTableComponent implements OnInit, OnDestroy {
     );
   }
 
+  goToPage(page: number) {
+    this.searchStudentsService.goToPage(page);
+    this.filteredStudents.set(
+      this.searchStudentsService.filterStudents(this.students())
+    );
+  }
+
   filterByColumn(column: keyof Alumno) {
     console.log('filtering by column', column);
     this.searchStudentsService.filterByColumn(column);

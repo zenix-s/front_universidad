@@ -1,0 +1,59 @@
+<div class="pagination">
+  <div class="pagination-section">
+    <div class="data">
+      <span>
+        {{ itemsPerPage }} / {{ totalItems }}
+      </span>
+    </div>
+    <div class="data">
+      <i class="material-icons text-xl">
+        check_box
+      </i>
+      <span>
+        {{totalItems}}
+      </span>
+    </div>
+  </div>
+  <div class="pagination-section">
+    <app-button
+      [themeType]="'outline'" [size]="'sm'"
+      (onClick)="this.goToPage.emit(1)"
+      [disabled]="currentPage <= 1"
+    >
+      <i class="material-icons text-xl">
+        keyboard_double_arrow_left
+      </i>
+    </app-button>
+    <app-button [themeType]="'outline'" [size]="'sm'"
+      (onClick)="this.previousPage.emit()"
+      [disabled]="currentPage === 1"
+    >
+      <i class="material-icons text-xl">
+        keyboard_arrow_left
+      </i>
+    </app-button>
+    <div class="data">
+      <span>
+        {{ currentPage}} / {{ totalPages }}
+      </span>
+    </div>
+    <app-button [themeType]="'outline'" [size]="'sm'"
+      (onClick)="this.nextPage.emit()"
+      [disabled]="currentPage >= totalPages"
+    >
+      <i class="material-icons text-xl">
+        keyboard_arrow_right
+      </i>
+    </app-button>
+    <app-button
+      [themeType]="'outline'"
+      [size]="'sm'"
+      (onClick)="this.goToPage.emit(totalPages)"
+      [disabled]="currentPage === totalPages"
+    >
+      <i class="material-icons text-xl">
+        keyboard_double_arrow_right
+      </i>
+    </app-button>
+  </div>
+</div>

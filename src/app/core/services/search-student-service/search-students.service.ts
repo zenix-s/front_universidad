@@ -30,7 +30,7 @@ export class SearchStudentsService {
     tipoConvenio: '',
     numeroExpediente: '',
     page: 1,
-    pageSize: 5,
+    pageSize: 20,
     order: 'asc',
     orderBy: 'numeroExpediente',
   };
