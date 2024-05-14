@@ -42,8 +42,8 @@
           <app-input formControlName="numeroExpediente" [label]="'Nº expediente'"></app-input>
           <!--  -->
         </div>
-        <app-button [themeType]="'primary'"> Buscar </app-button>
-        <app-button [themeType]="'outline'"> Limpiar </app-button>
+        <app-button [themeType]="'primary'" (onClick)="onSubmit()"> Buscar </app-button>
+        <app-button [themeType]="'outline'" (onClick)="clearForm()"> Limpiar </app-button>
       </div>
     </app-section>
   </div>

@@ -31,10 +31,6 @@ export class SelectComponent implements ControlValueAccessor{
     this.isOptionsVisible = !this.isOptionsVisible;
   }
 
-  selectOption(option: any) {
-    this.selectedOption.set(option);
-    this.isOptionsVisible = false;
-  }
 
   writeValue(obj: any): void {
     this.selectOption(obj);
@@ -47,5 +43,16 @@ export class SelectComponent implements ControlValueAccessor{
   }
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  selectOption(option: { value: any, label: string} | null) {
+    if (!option) {
+      this.selectedOption.set(null);
+      return;
+    }
+    this.onChange(option.value);
+    this.selectedOption.set(option);
+    this.isOptionsVisible = false;
+
   }
 }

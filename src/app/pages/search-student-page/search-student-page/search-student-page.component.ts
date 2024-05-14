@@ -51,6 +51,16 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
     numeroExpediente: ['', Validators.required],
   });
 
+  onSubmit() {
+    console.log('Formulario enviado');
+    console.log(this.searchForm.value);
+  }
+
+  clearForm() {
+    console.log('Formulario limpiado');
+    this.searchForm.reset();
+  }
+
   get listEstadoMatriculacion() {
     return listEstadoMatriculacion.map((estado) => ({
       value: estado,
