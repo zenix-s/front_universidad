@@ -14,6 +14,7 @@ import { TableComponent } from './components/table/table.component';
 import { TableBodyComponent } from './components/table-body/table-body.component';
 import { TableHeadComponent } from './components/table-head/table-head.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -37,7 +38,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     CommonModule,
     ReactiveFormsModule,
     IconsModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    RouterModule,
   ],
   exports: [
     InputComponent,

@@ -12,7 +12,7 @@
     <app-expand-more-icon [width]="20" [height]="20" [color]="isActive() ? 'white' : 'red'"></app-expand-more-icon>
     }
     } @else {
-    <a href="{{ url }}">{{ label }}</a>
+    <a routerLink="{{ url }}">{{ label }}</a>
     }
   </div>
   @if(hasSubmenu) {

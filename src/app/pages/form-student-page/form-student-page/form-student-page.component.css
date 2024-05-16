@@ -1,0 +1,20 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border-radius: 0.5rem;
+}
+
+.form-container{
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  gap: 1rem;
+}

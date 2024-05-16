@@ -15,6 +15,11 @@ export class StudentsService {
     return estudiantes.length;
   }
 
+  addStudent(student: Alumno) {
+    estudiantes.push(student);
+    this._students.next(estudiantes);
+  }
+
   getstudents() {
     // console.log(students);
     this._students.next(estudiantes);
