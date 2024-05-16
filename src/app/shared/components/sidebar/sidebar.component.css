@@ -1,5 +1,7 @@
 :host {
   display: flex;
+  position: relative;
+  z-index: 2;
 }
 .sidebar--open {
   width: 250px;

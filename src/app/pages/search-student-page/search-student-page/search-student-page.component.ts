@@ -1,31 +1,20 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  WritableSignal,
-  inject,
-  signal,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  FormControl,
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { IconsModule } from '@app/shared/icons/icons.module';
 import { SharedModule } from '@app/shared/shared.module';
 import {
-  Alumno,
   listEstadoMatriculacion,
   listTipoConvenio,
 } from '@app/core/entities/interfaces';
-import { StudentsService } from '@app/core/services/students-service/students.service';
-import { Subscription } from 'rxjs';
-import { SearchStudentsService } from '../../../core/services/search-student-service/search-students.service';
 import { SearchStudentPageModule } from '../search-student-page.module';
 import { StudentsTableComponent } from '../components/students-table/students-table.component';
-
+import { SearchStudentsService } from '@app/core/services/search-student-service/search-students.service';
+import { StudentsService } from '@app/core/services/students-service/students.service';
 @Component({
   standalone: true,
   selector: 'app-search-student-page',
@@ -41,6 +30,8 @@ import { StudentsTableComponent } from '../components/students-table/students-ta
 })
 export class SearchStudentPageComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
+  private searchStudentsService = inject(SearchStudentsService);
+  private StudentsService = inject(StudentsService);
 
   searchForm: FormGroup = this.fb.group({
     nombre: ['', Validators.required],
@@ -54,11 +45,22 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
   onSubmit() {
     console.log('Formulario enviado');
     console.log(this.searchForm.value);
+    this.searchStudentsService.filterBySearch({
+      nExpediente: this.searchForm.value.numeroExpediente as string,
+      nombre: this.searchForm.value.nombre as string,
+      apellidos: this.searchForm.value.apellidos as string,
+    });
+    this.StudentsService.students$.subscribe((students) => {
+      this.searchStudentsService.filterStudents(students);
+    });
   }
 
   clearForm() {
-    console.log('Formulario limpiado');
     this.searchForm.reset();
+    this.searchStudentsService.clearFilters();
+    this.StudentsService.students$.subscribe((students) => {
+      this.searchStudentsService.filterStudents(students);
+    });
   }
 
   get listEstadoMatriculacion() {

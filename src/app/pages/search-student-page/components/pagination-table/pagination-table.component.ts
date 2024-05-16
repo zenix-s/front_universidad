@@ -12,6 +12,11 @@ export class PaginationTableComponent implements OnInit, OnDestroy {
   searchStudentsService = inject(SearchStudentsService);
   StudentsService = inject(StudentsService);
 
+  get totalStudents() {
+    let total = 0;
+    return this.searchStudentsService.searchInformation.totalStudents;
+  }
+
   nextPage() {
     this.searchStudentsService.nextPage();
     this.StudentsService.students$.subscribe((students) => {

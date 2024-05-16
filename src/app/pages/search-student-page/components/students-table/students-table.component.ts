@@ -1,17 +1,12 @@
 import {
   Component,
-  Input,
   OnDestroy,
   OnInit,
   WritableSignal,
   inject,
   signal,
 } from '@angular/core';
-import {
-  SearchFilters,
-  SearchStudentsService,
-  orderType,
-} from '@app/core/services/search-student-service/search-students.service';
+import { SearchStudentsService } from '@app/core/services/search-student-service/search-students.service';
 import { StudentsService } from '@app/core/services/students-service/students.service';
 import { IconsModule } from '@app/shared/icons/icons.module';
 import { SharedModule } from '@app/shared/shared.module';
@@ -46,9 +41,6 @@ export class StudentsTableComponent implements OnInit, OnDestroy {
       (students) => {
         this.students.set(students);
         this.searchStudentsService.filterStudents(students);
-        this.searchStudentsService.totalPage = Math.ceil(
-          students.length / this.searchStudentsService.filters.pageSize
-        );
       }
     );
     this.filterStudentsSubscription =

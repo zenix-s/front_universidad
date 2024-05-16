@@ -15,6 +15,12 @@ export interface SearchFilters {
   orderBy: keyof Alumno;
 }
 
+export interface SearchInformation {
+  totalPage: number;
+  totalStudents: number;
+  studentsInPage: number;
+}
+
 export type orderType = 'asc' | 'desc';
 
 @Injectable({
@@ -25,7 +31,12 @@ export class SearchStudentsService {
 
   filteredStudents$ = this._filteredStudents.asObservable();
 
-  totalPage: number = 0;
+  searchInformation: SearchInformation = {
+    totalPage: 0,
+    totalStudents: 0,
+    studentsInPage: 0,
+  };
+
   filters: SearchFilters = {
     nombre: '',
     apellidos: '',
@@ -38,7 +49,6 @@ export class SearchStudentsService {
     order: 'asc',
     orderBy: 'numeroExpediente',
   };
-
 
   private _filterStudents(students: Alumno[]): Alumno[] {
     const {
@@ -57,19 +67,23 @@ export class SearchStudentsService {
 
     const endIndex = Math.min(startIndex + pageSize, students.length);
 
-    const newFilteredStudents = students
-      .filter((student) => {
-        return (
-          student.numeroExpediente
-            .toLowerCase()
-            .includes(numeroExpediente.toLowerCase()) &&
-          student.nombre.toLowerCase().includes(nombre.toLowerCase()) &&
-          student.apellidos.toLowerCase().includes(apellidos.toLowerCase()) &&
-          student.tipoConvenio
-            .toLowerCase()
-            .includes(tipoConvenio.toLowerCase())
-        );
-      })
+    let newFilteredStudents = students.filter((student) => {
+      return (
+        student.numeroExpediente
+          .toLowerCase()
+          .includes(numeroExpediente.toLowerCase()) &&
+        student.nombre.toLowerCase().includes(nombre.toLowerCase()) &&
+        student.apellidos.toLowerCase().includes(apellidos.toLowerCase()) &&
+        student.tipoConvenio.toLowerCase().includes(tipoConvenio.toLowerCase())
+      );
+    });
+
+    this.searchInformation.totalPage = Math.ceil(
+      newFilteredStudents.length / pageSize
+    );
+    this.searchInformation.totalStudents = newFilteredStudents.length;
+
+    newFilteredStudents = newFilteredStudents
       .sort((a: Alumno, b: Alumno) => {
         const valueA = a[this.filters.orderBy] as string;
         const valueB = b[this.filters.orderBy] as string;
@@ -80,12 +94,9 @@ export class SearchStudentsService {
         }
       })
       .slice(startIndex, endIndex);
+    this.searchInformation.studentsInPage = newFilteredStudents.length;
 
     return newFilteredStudents;
-  }
-
-  get totalStudents() {
-    return this._filteredStudents.value.length;
   }
 
   filterStudents(students: Alumno[]) {
@@ -102,7 +113,7 @@ export class SearchStudentsService {
   }
 
   setTotalPage(totalPage: number) {
-    this.totalPage = totalPage;
+    this.searchInformation.totalPage = totalPage;
   }
 
   setPageSize(pageSize: number) {
@@ -110,7 +121,9 @@ export class SearchStudentsService {
   }
 
   goToPage(page: number) {
-    if (page > this.totalPage) this.filters.page = this.totalPage;
+    // if (page > this.totalPage) this.filters.page = this.totalPage;
+    if (page > this.searchInformation.totalPage)
+      this.filters.page = this.searchInformation.totalPage;
     if (page < 1) this.filters.page = 1;
 
     this.filters.page = page;
@@ -123,5 +136,37 @@ export class SearchStudentsService {
       this.filters.order = 'asc';
     }
     this.filters.orderBy = column;
+  }
+
+  filterBySearch({
+    nExpediente,
+    nombre,
+    apellidos,
+  }: {
+    nExpediente: string;
+    nombre: string;
+    apellidos: string;
+  }) {
+    if (nExpediente.length > 0) {
+      this.filters.numeroExpediente = nExpediente;
+      console.log('Numero expediente', nExpediente);
+    }
+    if (nombre) this.filters.nombre = nombre;
+    if (apellidos) this.filters.apellidos = apellidos;
+  }
+
+  clearFilters() {
+    this.filters = {
+      nombre: '',
+      apellidos: '',
+      universidad: '',
+      estadoMatricula: '',
+      tipoConvenio: '',
+      numeroExpediente: '',
+      page: 1,
+      pageSize: 10,
+      order: 'asc',
+      orderBy: 'numeroExpediente',
+    };
   }
 }

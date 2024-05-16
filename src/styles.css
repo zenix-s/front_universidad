@@ -127,3 +127,8 @@ table {
 .text-3xl{
   font-size: 1.875rem;
 }
+
+.icon{
+  height: min-content;
+  width: min-content;
+}
