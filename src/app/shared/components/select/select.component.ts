@@ -1,13 +1,22 @@
-import { Component, Input, WritableSignal, inject, signal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  WritableSignal,
+  inject,
+  signal,
+} from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
-  styleUrl: './select.component.css'
+  styleUrl: './select.component.css',
 })
-export class SelectComponent implements ControlValueAccessor{
+export class SelectComponent implements ControlValueAccessor {
   ngControl = inject(NgControl);
+  private elementRef = inject(ElementRef);
 
   @Input()
   label: string = '';
@@ -24,13 +33,11 @@ export class SelectComponent implements ControlValueAccessor{
   onTouch: any = () => {};
   disabled: boolean = false;
 
-
   isOptionsVisible: boolean = false;
 
   toggleOptionsVisibility() {
     this.isOptionsVisible = !this.isOptionsVisible;
   }
-
 
   writeValue(obj: any): void {
     this.selectOption(obj);
@@ -45,7 +52,7 @@ export class SelectComponent implements ControlValueAccessor{
     this.disabled = isDisabled;
   }
 
-  selectOption(option: { value: any, label: string} | null) {
+  selectOption(option: { value: any; label: string } | null) {
     if (!option) {
       this.selectedOption.set(null);
       this.onChange(null);
@@ -55,6 +62,14 @@ export class SelectComponent implements ControlValueAccessor{
     this.onChange(option.value);
     this.selectedOption.set(option);
     this.isOptionsVisible = false;
+  }
 
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: PointerEvent) {
+    const nativeElement = this.elementRef.nativeElement;
+    const clickedInside = nativeElement.contains(event.target);
+    if (!clickedInside) {
+      this.isOptionsVisible = false;
+    }
   }
 }
