@@ -33,15 +33,13 @@
     <app-section [title]="'Criterios Alumnos'">
       <app-paper-icon role="icon" color="red"></app-paper-icon>
       <div class="filter-container" role="content">
-        <div class="flex flex-col gap-2" style="width: 100%">
-          <!--NºEXPEDIENTE  -->
-          <app-input formControlName="numeroExpediente" [label]="'Nº Expediente'"></app-input>
-          <div class="flex gap-2" style="width: 100%;">
-            <!-- NOMBRE -->
-            <app-input formControlName="nombre" [label]="'Nombre'"></app-input>
-            <!-- APELLIDOS -->
-            <app-input formControlName="apellidos" [label]="'Apellidos'"></app-input>
-          </div>
+        <!--NºEXPEDIENTE  -->
+        <app-input formControlName="numeroExpediente" [label]="'Nº Expediente'"></app-input>
+        <div class="flex gap-2" style="width: 100%;">
+          <!-- NOMBRE -->
+          <app-input formControlName="nombre" [label]="'Nombre'"></app-input>
+          <!-- APELLIDOS -->
+          <app-input formControlName="apellidos" [label]="'Apellidos'"></app-input>
         </div>
         <div class="flex gap-2">
           <app-button [themeType]="'primary'" (onClick)="onSubmit()"> Buscar </app-button>

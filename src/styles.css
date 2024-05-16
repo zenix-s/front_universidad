@@ -132,3 +132,11 @@ table {
   height: min-content;
   width: min-content;
 }
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
