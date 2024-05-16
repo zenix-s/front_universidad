@@ -48,6 +48,8 @@ export class SelectComponent implements ControlValueAccessor{
   selectOption(option: { value: any, label: string} | null) {
     if (!option) {
       this.selectedOption.set(null);
+      this.onChange(null);
+      this.isOptionsVisible = false;
       return;
     }
     this.onChange(option.value);

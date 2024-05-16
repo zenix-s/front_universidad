@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Alumno } from '@types';
+import { Alumno, EstadoMatriculacion, TipoConvenio } from '@types';
 
 export interface SearchFilters {
-  nombre: string;
-  apellidos: string;
-  universidad: string;
-  estadoMatricula: string;
-  tipoConvenio: string;
-  numeroExpediente: string;
+  nombre: string | null;
+  apellidos: string | null;
+  universidad: string | null;
+  estadoMatricula: EstadoMatriculacion | null;
+  tipoConvenio: TipoConvenio | null;
+  numeroExpediente: string | null;
   page: number;
   pageSize: number;
   order: 'asc' | 'desc';
@@ -38,12 +38,12 @@ export class SearchStudentsService {
   };
 
   filters: SearchFilters = {
-    nombre: '',
-    apellidos: '',
-    universidad: '',
-    estadoMatricula: '',
-    tipoConvenio: '',
-    numeroExpediente: '',
+    nombre: null,
+    apellidos: null,
+    universidad: null,
+    estadoMatricula: null,
+    tipoConvenio: null,
+    numeroExpediente: null,
     page: 1,
     pageSize: 10,
     order: 'asc',
@@ -69,12 +69,27 @@ export class SearchStudentsService {
 
     let newFilteredStudents = students.filter((student) => {
       return (
-        student.numeroExpediente
-          .toLowerCase()
-          .includes(numeroExpediente.toLowerCase()) &&
-        student.nombre.toLowerCase().includes(nombre.toLowerCase()) &&
-        student.apellidos.toLowerCase().includes(apellidos.toLowerCase()) &&
-        student.tipoConvenio.toLowerCase().includes(tipoConvenio.toLowerCase())
+				// numeroExpediente &&
+        // student.numeroExpediente
+        //   .toLowerCase()
+        //   .includes(numeroExpediente.toLowerCase()) &&
+        // nombre &&
+        // student.nombre.toLowerCase().includes(nombre.toLowerCase()) &&
+				// apellidos &&
+        // student.apellidos.toLowerCase().includes(apellidos.toLowerCase()) &&
+        // student.tipoConvenio &&
+        // student.tipoConvenio
+        //   .toLowerCase()
+        //   .includes(tipoConvenio ? tipoConvenio.toLowerCase() : '') &&
+        // student.estadoMatriculacion &&
+        // student.estadoMatriculacion
+        //   .toLowerCase()
+        //   .includes(estadoMatricula ? estadoMatricula.toLowerCase() : '')
+				(numeroExpediente ? student.numeroExpediente.toLowerCase().includes(numeroExpediente.toLowerCase()) : true) &&
+				(nombre ? student.nombre.toLowerCase().includes(nombre.toLowerCase()) : true) &&
+				(apellidos ? student.apellidos.toLowerCase().includes(apellidos.toLowerCase()) : true) &&
+				(tipoConvenio ? student.tipoConvenio.toLowerCase().includes(tipoConvenio.toLowerCase()) : true) &&
+				(estadoMatricula ? student.estadoMatriculacion.toLowerCase().includes(estadoMatricula.toLowerCase()) : true)
       );
     });
 
@@ -142,27 +157,31 @@ export class SearchStudentsService {
     nExpediente,
     nombre,
     apellidos,
+    tipoConvenio,
+    estadoMatricula,
   }: {
     nExpediente: string;
     nombre: string;
     apellidos: string;
+    tipoConvenio: TipoConvenio;
+    estadoMatricula: EstadoMatriculacion;
   }) {
-    if (nExpediente.length > 0) {
-      this.filters.numeroExpediente = nExpediente;
-      console.log('Numero expediente', nExpediente);
-    }
-    if (nombre) this.filters.nombre = nombre;
-    if (apellidos) this.filters.apellidos = apellidos;
+    this.filters.numeroExpediente = nExpediente;
+    this.filters.nombre = nombre;
+    this.filters.apellidos = apellidos;
+    this.filters.tipoConvenio = tipoConvenio;
+    this.filters.estadoMatricula = estadoMatricula;
+    this.filters.page = 1;
   }
 
   clearFilters() {
     this.filters = {
+      numeroExpediente: '',
       nombre: '',
       apellidos: '',
       universidad: '',
-      estadoMatricula: '',
-      tipoConvenio: '',
-      numeroExpediente: '',
+      estadoMatricula: null,
+      tipoConvenio: null,
       page: 1,
       pageSize: 10,
       order: 'asc',
