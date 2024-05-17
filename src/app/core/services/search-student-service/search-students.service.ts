@@ -1,6 +1,14 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {
+  Injectable,
+  OnDestroy,
+  OnInit,
+  WritableSignal,
+  inject,
+  signal,
+} from '@angular/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { Alumno, EstadoMatriculacion, TipoConvenio } from '@types';
+import { StudentsService } from '../students-service/students.service';
 
 export interface SearchFilters {
   nombre: string | null;
@@ -27,9 +35,13 @@ export type orderType = 'asc' | 'desc';
   providedIn: 'root',
 })
 export class SearchStudentsService {
+  private StudentsService = inject(StudentsService);
+
   private _filteredStudents = new BehaviorSubject<Alumno[]>([]);
 
   filteredStudents$ = this._filteredStudents.asObservable();
+
+  private studentsSub!: Subscription;
 
   searchInformation: SearchInformation = {
     totalPage: 0,
@@ -69,11 +81,27 @@ export class SearchStudentsService {
 
     let newFilteredStudents = students.filter((student) => {
       return (
-				(numeroExpediente ? student.numeroExpediente.toLowerCase().includes(numeroExpediente.toLowerCase()) : true) &&
-				(nombre ? student.nombre.toLowerCase().includes(nombre.toLowerCase()) : true) &&
-				(apellidos ? student.apellidos.toLowerCase().includes(apellidos.toLowerCase()) : true) &&
-				(tipoConvenio ? student.tipoConvenio.toLowerCase().includes(tipoConvenio.toLowerCase()) : true) &&
-				(estadoMatricula ? student.estadoMatriculacion.toLowerCase().includes(estadoMatricula.toLowerCase()) : true)
+        (numeroExpediente
+          ? student.numeroExpediente
+              .toLowerCase()
+              .includes(numeroExpediente.toLowerCase())
+          : true) &&
+        (nombre
+          ? student.nombre.toLowerCase().includes(nombre.toLowerCase())
+          : true) &&
+        (apellidos
+          ? student.apellidos.toLowerCase().includes(apellidos.toLowerCase())
+          : true) &&
+        (tipoConvenio
+          ? student.tipoConvenio
+              .toLowerCase()
+              .includes(tipoConvenio.toLowerCase())
+          : true) &&
+        (estadoMatricula
+          ? student.estadoMatriculacion
+              .toLowerCase()
+              .includes(estadoMatricula.toLowerCase())
+          : true)
       );
     });
 
@@ -106,11 +134,18 @@ export class SearchStudentsService {
   nextPage() {
     if (this.filters.page >= this.searchInformation.totalPage) return;
     this.filters.page++;
+    // this.filterStudents(this._students());
+    this._filteredStudents.next(
+      this._filterStudents(this.StudentsService.getStudentsSnapshot())
+    );
   }
 
   previousPage() {
     if (this.filters.page <= 1) return;
     this.filters.page--;
+    this._filteredStudents.next(
+      this._filterStudents(this.StudentsService.getStudentsSnapshot())
+    );
   }
 
   setTotalPage(totalPage: number) {
@@ -127,17 +162,24 @@ export class SearchStudentsService {
     if (page > this.searchInformation.totalPage)
       this.filters.page = this.searchInformation.totalPage;
     if (page < 1) this.filters.page = 1;
-
     this.filters.page = page;
+
+    this._filteredStudents.next(
+      this._filterStudents(this.StudentsService.getStudentsSnapshot())
+    );
   }
 
-  filterByColumn(column: keyof Alumno) {
+  orderByColumn(column: keyof Alumno) {
     if (this.filters.orderBy === column) {
       this.filters.order = this.filters.order === 'asc' ? 'desc' : 'asc';
     } else {
       this.filters.order = 'asc';
     }
     this.filters.orderBy = column;
+
+    this._filteredStudents.next(
+      this._filterStudents(this.StudentsService.getStudentsSnapshot())
+    );
   }
 
   filterBySearch({
@@ -159,6 +201,10 @@ export class SearchStudentsService {
     this.filters.tipoConvenio = tipoConvenio;
     this.filters.estadoMatricula = estadoMatricula;
     this.filters.page = 1;
+
+    this._filteredStudents.next(
+      this._filterStudents(this.StudentsService.getStudentsSnapshot())
+    );
   }
 
   clearFilters() {
@@ -174,5 +220,9 @@ export class SearchStudentsService {
       order: 'asc',
       orderBy: 'numeroExpediente',
     };
+
+    this._filteredStudents.next(
+      this._filterStudents(this.StudentsService.getStudentsSnapshot())
+    );
   }
 }

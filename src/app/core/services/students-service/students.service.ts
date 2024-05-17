@@ -21,8 +21,11 @@ export class StudentsService {
   }
 
   getstudents() {
-    // console.log(students);
     this._students.next(estudiantes);
+  }
+
+  getStudentsSnapshot() {
+    return this._students.getValue();
   }
 
   constructor() {}

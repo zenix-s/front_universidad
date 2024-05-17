@@ -31,8 +31,7 @@ export class StudentsTableComponent implements OnInit, OnDestroy {
   filterStudentsSubscription!: Subscription;
 
   filterByColumn(column: keyof Alumno) {
-    this.searchStudentsService.filterByColumn(column);
-    this.searchStudentsService.filterStudents(this.students());
+    this.searchStudentsService.orderByColumn(column);
   }
 
   ngOnInit(): void {

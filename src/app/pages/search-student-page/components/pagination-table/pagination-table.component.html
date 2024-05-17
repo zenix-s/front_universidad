@@ -1,9 +1,0 @@
-<app-pagination [currentPage]="this.searchStudentsService.filters.page"
-  [totalPages]="this.searchStudentsService.searchInformation.totalPage"
-  [totalItems]="totalStudents"
-  [itemsPerPage]="this.searchStudentsService.searchInformation.studentsInPage"
-  (nextPage)="nextPage()"
-  (previousPage)="previousPage()"
-  (goToPage)="goToPage($event)"
->
-</app-pagination>

@@ -1,6 +1,6 @@
 <form [formGroup]="searchForm" class="filter-form-container">
   <!-- CONTAINER 1 -->
-  <div class="container">
+  <div class="section">
     <div class="filter-container">
       <!-- TIPO DE CONVENIO -->
       <app-section [title]="'Tipo de alumnos'">
@@ -29,7 +29,7 @@
     </div>
   </div>
   <!-- CONTAINER 2 -->
-  <div class="container">
+  <div class="section">
     <app-section [title]="'Criterios Alumnos'">
       <app-paper-icon role="icon" color="red"></app-paper-icon>
       <div class="filter-container" role="content">
@@ -50,4 +50,15 @@
   </div>
 </form>
 <app-students-table></app-students-table>
-<app-pagination-table></app-pagination-table>
+<div class="section">
+  <app-pagination
+    [totalItems]="this.searchStudentsService.searchInformation.totalStudents"
+    [currentPage]="this.searchStudentsService.filters.page"
+    [itemsPerPage]="this.searchStudentsService.filters.pageSize"
+    [totalPages]="this.searchStudentsService.searchInformation.totalPage"
+    (nextPage)="this.searchStudentsService.nextPage()"
+    (previousPage)="this.searchStudentsService.previousPage()"
+    (goToPage)="this.searchStudentsService.goToPage($event)"
+  >
+  </app-pagination>
+</div>

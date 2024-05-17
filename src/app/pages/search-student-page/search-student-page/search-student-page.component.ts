@@ -31,8 +31,8 @@ import { EstadoMatriculacion, TipoConvenio } from '@types';
 })
 export class SearchStudentPageComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
-  private searchStudentsService = inject(SearchStudentsService);
-  private StudentsService = inject(StudentsService);
+  searchStudentsService = inject(SearchStudentsService);
+  StudentsService = inject(StudentsService);
 
   searchForm: FormGroup = this.fb.group({
     nombre: [null, Validators.required],
@@ -44,7 +44,6 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
   });
 
   onSubmit() {
-    console.log(this.searchForm.value);
     this.searchStudentsService.filterBySearch({
       nExpediente: this.searchForm.value.numeroExpediente as string,
       nombre: this.searchForm.value.nombre as string,
@@ -52,17 +51,11 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
       estadoMatricula: this.searchForm.value.estadoMatricula as EstadoMatriculacion,
       tipoConvenio: this.searchForm.value.tipoConvenio as TipoConvenio,
     });
-    this.StudentsService.students$.subscribe((students) => {
-      this.searchStudentsService.filterStudents(students);
-    });
   }
 
   clearForm() {
     this.searchForm.reset();
     this.searchStudentsService.clearFilters();
-    this.StudentsService.students$.subscribe((students) => {
-      this.searchStudentsService.filterStudents(students);
-    });
   }
 
   get listEstadoMatriculacion() {
