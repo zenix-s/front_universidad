@@ -69,22 +69,6 @@ export class SearchStudentsService {
 
     let newFilteredStudents = students.filter((student) => {
       return (
-				// numeroExpediente &&
-        // student.numeroExpediente
-        //   .toLowerCase()
-        //   .includes(numeroExpediente.toLowerCase()) &&
-        // nombre &&
-        // student.nombre.toLowerCase().includes(nombre.toLowerCase()) &&
-				// apellidos &&
-        // student.apellidos.toLowerCase().includes(apellidos.toLowerCase()) &&
-        // student.tipoConvenio &&
-        // student.tipoConvenio
-        //   .toLowerCase()
-        //   .includes(tipoConvenio ? tipoConvenio.toLowerCase() : '') &&
-        // student.estadoMatriculacion &&
-        // student.estadoMatriculacion
-        //   .toLowerCase()
-        //   .includes(estadoMatricula ? estadoMatricula.toLowerCase() : '')
 				(numeroExpediente ? student.numeroExpediente.toLowerCase().includes(numeroExpediente.toLowerCase()) : true) &&
 				(nombre ? student.nombre.toLowerCase().includes(nombre.toLowerCase()) : true) &&
 				(apellidos ? student.apellidos.toLowerCase().includes(apellidos.toLowerCase()) : true) &&
@@ -120,23 +104,26 @@ export class SearchStudentsService {
   }
 
   nextPage() {
+    if (this.filters.page >= this.searchInformation.totalPage) return;
     this.filters.page++;
   }
 
   previousPage() {
+    if (this.filters.page <= 1) return;
     this.filters.page--;
   }
 
   setTotalPage(totalPage: number) {
+    if (this.filters.page > totalPage) this.filters.page = totalPage;
     this.searchInformation.totalPage = totalPage;
   }
 
   setPageSize(pageSize: number) {
     this.filters.pageSize = pageSize;
+    this.filters.page = 1;
   }
 
   goToPage(page: number) {
-    // if (page > this.totalPage) this.filters.page = this.totalPage;
     if (page > this.searchInformation.totalPage)
       this.filters.page = this.searchInformation.totalPage;
     if (page < 1) this.filters.page = 1;
