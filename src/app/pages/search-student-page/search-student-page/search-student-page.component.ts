@@ -10,12 +10,12 @@ import { SharedModule } from '@app/shared/shared.module';
 import {
   listEstadoMatriculacion,
   listTipoConvenio,
-} from '@app/core/entities/interfaces';
+} from '@app/core/entities/interfaces.entity';
 import { SearchStudentPageModule } from '../search-student-page.module';
 import { StudentsTableComponent } from '../components/students-table/students-table.component';
 import { SearchStudentsService } from '@app/core/services/search-student-service/search-students.service';
 import { StudentsService } from '@app/core/services/students-service/students.service';
-import { EstadoMatriculacion, TipoConvenio } from '@types';
+import { EstadoMatriculacion, TipoConvenio } from '@app/core/entities/interfaces.entity';
 @Component({
   standalone: true,
   selector: 'app-search-student-page',

@@ -10,7 +10,7 @@ import { SearchStudentsService } from '@app/core/services/search-student-service
 import { StudentsService } from '@app/core/services/students-service/students.service';
 import { IconsModule } from '@app/shared/icons/icons.module';
 import { SharedModule } from '@app/shared/shared.module';
-import { Alumno } from "@app/core/entities/Alumno";
+import { Alumno } from "@app/core/entities/Alumno.entity";
 import { Subscription } from 'rxjs';
 
 @Component({

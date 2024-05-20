@@ -1,4 +1,4 @@
-import { TipoConvenio, EstadoMatriculacion } from "./interfaces";
+import { TipoConvenio, EstadoMatriculacion } from "./interfaces.entity";
 
 
 export interface Alumno {

@@ -2,9 +2,9 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IconsModule } from '@app/shared/icons/icons.module';
 import { SharedModule } from '@app/shared/shared.module';
-import { listTipoConvenio } from '@app/core/entities/interfaces';
+import { listTipoConvenio } from '@app/core/entities/interfaces.entity';
 import { StudentsService } from '@app/core/services/students-service/students.service';
-import { EstadoMatriculacion, TipoConvenio } from '@types';
+import { EstadoMatriculacion, TipoConvenio } from '@app/core/entities/interfaces.entity';
 import { Router } from '@angular/router';
 
 @Component({

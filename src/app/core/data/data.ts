@@ -1,4 +1,4 @@
-import { Alumno } from "../entities/Alumno";
+import { Alumno } from "../entities/Alumno.entity";
 
 export const estudiantes: Alumno[] = [
   {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Alumno } from "@app/core/entities/Alumno";
+import { Alumno } from "@app/core/entities/Alumno.entity";
 import { BehaviorSubject } from 'rxjs';
 import { estudiantes } from '@app/core/data/data';
 

@@ -1,4 +1,4 @@
-import { EstadoMatriculacion } from "./interfaces";
+import { EstadoMatriculacion } from "./interfaces.entity";
 
 
 export interface Matricula {

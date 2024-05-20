@@ -7,8 +7,8 @@ import {
   signal,
 } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { EstadoMatriculacion, TipoConvenio } from '@types';
-import { Alumno } from "@app/core/entities/Alumno";
+import { EstadoMatriculacion, TipoConvenio } from '@app/core/entities/interfaces.entity';
+import { Alumno } from "@app/core/entities/Alumno.entity";
 import { StudentsService } from '../students-service/students.service';
 
 export interface SearchFilters {
