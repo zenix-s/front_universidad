@@ -11,19 +11,19 @@ import {
   listEstadoMatriculacion,
   listTipoConvenio,
 } from '@app/core/entities/interfaces.entity';
-import { SearchStudentPageModule } from '../search-student-page.module';
 import { StudentsTableComponent } from '../components/students-table/students-table.component';
 import { SearchStudentsService } from '@app/core/services/search-student-service/search-students.service';
 import { StudentsService } from '@app/core/services/students-service/students.service';
 import { EstadoMatriculacion, TipoConvenio } from '@app/core/entities/interfaces.entity';
+import { CommonModule } from '@angular/common';
 @Component({
   standalone: true,
   selector: 'app-search-student-page',
   templateUrl: './search-student-page.component.html',
   styleUrl: './search-student-page.component.css',
   imports: [
+    CommonModule,
     ReactiveFormsModule,
-    SearchStudentPageModule,
     SharedModule,
     IconsModule,
     StudentsTableComponent,
