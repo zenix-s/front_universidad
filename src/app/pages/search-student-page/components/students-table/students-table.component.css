@@ -1,29 +1,12 @@
 :host {
-  margin: 0.25rem 1rem;
-  background-color: white;
-  border-radius: 0.5rem;
-  flex-grow: 1;
-  overflow: auto;
+  @apply my-1 mx-4 bg-whiter rounded-md grow overflow-auto;
 }
 
 .table-head {
-  width:max-content;
-  height: 2.5rem;
-  background-color: rgb(var(--color-secondary), 0.3);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 0 5rem;
-  text-transform: uppercase;
+  @apply w-max h-10 bg-secondary/60 flex items-center justify-center gap-4 px-20 uppercase;
 }
 span {
-  padding: 0.5rem;
-}
-
-table {
-  border-collapse: collapse;
+  @apply p-2;
 }
 
 
@@ -32,8 +15,5 @@ table > tbody > tr > td {
   padding: 0.25rem;
 }
 table > tbody > tr > td > span {
-  width: 100%;
-  display: flex;
-  margin: 0.25rem;
-  background-color: rgb(var(--color-secondary), 0.1);
+  @apply w-full flex m-1 bg-secondary/10;
 }

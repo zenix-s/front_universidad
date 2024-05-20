@@ -1,6 +1,6 @@
 <button
+  class="cursor-pointer rounded-md border flex items-center justify-center gap-2 transition-colors"
   [ngClass]="{
-    'btn': true,
     'btn-primary': (themeType === 'primary' || !themeType) && !disabled,
     'disabled-btn-primary': (themeType === 'primary' || !themeType) && disabled,
     'btn-secondary': themeType === 'secondary' && !disabled,
@@ -11,14 +11,10 @@
     'disabled-btn-light': themeType === 'light' && disabled,
     'btn-dark': themeType === 'dark' && !disabled,
     'disabled-btn-dark': themeType === 'dark' && disabled,
-    'btn-sm': size === 'sm',
-    'btn-md': size === 'md',
-    'btn-lg': size === 'lg',
-    'btn-shadow': shadow,
-  }"
-  [disabled]="disabled"
-  [type]="htmlType"
-  (click)="onClick.emit()"
->
+    'py-0.5 px-1': size === 'sm',
+    'py-1 px-1.5': size === 'md',
+    'py-1.5 px-2': size === 'lg',
+    'shadow-md hover:shadow-lg': shadow,
+  }" [disabled]="disabled" [type]="htmlType" (click)="onClick.emit()">
   <ng-content></ng-content>
 </button>

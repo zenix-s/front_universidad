@@ -1,11 +1,11 @@
-<header class="header">
-  <button (click)="openSidebar()">
-    <app-menu-icon></app-menu-icon>
+<header class="flex w-full gap-2 items-center py-2 px-4">
+  <button (click)="openSidebar()" class="text-2xl">
+    <i class="ri-menu-line" role="icon"></i>
   </button>
   <div>
-    <img src="https://universidadeuropea.com/resources/static/img/ue-logo-new.svg" height="30">
+    <app-ue-logo></app-ue-logo>
   </div>
   <div>
-    bradcrumbs
+    breadcrumbs
   </div>
 </header>

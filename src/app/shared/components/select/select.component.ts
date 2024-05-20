@@ -10,6 +10,7 @@ import {
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 @Component({
+  standalone: true,
   selector: 'app-select',
   templateUrl: './select.component.html',
   styleUrl: './select.component.css',

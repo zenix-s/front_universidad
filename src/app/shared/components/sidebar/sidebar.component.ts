@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -9,8 +10,13 @@ import {
   signal,
 } from '@angular/core';
 import { SidebarService } from '@app/core/services/sidebar-service/sidebar.service';
+import { SidebarNavItemComponent } from './sidebar-nav-item/sidebar-nav-item.component';
+import { SubmenuComponent } from './submenu/submenu.component';
+import { UeLogoComponent } from '../ue-logo/ue-logo.component';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, SidebarNavItemComponent, SubmenuComponent, UeLogoComponent],
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',

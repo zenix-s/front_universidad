@@ -1,6 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, RouterLink],
   selector: 'app-sidebar-nav-item',
   templateUrl: './sidebar-nav-item.component.html',
   styleUrl: './sidebar-nav-item.component.css',

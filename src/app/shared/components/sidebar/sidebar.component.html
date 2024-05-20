@@ -1,17 +1,23 @@
-<aside class="sidebar" [ngClass]="isOpen ? 'sidebar--open': 'sidebar--close'">
-  <div class="header-aside">
-    <button (click)="close()" class="close-button">
-      <app-menu-icon></app-menu-icon>
+<aside class="fixed flex-col top-0 left-0 h-full w-64 bg-whiter transition-all py-2 px-4"
+  [ngClass]="isOpen ? 'w-64 transition-all flex': 'hidden'">
+  <div class="flex gap-4">
+    <button (click)="close()" class="bg-transparent cursor-pointer text-2xl">
+      <i class="ri-menu-line" role="icon"></i>
     </button>
-    <img src="https://universidadeuropea.com/resources/static/img/ue-logo-new.svg" height="30">
+    <div class="w-full">
+      <app-ue-logo></app-ue-logo>
+    </div>
   </div>
-  <nav class="sidebar-nav">
-    <ul>
+  <hr class="divide-x-2 border-black my-4">
+  <nav class="flex grow w-full">
+    <ul class="w-full">
       <app-sidebar-nav-item [label]="'Home'" [url]="'/'">
-        <app-home-icon role="icon"></app-home-icon>
+        <!-- <app-home-icon role="icon"></app-home-icon> -->
+        <i class="ri-home-4-line" role="icon"></i>
       </app-sidebar-nav-item>
       <app-sidebar-nav-item [label]="'Alumnos'" [hasSubmenu]="true">
-        <app-group-icon role="icon"></app-group-icon>
+        <!-- <app-group-icon role="icon"></app-group-icon> -->
+        <i class="ri-group-line" role="icon"></i>
         <app-submenu role="submenu">
           <li>
             <app-sidebar-nav-item [label]="'Nuevo expediente'" [url]="'/student/form'"></app-sidebar-nav-item>
@@ -22,7 +28,8 @@
         </app-submenu>
       </app-sidebar-nav-item>
       <app-sidebar-nav-item [label]="'RRII'" [hasSubmenu]="true">
-        <app-paper-icon role="icon"></app-paper-icon>
+        <!-- <app-paper-icon role="icon"></app-paper-icon> -->
+        <i class="ri-file-list-3-line" role="icon"></i>
         <app-submenu role="submenu">
           <li>
             <app-sidebar-nav-item [label]="'Consulta RRII'" [url]="'/'"></app-sidebar-nav-item>
@@ -42,16 +49,17 @@
         </app-submenu>
       </app-sidebar-nav-item>
       <app-sidebar-nav-item [label]="'Informes'" [hasSubmenu]="true">
-        <app-pdf-icon role="icon"></app-pdf-icon>
+        <!-- <app-pdf-icon role="icon"></app-pdf-icon> -->
+        <i class="ri-file-pdf-line" role="icon"></i>
         <ul role="submenu">
           <!-- <li><a href="">6º7º Convocatoria</a></li>
           <li><a href="">Paso de curso/ciclo</a></li> -->
-					<li>
-						<app-sidebar-nav-item [label]="'6º7º Convocatoria'" [url]="'/'"></app-sidebar-nav-item>
-					</li>
-					<li>
-						<app-sidebar-nav-item [label]="'Paso de curso/ciclo'" [url]="'/'"></app-sidebar-nav-item>
-					</li>
+          <li>
+            <app-sidebar-nav-item [label]="'6º7º Convocatoria'" [url]="'/'"></app-sidebar-nav-item>
+          </li>
+          <li>
+            <app-sidebar-nav-item [label]="'Paso de curso/ciclo'" [url]="'/'"></app-sidebar-nav-item>
+          </li>
         </ul>
       </app-sidebar-nav-item>
     </ul>
@@ -68,17 +76,19 @@
           ajustes
         </button> -->
         <app-sidebar-nav-item [label]="'Ajustes'" [url]="'/'">
-          <app-settings-icon role="icon"></app-settings-icon>
+          <!-- <app-settings-icon role="icon"></app-settings-icon> -->
+          <i class="ri-settings-3-line" role="icon"></i>
         </app-sidebar-nav-item>
 
       </li>
       <li>
-				<app-sidebar-nav-item [label]="'Salir'" [url]="'/'">
-          <app-logout-icon role="icon"></app-logout-icon>
-				</app-sidebar-nav-item>
+        <app-sidebar-nav-item [label]="'Salir'" [url]="'/'">
+          <!-- <app-logout-icon role="icon"></app-logout-icon> -->
+          <i class="ri-logout-box-line" role="icon"></i>
+        </app-sidebar-nav-item>
       </li>
     </ul>
   </div>
 </aside>
-<div class="sidebar__overlay grow-1" [ngClass]="isOpen ? 'sidebar__overlay--open': 'sidebar__overlay--close'"
-  (click)="close()"></div>
+<div class="bg-black/10 fixed h-full w-full top-0 left-64 grow" [ngClass]="isOpen ? 'flex': 'hidden'" (click)="close()">
+</div>

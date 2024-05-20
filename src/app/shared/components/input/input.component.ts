@@ -1,24 +1,17 @@
-import { Component, ElementRef, Input, ViewChild, inject, viewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+  inject,
+  viewChild,
+} from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 @Component({
+  standalone: true,
   selector: 'app-input',
-  // templateUrl: './input.component.html',
-  template: `
-    <div class="input-group">
-      @if (label) {
-      <div>
-        <label>{{ label }}</label>
-      </div>
-      }
-      <input
-        type="text"
-        [placeholder]="placeholder"
-        [value]="value"
-        (input)="onInput($event)"
-      />
-    </div>
-  `,
+  templateUrl: './input.component.html',
   styleUrl: './input.component.css',
 })
 export class InputComponent implements ControlValueAccessor {
@@ -67,5 +60,4 @@ export class InputComponent implements ControlValueAccessor {
     this.setValue(event.target.value);
     this.onChange(this.value);
   }
-
 }

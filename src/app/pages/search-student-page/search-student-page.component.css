@@ -1,0 +1,16 @@
+:host {
+  @apply flex flex-col overflow-hidden flex-grow;
+}
+
+.filter-form-container {
+  @apply grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.section {
+  @apply bg-whiter p-2 m-4 rounded-md;
+}
+
+.filter-container {
+  @apply flex flex-col gap-2 w-full h-full justify-between;
+}

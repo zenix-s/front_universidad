@@ -1,24 +1,7 @@
-.pagination{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+.pagination-section {
+  @apply flex justify-center items-center gap-2;
 }
 
-.pagination-section{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-}
-
-.data{
-  border: 1px solid rgb(var(--color-black));
-  padding: 5px 10px;
-  font-size: 14px;
-  background-color: transparent;
-  border-radius: 5px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.data {
+  @apply border border-black px-2 text-sm bg-transparent rounded-md h-full flex justify-center items-center;
 }
