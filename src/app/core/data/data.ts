@@ -1,4 +1,4 @@
-import { Alumno } from '@types';
+import { Alumno } from "../entities/Alumno";
 
 export const estudiantes: Alumno[] = [
   {

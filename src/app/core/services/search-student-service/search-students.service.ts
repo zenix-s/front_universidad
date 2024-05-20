@@ -7,7 +7,8 @@ import {
   signal,
 } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { Alumno, EstadoMatriculacion, TipoConvenio } from '@types';
+import { EstadoMatriculacion, TipoConvenio } from '@types';
+import { Alumno } from "@app/core/entities/Alumno";
 import { StudentsService } from '../students-service/students.service';
 
 export interface SearchFilters {
