@@ -47,6 +47,10 @@ export class TableComponent<T extends object> implements OnChanges {
     return new Date(value);
   }
 
+  transformTitle(column: keyof T): string {
+    return column.toString().replace(/([A-Z])/g, ' $1').trim();
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data'] && this.data.length > 0 && this.columns.length === 0) {
       this.columns = Object.keys(this.data[0]) as (keyof T)[];

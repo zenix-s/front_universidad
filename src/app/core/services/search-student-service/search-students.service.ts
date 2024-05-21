@@ -61,7 +61,7 @@ export class SearchStudentsService {
     tipoConvenio: null,
     numeroExpediente: null,
     page: 1,
-    pageSize: 10,
+    pageSize: 15,
     order: 'asc',
     orderBy: 'numeroExpediente',
   };

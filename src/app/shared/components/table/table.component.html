@@ -122,11 +122,16 @@
   <thead>
     <tr>
       @for (column of columns; track $index) {
-      <th (click)="columnClicked(column)">
+      <th (click)="columnClicked(column)" class="border border-black/20 hover:bg-secondary/20"
+        [ngClass]="{
+          'cursor-pointer': column !== 'actions',
+          'bg-secondary/30': column === columnOrder,
+        }"
+      >
         <button
-          class="cursor-pointer w-max h-10 bg-secondary/60 flex items-center justify-center gap-4 px-20 uppercase">
+          class="cursor-pointer w-max h-10 flex items-center justify-center gap-4 px-20">
           <span class="p-2">
-            {{column}}
+            {{transformTitle(column) | titlecase}}
           </span>
           @if (columnOrder === column) {
           @if (orderType === 'asc') {
@@ -146,7 +151,7 @@
     @for (item of data; track $index) {
     <tr class=" hover:bg-secondary/30 border-black/20 border">
       @for (column of columns; track $index) {
-      <td class="text-start p-1">
+      <td class="text-start px-1 py-2">
         <span class="w-full flex m-1">
           @if (isDate(item[column])) {
           {{anyToDate(item[column]) | date: 'dd/MM/yyyy'}}
