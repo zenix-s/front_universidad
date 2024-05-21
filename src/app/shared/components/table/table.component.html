@@ -1,135 +1,13 @@
-<!-- <table class="border-collapse">
-  <thead>
-    <th>
-      <button class="table-head" (click)="filterByColumn('numeroExpediente')">
-        <span>Nº Expediente</span>
-        @if (this.searchStudentsService.filters.orderBy === 'numeroExpediente') {
-        @if (this.searchStudentsService.filters.order === 'asc') {
-        <i class="material-icons">expand_more</i>
-        }@else {
-        <i class="material-icons">expand_less</i>
-        }
-        }@else {
-        <i class="material-icons" style="color: transparent;">more_horiz</i>
-        }
-      </button>
-    </th>
-    <th>
-      <button class="table-head" (click)="filterByColumn('nombre')">
-        <span>Nombre</span>
-        @if (this.searchStudentsService.filters.orderBy === 'nombre') {
-        @if(this.searchStudentsService.filters.order === 'asc') {
-        <i class="material-icons">expand_more</i>
-        }@else {
-        <i class="material-icons">expand_less</i>
-        }
-        }@else {
-        <i class="material-icons" style="color: transparent;">more_horiz</i>
-        }
-      </button>
-    </th>
-    <th>
-      <button class="table-head" (click)="filterByColumn('apellidos')">
-        <span>Apellidos</span>
-        @if (this.searchStudentsService.filters.orderBy === 'apellidos') {
-        @if (this.searchStudentsService.filters.order === 'asc') {
-        <i class="material-icons">expand_more</i>
-        }@else {
-        <i class="material-icons">expand_less</i>
-        } }@else {
-        <i class="material-icons" style="color: transparent;">more_horiz</i>
-        }
-      </button>
-    </th>
-    <th>
-      <button class="table-head" (click)="filterByColumn('tipoConvenio')">
-        <span>Tipo Convenio</span>
-        @if(this.searchStudentsService.filters.orderBy === 'tipoConvenio') {
-        @if (this.searchStudentsService.filters.order === 'asc') {
-        <i class="material-icons">expand_more</i>
-        }@else {
-        <i class="material-icons">expand_less</i>
-        } }@else {
-        <i class="material-icons" style="color:  transparent;">more_horiz</i>
-        }
-      </button>
-    </th>
-    <th>
-      <button class="table-head" (click)="filterByColumn('nacionalidad')">
-        <span>Nacionalidad</span>
-        @if(this.searchStudentsService.filters.orderBy === 'nacionalidad') {
-        @if (this.searchStudentsService.filters.order === 'asc') {
-        <i class="material-icons">expand_more</i>
-        }@else {
-        <i class="material-icons">expand_less</i>
-        } }@else {
-        <i class="material-icons" style="color: transparent;">more_horiz</i>
-        }
-      </button>
-    </th>
-    <th>
-      <button class="table-head" (click)="filterByColumn('fechaNacimiento')">
-        <span>Fecha Nacimiento</span>
-        @if(this.searchStudentsService.filters.orderBy === 'fechaNacimiento') {
-        @if (this.searchStudentsService.filters.order === 'asc') {
-        <i class="material-icons">expand_more</i>
-        }@else {
-        <i class="material-icons">expand_less</i>
-        } }@else {
-        <i class="material-icons" style="color: transparent;">more_horiz</i>
-        }
-      </button>
-    </th>
-  </thead>
-  <tbody>
-    @for (estudiante of filteredStudents(); track $index) {
-    <tr>
-      <td>
-        <span>
-          {{ estudiante.numeroExpediente }}
-        </span>
-      </td>
-      <td>
-        <span>
-          {{ estudiante.nombre }}
-        </span>
-      </td>
-      <td>
-        <span>
-          {{ estudiante.apellidos }}
-        </span>
-      </td>
-      <td>
-        <span>
-          {{ estudiante.tipoConvenio }}
-        </span>
-      </td>
-      <td>
-        <span>
-          {{ estudiante.nacionalidad }}
-        </span>
-      </td>
-      <td>
-        <span>
-          {{ estudiante.fechaNacimiento | date: 'dd/MM/yyyy'}}
-        </span>
-      </td>
-    </tr>
-    }
-  </tbody>
-</table> -->
 <table class="border-collapse">
   <thead>
     <tr>
       @for (column of columns; track $index) {
-      <th (click)="columnClicked(column)" class="border border-black/20 hover:bg-secondary/20"
-        [ngClass]="{
+      <th (click)="columnClicked(column)" class=" hover:bg-secondary/20" [ngClass]="{
           'cursor-pointer': column !== 'actions',
           'bg-secondary/30': column === columnOrder,
-        }"
-      >
-        <button
-          class="cursor-pointer w-max h-10 flex items-center justify-center gap-4 px-20">
+          'border-r border-black/20': $index !== columns.length - 1,
+        }">
+        <button class="cursor-pointer w-max h-10 flex items-center justify-center gap-4 px-20">
           <span class="p-2">
             {{transformTitle(column) | titlecase}}
           </span>

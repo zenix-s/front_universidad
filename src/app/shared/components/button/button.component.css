@@ -30,5 +30,5 @@
 }
 
 .disabled-btn-outline {
-  @apply border-black/70 cursor-not-allowed;
+  @apply border-black/70 bg-black/5 cursor-not-allowed;
 }

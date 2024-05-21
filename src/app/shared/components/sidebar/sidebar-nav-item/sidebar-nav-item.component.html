@@ -1,25 +1,24 @@
 <li class="flex flex-col items-center w-full">
-  <div class="flex items-center w-full cursor-pointer py-2 px-1" [ngClass]="isActive() ? 'bg-primary': ''"
+  <div class="flex items-center gap-2 hover:bg-comment/10 w-full rounded-md cursor-pointer py-2 px-1" [ngClass]="isActive() ? 'bg-primary': ''"
     (click)="toggleCollapsed()">
     <div [style.color]="isActive() ? 'white' : 'red'">
       <ng-content select="[role=icon]"></ng-content>
     </div>
     @if(hasSubmenu) {
-    <span class="bg-transparent text-lg font-bold grow select-none">{{ label }}</span>
+    <span class="bg-transparent text-lg grow select-none">{{ label }}</span>
     @if (isOpen) {
     <i class="ri-arrow-down-s-fill"></i>
     } @else {
     <i class="ri-arrow-right-s-fill"></i>
     }
     } @else {
-    <a class="bg-transparent text-lg font-bold grow select-none" routerLink="{{ url }}">
+    <a class="bg-transparent text-lg grow select-none" routerLink="{{ url }}">
       {{ label }}
     </a>
     }
   </div>
   @if(hasSubmenu) {
-  <div class="w-full"
-    [ngClass]="isOpen ? 'block': 'hidden'">
+  <div class="w-full" [ngClass]="isOpen ? 'block': 'hidden'">
     <ng-content select="[role=submenu]"></ng-content>
     <hr class="divide-x-2 border-black">
   </div>

@@ -49,7 +49,10 @@
     </app-section>
   </div>
 </form>
-<app-students-table></app-students-table>
+<!-- <app-students-table></app-students-table> -->
+<div class="my-1 mx-4 bg-whiter rounded-md grow overflow-auto">
+  <app-table [data]="filteredStudents()" (rowClicked)="this.searchStudentsService.orderByColumn($event)"></app-table>
+</div>
 <div class="section">
   <app-pagination [totalItems]="this.searchStudentsService.searchInformation.totalStudents"
     [currentPage]="this.searchStudentsService.filters.page" [itemsPerPage]="this.searchStudentsService.filters.pageSize"

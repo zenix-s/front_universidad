@@ -173,9 +173,9 @@ export class SearchStudentsService {
     );
   }
 
-  orderByColumn(column: keyof Alumno, order: orderType) {
-    this.filters.order = order;
+  orderByColumn({ column, order }: { column: keyof Alumno; order: orderType }) {
     this.filters.orderBy = column;
+    this.filters.order = order;
 
     this._filteredStudents.next(
       this._filterStudents(this.StudentsService.getStudentsSnapshot())
@@ -216,7 +216,7 @@ export class SearchStudentsService {
       estadoMatricula: null,
       tipoConvenio: null,
       page: 1,
-      pageSize: 10,
+      pageSize: this.filters.pageSize,
       order: 'asc',
       orderBy: 'numeroExpediente',
     };
