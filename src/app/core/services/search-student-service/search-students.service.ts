@@ -7,8 +7,11 @@ import {
   signal,
 } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { EstadoMatriculacion, TipoConvenio } from '@app/core/entities/interfaces.entity';
-import { Alumno } from "@app/core/entities/Alumno.entity";
+import {
+  EstadoMatriculacion,
+  TipoConvenio,
+} from '@app/core/entities/interfaces.entity';
+import { Alumno } from '@app/core/entities/Alumno.entity';
 import { StudentsService } from '../students-service/students.service';
 
 export interface SearchFilters {
@@ -170,12 +173,8 @@ export class SearchStudentsService {
     );
   }
 
-  orderByColumn(column: keyof Alumno) {
-    if (this.filters.orderBy === column) {
-      this.filters.order = this.filters.order === 'asc' ? 'desc' : 'asc';
-    } else {
-      this.filters.order = 'asc';
-    }
+  orderByColumn(column: keyof Alumno, order: orderType) {
+    this.filters.order = order;
     this.filters.orderBy = column;
 
     this._filteredStudents.next(

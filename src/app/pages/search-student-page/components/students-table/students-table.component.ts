@@ -10,13 +10,15 @@ import { SearchStudentsService } from '@app/core/services/search-student-service
 import { StudentsService } from '@app/core/services/students-service/students.service';
 import { Alumno } from "@app/core/entities/Alumno.entity";
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { TableComponent } from '@app/shared/components/table/table.component';
 
 @Component({
   standalone: true,
   selector: 'app-students-table',
   templateUrl: './students-table.component.html',
   styleUrl: './students-table.component.css',
-  imports: [],
+  imports: [CommonModule, TableComponent],
 })
 export class StudentsTableComponent implements OnInit, OnDestroy {
   searchStudentsService = inject(SearchStudentsService);
@@ -28,8 +30,14 @@ export class StudentsTableComponent implements OnInit, OnDestroy {
   studentsSubscription!: Subscription;
   filterStudentsSubscription!: Subscription;
 
-  filterByColumn(column: keyof Alumno) {
-    this.searchStudentsService.orderByColumn(column);
+  filterByColumn({
+    column,
+    order,
+  }: {
+    column: keyof Alumno;
+    order: 'asc' | 'desc';
+  }) {
+    this.searchStudentsService.orderByColumn(column, order);
   }
 
   ngOnInit(): void {

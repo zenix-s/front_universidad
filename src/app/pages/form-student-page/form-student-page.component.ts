@@ -7,11 +7,12 @@ import { SectionComponent } from '@app/shared/components/section/section.compone
 import { ButtonComponent } from '@app/shared/components/button/button.component';
 import { SelectComponent } from '@app/shared/components/select/select.component';
 import { InputComponent } from '@app/shared/components/input/input.component';
+import { DateInputComponent } from '@app/shared/components/date-input/date-input.component';
 
 @Component({
   selector: 'app-form-student-page',
   standalone: true,
-  imports: [ReactiveFormsModule, SectionComponent, ButtonComponent, SelectComponent, InputComponent],
+  imports: [ReactiveFormsModule, SectionComponent, ButtonComponent, SelectComponent, InputComponent, DateInputComponent],
   templateUrl: './form-student-page.component.html',
   styleUrl: './form-student-page.component.css',
 })

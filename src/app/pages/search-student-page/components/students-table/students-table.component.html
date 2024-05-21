@@ -1,4 +1,4 @@
-<table class="border-collapse">
+<!-- <table class="border-collapse">
   <thead>
     <th>
       <button class="table-head" (click)="filterByColumn('numeroExpediente')">
@@ -67,6 +67,19 @@
         }
       </button>
     </th>
+    <th>
+      <button class="table-head" (click)="filterByColumn('fechaNacimiento')">
+        <span>Fecha Nacimiento</span>
+        @if(this.searchStudentsService.filters.orderBy === 'fechaNacimiento') {
+        @if (this.searchStudentsService.filters.order === 'asc') {
+        <i class="material-icons">expand_more</i>
+        }@else {
+        <i class="material-icons">expand_less</i>
+        } }@else {
+        <i class="material-icons" style="color: transparent;">more_horiz</i>
+        }
+      </button>
+    </th>
   </thead>
   <tbody>
     @for (estudiante of filteredStudents(); track $index) {
@@ -96,7 +109,17 @@
           {{ estudiante.nacionalidad }}
         </span>
       </td>
+      <td>
+        <span>
+          {{ estudiante.fechaNacimiento | date: 'dd/MM/yyyy'}}
+        </span>
+      </td>
     </tr>
     }
   </tbody>
-</table>
+</table> -->
+
+<app-table
+  [data]="filteredStudents()"
+  (rowClicked)="filterByColumn($event)"
+></app-table>
