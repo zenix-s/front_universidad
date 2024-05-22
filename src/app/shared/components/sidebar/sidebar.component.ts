@@ -9,7 +9,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { SidebarService } from '@app/core/services/sidebar-service/sidebar.service';
+import { SidebarService } from '@app/shared/components/sidebar/sidebar-service/sidebar.service';
 import { SidebarNavItemComponent } from './sidebar-nav-item/sidebar-nav-item.component';
 import { SubmenuComponent } from './submenu/submenu.component';
 import { UeLogoComponent } from '../ue-logo/ue-logo.component';

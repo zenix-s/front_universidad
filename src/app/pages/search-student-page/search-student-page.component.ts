@@ -17,7 +17,7 @@ import { InputComponent } from '@app/shared/components/input/input.component';
 import { SectionComponent } from '@app/shared/components/section/section.component';
 import { SelectComponent } from '@app/shared/components/select/select.component';
 import { PaginationComponent } from '@app/shared/components/pagination/pagination.component';
-import { SearchStudentsService } from '@app/core/services/search-student-service/search-students.service';
+import { SearchStudentsService } from './search-student-service/search-students.service';
 import { StudentsService } from '@app/core/services/students-service/students.service';
 import {
   EstadoMatriculacion,

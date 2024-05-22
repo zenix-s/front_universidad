@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { SidebarService } from '@app/core/services/sidebar-service/sidebar.service';
+import { SidebarService } from '@app/shared/components/sidebar/sidebar-service/sidebar.service';
 import { UeLogoComponent } from '../ue-logo/ue-logo.component';
 
 @Component({
