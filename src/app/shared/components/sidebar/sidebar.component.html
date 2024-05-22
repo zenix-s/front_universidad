@@ -27,40 +27,12 @@
           </li>
         </app-submenu>
       </app-sidebar-nav-item>
-      <app-sidebar-nav-item [label]="'RRII'" [hasSubmenu]="true">
-        <!-- <app-paper-icon role="icon"></app-paper-icon> -->
-        <i class="ri-file-list-3-line" role="icon"></i>
-        <app-submenu role="submenu">
-          <li>
-            <app-sidebar-nav-item [label]="'Consulta RRII'" [url]="'/'"></app-sidebar-nav-item>
-          </li>
-          <li>
-            <app-sidebar-nav-item [label]="'Expediente'" [url]="'/'"></app-sidebar-nav-item>
-          </li>
-          <li>
-            <app-sidebar-nav-item [label]="'Expediente Academico'" [url]="'/'"></app-sidebar-nav-item>
-          </li>
-          <li>
-            <app-sidebar-nav-item [label]="'Consulta de profesores'" [url]="'/'"></app-sidebar-nav-item>
-          </li>
-          <li>
-            <app-sidebar-nav-item [label]="'Carga de ficheros'" [url]="'/'"></app-sidebar-nav-item>
-          </li>
-        </app-submenu>
+
+      <app-sidebar-nav-item [label]="'Titulaciones'" [url]="'/titulaciones'">
+        <i class="ri-book-2-line" role="icon"></i>
       </app-sidebar-nav-item>
-      <app-sidebar-nav-item [label]="'Informes'" [hasSubmenu]="true">
-        <!-- <app-pdf-icon role="icon"></app-pdf-icon> -->
-        <i class="ri-file-pdf-line" role="icon"></i>
-        <ul role="submenu">
-          <!-- <li><a href="">6º7º Convocatoria</a></li>
-          <li><a href="">Paso de curso/ciclo</a></li> -->
-          <li>
-            <app-sidebar-nav-item [label]="'6º7º Convocatoria'" [url]="'/'"></app-sidebar-nav-item>
-          </li>
-          <li>
-            <app-sidebar-nav-item [label]="'Paso de curso/ciclo'" [url]="'/'"></app-sidebar-nav-item>
-          </li>
-        </ul>
+      <app-sidebar-nav-item [label]="'Matriculas'" [url]="'/matriculas'">
+        <i class="ri-file-list-3-line" role="icon"></i>
       </app-sidebar-nav-item>
     </ul>
   </nav>

@@ -50,14 +50,13 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   searchStudentsService = inject(SearchStudentsService);
   studentsService = inject(StudentsService);
-  studentForm = inject(FormStudentService)
+  studentForm = inject(FormStudentService);
   router = inject(Router);
 
   students: WritableSignal<Alumno[]> = signal<Alumno[]>([]);
   filteredStudents: WritableSignal<Alumno[]> = signal<Alumno[]>([]);
 
-  studentsSubscription!: Subscription;
-  filterStudentsSubscription!: Subscription;
+  subscripciones: Subscription[] = [];
 
   searchForm: FormGroup = this.fb.group({
     nombre: [null, Validators.required],
@@ -97,9 +96,9 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
     }));
   }
 
-  doordie(){
+  doordie() {
     // console.log(this.studentsService.generarNumeroExpediente())
-    console.log(new Date(0))
+    console.log(new Date(0));
   }
 
   rowClicked(student: Alumno) {
@@ -110,20 +109,20 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.studentsService.getstudents();
-    this.studentsSubscription = this.studentsService.students$.subscribe(
-      (students) => {
+    this.subscripciones.push(
+      this.studentsService.students$.subscribe((students) => {
         this.students.set(students);
         this.searchStudentsService.filterStudents(students);
-      }
+      })
     );
-    this.filterStudentsSubscription =
+    this.subscripciones.push(
       this.searchStudentsService.filteredStudents$.subscribe((students) => {
         this.filteredStudents.set(students);
-      });
+      })
+    );
   }
 
   ngOnDestroy(): void {
-    this.studentsSubscription.unsubscribe();
-    this.filterStudentsSubscription.unsubscribe();
+    this.subscripciones.forEach((sub) => sub.unsubscribe());
   }
 }
