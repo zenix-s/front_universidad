@@ -264,17 +264,14 @@ export const titulaciones:Titulacion[] = [
   {
     id: '00001',
     nombre: 'Ingeniería Informática',
-    idCampus: '00001',
   },
   {
     id: '00002',
     nombre: 'Ingeniería de Telecomunicaciones',
-    idCampus: '00002',
   },
   {
     id: '00003',
     nombre: 'Ingeniería de Software',
-    idCampus: '00003',
   }
 ]
 
