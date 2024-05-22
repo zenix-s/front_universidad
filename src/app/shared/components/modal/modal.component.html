@@ -1,0 +1,19 @@
+<dialog #dialog class=" bg-whiter p-4 rounded-md max-w-xl w-full">
+  <div class="flex flex-col">
+    <div class="flex justify-between items-center">
+      <h2 class="flex-grow">{{title}}</h2>
+      <app-button (onClick)="this.onClose.emit()" [themeType]="'outline'">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="black">
+          <path
+            d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z">
+          </path>
+        </svg>
+      </app-button>
+    </div>
+    <hr class="my-2">
+    <div class="flex gap-2 px-1">
+      <div class="flex-grow"></div>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</dialog>

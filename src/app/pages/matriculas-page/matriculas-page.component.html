@@ -1,0 +1,9 @@
+<app-matricula-form></app-matricula-form>
+<div class="p-2 mx-4 my-2 bg-whiter rounded-md overflow-auto">
+  <app-button (onClick)="this.matriculaFormService.open()">
+    Nueva Matriculación
+  </app-button>
+</div>
+<div class="p-2 mx-4 my-2 bg-whiter rounded-md grow overflow-auto">
+  <app-table [data]="matriculas()"></app-table>
+</div>
