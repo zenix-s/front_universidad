@@ -12,7 +12,7 @@ import {
   TipoConvenio,
 } from '@app/core/entities/interfaces.entity';
 import { Alumno } from '@app/core/entities/Alumno.entity';
-import { StudentsService } from '../students-service/students.service';
+import { StudentsService } from '@app/core/services/students-service/students.service';
 
 export interface SearchFilters {
   nombre: string | null;
@@ -100,11 +100,6 @@ export class SearchStudentsService {
           ? student.tipoConvenio
               .toLowerCase()
               .includes(tipoConvenio.toLowerCase())
-          : true) &&
-        (estadoMatricula
-          ? student.estadoMatriculacion
-              .toLowerCase()
-              .includes(estadoMatricula.toLowerCase())
           : true)
       );
     });

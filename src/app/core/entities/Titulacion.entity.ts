@@ -1,4 +1,6 @@
-
 export interface Titulacion {
-	nombre: string;
+  id: string;
+  nombre: string;
+
+  idCampus: string;
 }

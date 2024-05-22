@@ -1,4 +1,12 @@
 import { Alumno } from "../entities/Alumno.entity";
+import { Campus } from "../entities/Campus.entity";
+import { Matricula } from "../entities/Matricula.entity";
+import { Titulacion } from "../entities/Titulacion.entity";
+import { Universidad } from "../entities/Universidad.entity";
+
+export const estudiantesInfo = {
+  number: 22,
+}
 
 export const estudiantes: Alumno[] = [
   {
@@ -11,7 +19,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Calle Principal, 123',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
-    estadoMatriculacion: 'Activo',
   },
   {
     numeroExpediente: '24000002',
@@ -23,7 +30,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Avenida Central, 456',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
-    estadoMatriculacion: 'Prematrícula',
   },
   {
     numeroExpediente: '24000003',
@@ -35,7 +41,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Plaza Mayor, 789',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
-    estadoMatriculacion: 'Anulada',
   },
   {
     numeroExpediente: '24000004',
@@ -47,7 +52,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Calle Real, 012',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
-    estadoMatriculacion: 'Activo',
   },
   {
     numeroExpediente: '24000005',
@@ -59,7 +63,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Calle Secundaria, 345',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
-    estadoMatriculacion: 'Activo',
   },
   {
     numeroExpediente: '24000006',
@@ -71,7 +74,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Avenida Principal, 567',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
-    estadoMatriculacion: 'Prematrícula',
   },
   {
     numeroExpediente: '24000007',
@@ -83,7 +85,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Plaza Central, 890',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
-    estadoMatriculacion: 'Anulada',
   },
   {
     numeroExpediente: '24000008',
@@ -95,7 +96,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Calle Mayor, 901',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
-    estadoMatriculacion: 'Activo',
   },
   {
     numeroExpediente: '24000009',
@@ -107,7 +107,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Avenida Real, 234',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
-    estadoMatriculacion: 'Activo',
   },
   {
     numeroExpediente: '24000010',
@@ -119,7 +118,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Calle Principal, 567',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
-    estadoMatriculacion: 'Prematrícula',
   },
   {
     numeroExpediente: '24000011',
@@ -131,7 +129,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Avenida Central, 890',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
-    estadoMatriculacion: 'Anulada',
   },
   {
     numeroExpediente: '24000012',
@@ -143,7 +140,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Plaza Mayor, 123',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
-    estadoMatriculacion: 'Activo',
   },
   {
     numeroExpediente: '24000013',
@@ -155,7 +151,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Calle Real, 456',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
-    estadoMatriculacion: 'Activo',
   },
   {
     numeroExpediente: '24000014',
@@ -167,7 +162,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Avenida Principal, 789',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
-    estadoMatriculacion: 'Prematrícula',
   },
   {
     numeroExpediente: '24000015',
@@ -179,7 +173,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Plaza Central, 012',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
-    estadoMatriculacion: 'Anulada',
   },
   {
     numeroExpediente: '24000016',
@@ -191,7 +184,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Calle Mayor, 345',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
-    estadoMatriculacion: 'Activo',
   },
   {
     numeroExpediente: '24000017',
@@ -203,19 +195,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Avenida Real, 567',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
-    estadoMatriculacion: 'Activo',
-  },
-  {
-    numeroExpediente: '24000018',
-    nombre: 'Paula Sánchez Pérez',
-    apellidos: 'Sánchez Pérez',
-    documentoIdentidad: '89012345R',
-    fechaNacimiento: new Date(2012, 9, 21),
-    nacionalidad: 'Española',
-    direccion: 'Calle Principal, 890',
-    sexo: 'Femenino',
-    tipoConvenio: 'extranjero',
-    estadoMatriculacion: 'Prematrícula',
   },
   {
     numeroExpediente: '24000019',
@@ -227,7 +206,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Avenida Central, 123',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
-    estadoMatriculacion: 'Anulada',
   },
   {
     numeroExpediente: '24000020',
@@ -239,7 +217,6 @@ export const estudiantes: Alumno[] = [
     direccion: 'Plaza Mayor, 456',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
-    estadoMatriculacion: 'Activo',
   },
   {
     numeroExpediente: '24000021',
@@ -251,6 +228,70 @@ export const estudiantes: Alumno[] = [
     direccion: 'Calle Real, 789',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
-    estadoMatriculacion: 'Activo',
   }
 ];
+
+export const universidades:Universidad[] = [
+  {
+    id: '00001',
+    nombre: 'Universidad europea de Madrid',
+  },
+  {
+    id: '00002',
+    nombre: 'Universidad de Alcalá de Henares',
+  }
+]
+
+export const campus: Campus[] = [
+  {
+    id: '00001',
+    idUniversidad: '00001',
+    nombre: 'Villaviciosa de Odón',
+  },
+  {
+    id: '00002',
+    idUniversidad: '00001',
+    nombre: 'Alcobendas',
+  },
+  {
+    id: '00003',
+    idUniversidad: '00002',
+    nombre: 'Alcalá de Henares',
+  }
+]
+
+export const titulaciones:Titulacion[] = [
+  {
+    id: '00001',
+    nombre: 'Ingeniería Informática',
+    idCampus: '00001',
+  },
+  {
+    id: '00002',
+    nombre: 'Ingeniería de Telecomunicaciones',
+    idCampus: '00002',
+  },
+  {
+    id: '00003',
+    nombre: 'Ingeniería de Software',
+    idCampus: '00003',
+  }
+]
+
+export const matriculas: Matricula[] = [
+  {
+    idTitulacion: '00001',
+    idExpediente: '24000001',
+    numeroMatricula: '240000011',
+    estadoMatriculacion: "Activo",
+    fechaMatriculacion: new Date(2021, 1, 1),
+  },
+  {
+    idTitulacion: '00002',
+    idExpediente: '24000001',
+    numeroMatricula: '240000012',
+    estadoMatriculacion: "Anulada",
+    fechaMatriculacion: new Date(2021, 1, 1),
+  }
+]
+

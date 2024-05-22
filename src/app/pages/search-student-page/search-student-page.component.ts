@@ -28,6 +28,8 @@ import {
 import { Alumno } from '@app/core/entities/Alumno.entity';
 import { Subscription } from 'rxjs';
 import { TableComponent } from '@app/shared/components/table/table.component';
+import { FormStudentService } from '../form-student-page/services/form-student.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-student-page',
@@ -48,6 +50,8 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   searchStudentsService = inject(SearchStudentsService);
   studentsService = inject(StudentsService);
+  studentForm = inject(FormStudentService)
+  router = inject(Router);
 
   students: WritableSignal<Alumno[]> = signal<Alumno[]>([]);
   filteredStudents: WritableSignal<Alumno[]> = signal<Alumno[]>([]);
@@ -91,6 +95,17 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
       value: tipo,
       label: tipo,
     }));
+  }
+
+  doordie(){
+    // console.log(this.studentsService.generarNumeroExpediente())
+    console.log(new Date(0))
+  }
+
+  rowClicked(student: Alumno) {
+    console.log(student);
+    this.studentForm.student = student;
+    this.router.navigate(['student/form']);
   }
 
   ngOnInit(): void {

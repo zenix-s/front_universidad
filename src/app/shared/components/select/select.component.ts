@@ -40,8 +40,24 @@ export class SelectComponent implements ControlValueAccessor {
     this.isOptionsVisible = !this.isOptionsVisible;
   }
 
+  selectOption(option: { value: any; label: string } | null) {
+    console.log(option);
+    if (!option?.value) {
+      this.selectedOption.set(null);
+      this.onChange(null);
+      this.isOptionsVisible = false;
+      return;
+    }
+    this.onChange(option.value);
+    this.selectedOption.set(option);
+    this.isOptionsVisible = false;
+  }
+
   writeValue(obj: any): void {
-    this.selectOption(obj);
+    this.selectOption({
+      value: obj,
+      label: this.options.find((option) => option.value === obj)?.label,
+    });
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -53,17 +69,6 @@ export class SelectComponent implements ControlValueAccessor {
     this.disabled = isDisabled;
   }
 
-  selectOption(option: { value: any; label: string } | null) {
-    if (!option) {
-      this.selectedOption.set(null);
-      this.onChange(null);
-      this.isOptionsVisible = false;
-      return;
-    }
-    this.onChange(option.value);
-    this.selectedOption.set(option);
-    this.isOptionsVisible = false;
-  }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: PointerEvent) {

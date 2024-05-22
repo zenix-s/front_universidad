@@ -23,10 +23,12 @@ export class TableComponent<T extends object> implements OnChanges {
   orderType: 'asc' | 'desc' = 'asc';
   columnOrder: keyof T = this.columns[0];
 
-  @Output() rowClicked = new EventEmitter<{
+  @Output() columnHeadClicked = new EventEmitter<{
     column: keyof T;
     order: 'asc' | 'desc';
   }>();
+
+  @Output() rowClicked = new EventEmitter<T>();
 
   columnClicked(column: keyof T): void {
     if (this.columnOrder === column)
@@ -34,11 +36,13 @@ export class TableComponent<T extends object> implements OnChanges {
     else
       this.orderType = 'asc';
     this.columnOrder = column;
-    this.rowClicked.emit({
+    this.columnHeadClicked.emit({
       column: this.columnOrder,
       order: this.orderType,
     });
   }
+
+
 
   isDate(value: any): boolean {
     return value instanceof Date;

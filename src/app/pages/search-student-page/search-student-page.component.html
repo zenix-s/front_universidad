@@ -7,11 +7,6 @@
         <i class="ri-group-line" role="icon"></i>
         <app-select role="content" formControlName="tipoConvenio" [options]="listTipoConvenio"></app-select>
       </app-section>
-      <!-- ESTADO MATRICULA -->
-      <app-section [title]="'Estado matrícula'">
-        <i class="ri-group-line" role="icon"></i>
-        <app-select role="content" formControlName="estadoMatricula" [options]="listEstadoMatriculacion"></app-select>
-      </app-section>
       <!-- UNIVERSIDAD -->
       <app-section [title]="'Universidad'">
         <i class="ri-community-fill" role="icon"></i>
@@ -44,6 +39,7 @@
         <div class="flex gap-2">
           <app-button [themeType]="'primary'" (onClick)="onSubmit()" [size]="'lg'"> Buscar </app-button>
           <app-button [themeType]="'outline'" (onClick)="clearForm()" [size]="'lg'"> Limpiar </app-button>
+          <app-button [themeType]="'outline'" (onClick)="doordie()" [size]="'lg'"> some </app-button>
         </div>
       </div>
     </app-section>
@@ -51,7 +47,7 @@
 </form>
 <!-- <app-students-table></app-students-table> -->
 <div class="my-1 mx-4 bg-whiter rounded-md grow overflow-auto">
-  <app-table [data]="filteredStudents()" (rowClicked)="this.searchStudentsService.orderByColumn($event)"></app-table>
+  <app-table [data]="filteredStudents()" (columnHeadClicked)="this.searchStudentsService.orderByColumn($event)" (rowClicked)="this.rowClicked($event)"></app-table>
 </div>
 <div class="section">
   <app-pagination [totalItems]="this.searchStudentsService.searchInformation.totalStudents"

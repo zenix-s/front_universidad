@@ -21,17 +21,18 @@ export class DateInputComponent implements ControlValueAccessor{
   @Input()
   label: string = '';
 
-  value: Date | null = null;
+  value: string | null = null;
   onChange: any = (value: Date) => {};
   onTouch: any = () => {};
   disabled: boolean = false;
 
   setValue(value: Date): void {
-    this.value = value;
+    this.value = value ? value.toISOString().substring(0, 10) : null;
+    if(this.input) this.input.nativeElement.value = this.value ? this.value : '';
   }
 
   writeValue(obj: Date): void {
-    this.value = obj;
+    this.setValue(obj);
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -41,11 +42,16 @@ export class DateInputComponent implements ControlValueAccessor{
   }
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
+    if (this.input){
+      this.input.nativeElement.disabled = isDisabled;
+    }
   }
 
-  onInput(event: any): void {
-    this.setValue(event.target.value);
-    this.onChange(this.value);
+  onInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.value = input.value
+    this.onChange(new Date(this.value));
+    this.onTouch();
   }
 
 }

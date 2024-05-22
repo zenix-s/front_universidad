@@ -1,6 +1,6 @@
-<div class="flex flex-col w-full border p-2 rounded-lg bg-bg text-white" [class]="{
+<div class="flex flex-col w-full border p-2 rounded-lg bg-bg text-black bg-whiter" [class]="{
     'border-green': toast.type === 'success',
-    'border-yellow': toast.type === 'error',
+    'border-highlight': toast.type === 'error',
     'border-red': toast.type === 'warning',
     'border-blue': toast.type === 'info',}">
   <div class="flex justify-between py-2">
@@ -13,7 +13,7 @@
   </div>
   <hr class="border" [class]="{
       'border-green': toast.type === 'success',
-      'border-yellow': toast.type === 'error',
+      'border-highlight': toast.type === 'error',
       'border-red': toast.type === 'warning',
       'border-blue': toast.type === 'info',
     }">

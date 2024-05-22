@@ -1,36 +1,36 @@
 <form class="flex flex-col m-4 gap-4 bg-whiter p-4 rounded-md" [formGroup]="studentForm">
   <div class="flex gap-2">
-    <app-section [title]="'Nombre'">
+    <app-section [title]="'Nombre *'">
       <i class="ri-user-line" role="icon"></i>
       <app-input role="content" formControlName="nombre"></app-input>
     </app-section>
-    <app-section [title]="'Apellidos'">
+    <app-section [title]="'Apellidos *'">
       <i class="ri-user-line" role="icon"></i>
       <app-input role="content" formControlName="apellidos"></app-input>
     </app-section>
   </div>
-  <app-section [title]="'Documento Identidad'">
+  <app-section [title]="'Documento Identidad *'">
     <i class="ri-id-card-line" role="icon"></i>
     <app-input role="content" formControlName="documentoIdentidad"></app-input>
   </app-section>
-  <app-section [title]="'Fecha Nacimiento'">
+  <app-section [title]="'Fecha Nacimiento *'">
     <i class="ri-calendar-line" role="icon"></i>
     <!-- <app-input role="content" formControlName="fechaNacimiento"></app-input> -->
     <app-date-input formControlName="fechaNacimiento" role="content"></app-date-input>
   </app-section>
-  <app-section [title]="'Nacionalidad'">
+  <app-section [title]="'Nacionalidad *'">
     <i class="ri-earth-line" role="icon"></i>
     <app-input role="content" formControlName="nacionalidad"></app-input>
   </app-section>
-  <app-section [title]="'Dirección'">
+  <app-section [title]="'Dirección *'">
     <i class="ri-map-pin-line" role="icon"></i>
     <app-input role="content" formControlName="direccion"></app-input>
   </app-section>
-  <app-section [title]="'Sexo'">
+  <app-section [title]="'Genero *'">
     <i class="ri-genderless-line" role="icon"></i>
     <app-select role="content" formControlName="sexo" [options]="listSexo"></app-select>
   </app-section>
-  <app-section [title]="'Tipo Convenio'">
+  <app-section [title]="'Tipo Convenio *'">
     <i class="ri-file-list-3-line" role="icon"></i>
     <app-select role="content" formControlName="tipoConvenio" [options]="listTipoConvenio"></app-select>
   </app-section>
