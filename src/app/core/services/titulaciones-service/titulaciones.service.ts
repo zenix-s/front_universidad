@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { titulaciones } from '@app/core/data/data';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TitulacionesService {
   private toasterService = inject(ToasterService);
@@ -13,18 +13,34 @@ export class TitulacionesService {
 
   titulaciones$ = this._titulaciones.asObservable();
 
+  private generateid(): string {
+    // id string numerico aleatorio de 5 digitos si 99 rellenar con 0 a la izquierda
+    let id = Math.floor(Math.random() * 100000).toString();
+    while (id.length < 5) {
+      id = '0' + id;
+    }
+    if (titulaciones.find((e) => e.id === id)) {
+      return this.generateid();
+    }
+    return id;
+  }
 
-  addTitulacion(titulacion: Titulacion) {
+  private addTitulacion(titulacion: Titulacion) {
     titulaciones.push(titulacion);
     this._titulaciones.next(titulaciones);
     this.toasterService.success('Estudiante añadido correctamente');
   }
 
+  postTitulacion(titulacion: Titulacion) {
+    // Peticion POST a la API
+    // subscribe((response) => {
+    titulacion.id = this.generateid();
+    this.addTitulacion(titulacion);
+    // });
+  }
 
   updateTitulacion(titulacion: Titulacion) {
-    const index = titulaciones.findIndex(
-      (e) => e.id === titulacion.id
-    );
+    const index = titulaciones.findIndex((e) => e.id === titulacion.id);
     titulaciones[index] = titulacion;
     this._titulaciones.next(titulaciones);
     this.toasterService.success('Estudiante actualizado correctamente');

@@ -1,3 +1,7 @@
-<div class="p-2 m-4 bg-whiter rounded-md grow overflow-auto">
+<app-titulaciones-form></app-titulaciones-form>
+<div class="p-2 mx-4 my-2 bg-whiter rounded-md">
+  <app-button (onClick)="this.titulacionesFormService.open()">Nueva Titulacion</app-button>
+</div>
+<div class="p-2 mx-4 my-2 bg-whiter rounded-md grow overflow-auto">
   <app-table [data]="titulaciones()" [columns]="['id', 'nombre']"></app-table>
 </div>
