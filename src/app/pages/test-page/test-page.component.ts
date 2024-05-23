@@ -41,6 +41,5 @@ export class TestPageComponent {
     orderBy: keyof TestData;
     columnOrder: 'asc' | 'desc';
   }): void {
-    console.log(orderBy, columnOrder);
   }
 }

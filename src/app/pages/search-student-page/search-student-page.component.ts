@@ -68,7 +68,6 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
   });
 
   onSubmit() {
-    console.log(this.searchForm.value);
     this.searchStudentsService.filterBySearch({
       nExpediente: this.searchForm.value.numeroExpediente as string,
       nombre: this.searchForm.value.nombre as string,
@@ -99,18 +98,18 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
   }
 
   doordie() {
-    // console.log(this.studentsService.generarNumeroExpediente())
-    console.log(this.students().map((student) => {
-      if (student.tipoConvenio == 'propio') {
-        student.nacionalidad = 'España'
-      }
-      if(student.tipoConvenio == 'extranjero'){
-        const bool = Math.random() < 0.5;
-        if (bool) student.nacionalidad = 'Francia';
-        else student.nacionalidad = 'Alemania';
-      }
-      return student;
-    }));
+    // // console.log(this.studentsService.generarNumeroExpediente())
+    // console.log(this.students().map((student) => {
+    //   if (student.tipoConvenio == 'propio') {
+    //     student.nacionalidad = 'España'
+    //   }
+    //   if(student.tipoConvenio == 'extranjero'){
+    //     const bool = Math.random() < 0.5;
+    //     if (bool) student.nacionalidad = 'Francia';
+    //     else student.nacionalidad = 'Alemania';
+    //   }
+    //   return student;
+    // }));
   }
 
   getNacionalidades() {
@@ -126,7 +125,6 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
   }
 
   rowClicked(student: Alumno) {
-    console.log(student);
     this.studentForm.student = student;
     this.router.navigate(['student/form']);
   }

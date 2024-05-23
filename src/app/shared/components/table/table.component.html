@@ -7,7 +7,7 @@
           'cursor-pointer': column !== 'actions',
           'bg-secondary/30': column === columnOrder,
         }">
-        <button class=" w-max h-10 flex items-center justify-center gap-4 px-20" [ngClass]="{
+        <button class=" w-max h-10 flex items-center text-center justify-center gap-4 px-20" [ngClass]="{
             'cursor-pointer':columnClickable,
             'cursor-default':!columnClickable
           }">
@@ -20,8 +20,6 @@
           }@else {
           <i class="material-icons">expand_less</i>
           }
-          }@else {
-          <i class="material-icons" style="color: transparent;">more_horiz</i>
           }
         </button>
       </th>
@@ -33,12 +31,12 @@
     <tr class=" hover:bg-secondary/30 border-black/20 border" (click)="this.rowClicked.emit(item)">
       <td class="text-start px-1 py-2">
         <span class="w-full flex m-1">
-          <i tabindex="0"  class="material-icons cursor-pointer" (click)="this.rowClicked.emit(item)">edit</i>
+          <i tabindex="0" class="material-icons cursor-pointer" (click)="this.rowClicked.emit(item)">edit</i>
         </span>
       </td>
       @for (column of columns; track $index) {
-      <td class="text-start px-1 py-2">
-        <span class="w-full flex m-1">
+      <td class="px-1 py-2">
+        <span class="w-full flex m-1 justify-center">
           @if (isDate(item[column])) {
           {{anyToDate(item[column]) | date: 'dd/MM/yyyy'}}
           }@else {
@@ -53,7 +51,7 @@
 </table>
 
 @if (columns.length === 0 && data.length === 0) {
-<div>
+<div class="w-full h-full flex items-center justify-center">
   No data to display
 </div>
 }
