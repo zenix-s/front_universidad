@@ -61,13 +61,14 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
   searchForm: FormGroup = this.fb.group({
     nombre: [null, Validators.required],
     apellidos: [null, Validators.required],
-    universidad: [null, Validators.required],
+    nacionalidad: [null, Validators.required],
     estadoMatricula: [null, Validators.required],
     tipoConvenio: [null, Validators.required],
     numeroExpediente: [null, Validators.required],
   });
 
   onSubmit() {
+    console.log(this.searchForm.value);
     this.searchStudentsService.filterBySearch({
       nExpediente: this.searchForm.value.numeroExpediente as string,
       nombre: this.searchForm.value.nombre as string,
@@ -75,6 +76,7 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
       estadoMatricula: this.searchForm.value
         .estadoMatricula as EstadoMatriculacion,
       tipoConvenio: this.searchForm.value.tipoConvenio as TipoConvenio,
+      nacionalidad: this.searchForm.value.nacionalidad as string,
     });
   }
 
@@ -98,7 +100,29 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
 
   doordie() {
     // console.log(this.studentsService.generarNumeroExpediente())
-    console.log(new Date(0));
+    console.log(this.students().map((student) => {
+      if (student.tipoConvenio == 'propio') {
+        student.nacionalidad = 'España'
+      }
+      if(student.tipoConvenio == 'extranjero'){
+        const bool = Math.random() < 0.5;
+        if (bool) student.nacionalidad = 'Francia';
+        else student.nacionalidad = 'Alemania';
+      }
+      return student;
+    }));
+  }
+
+  getNacionalidades() {
+    const nacionalidades: { value: string; label: string }[] = [];
+    this.students()
+      .map((student) => student.nacionalidad)
+      .forEach((nacionalidad) => {
+        if (!nacionalidades.find((n) => n.value === nacionalidad)) {
+          nacionalidades.push({ value: nacionalidad, label: nacionalidad.charAt(0).toUpperCase() + nacionalidad.slice(1)});
+        }
+      });
+    return nacionalidades;
   }
 
   rowClicked(student: Alumno) {

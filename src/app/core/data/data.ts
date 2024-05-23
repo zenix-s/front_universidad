@@ -1,32 +1,31 @@
-import { Alumno } from "../entities/Alumno.entity";
-import { Campus } from "../entities/Campus.entity";
-import { Matricula } from "../entities/Matricula.entity";
-import { Titulacion } from "../entities/Titulacion.entity";
-import { Universidad } from "../entities/Universidad.entity";
+import { Alumno } from '../entities/Alumno.entity';
+import { Campus } from '../entities/Campus.entity';
+import { Matricula } from '../entities/Matricula.entity';
+import { Titulacion } from '../entities/Titulacion.entity';
+import { Universidad } from '../entities/Universidad.entity';
 
 export const estudiantesInfo = {
   number: 22,
-}
-
+};
 export const estudiantes: Alumno[] = [
   {
     numeroExpediente: '24000001',
     nombre: 'Juan Pérez Gómez',
     apellidos: 'Pérez Gómez',
     documentoIdentidad: '12345678A',
-    fechaNacimiento: new Date(1995, 3, 12),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('1995-04-11T22:00:00.000Z'),
+    nacionalidad: 'España',
     direccion: 'Calle Principal, 123',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
   },
   {
-    numeroExpediente: '24000002',
+    numeroExpediente: 'R24000002',
     nombre: 'María García Rodríguez',
     apellidos: 'García Rodríguez',
     documentoIdentidad: '23456789B',
-    fechaNacimiento: new Date(1996, 5, 25),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('1996-06-24T22:00:00.000Z'),
+    nacionalidad: 'Italia',
     direccion: 'Avenida Central, 456',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
@@ -36,19 +35,19 @@ export const estudiantes: Alumno[] = [
     nombre: 'Carlos López Martínez',
     apellidos: 'López Martínez',
     documentoIdentidad: '34567890C',
-    fechaNacimiento: new Date(1997, 8, 17),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('1997-09-16T22:00:00.000Z'),
+    nacionalidad: 'España',
     direccion: 'Plaza Mayor, 789',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
   },
   {
-    numeroExpediente: '24000004',
+    numeroExpediente: 'R24000004',
     nombre: 'Ana Martínez Sánchez',
     apellidos: 'Martínez Sánchez',
     documentoIdentidad: '45678901D',
-    fechaNacimiento: new Date(1998, 11, 30),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('1998-12-29T23:00:00.000Z'),
+    nacionalidad: 'Francia',
     direccion: 'Calle Real, 012',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
@@ -58,19 +57,19 @@ export const estudiantes: Alumno[] = [
     nombre: 'Pedro Rodríguez López',
     apellidos: 'Rodríguez López',
     documentoIdentidad: '56789012E',
-    fechaNacimiento: new Date(1999, 2, 5),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('1999-03-04T23:00:00.000Z'),
+    nacionalidad: 'España',
     direccion: 'Calle Secundaria, 345',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
   },
   {
-    numeroExpediente: '24000006',
+    numeroExpediente: 'R24000006',
     nombre: 'Laura Fernández García',
     apellidos: 'Fernández García',
     documentoIdentidad: '67890123F',
-    fechaNacimiento: new Date(2000, 4, 18),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2000-05-17T22:00:00.000Z'),
+    nacionalidad: 'Alemania',
     direccion: 'Avenida Principal, 567',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
@@ -80,19 +79,19 @@ export const estudiantes: Alumno[] = [
     nombre: 'Miguel Torres Martín',
     apellidos: 'Torres Martín',
     documentoIdentidad: '78901234G',
-    fechaNacimiento: new Date(2001, 7, 31),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2001-08-30T22:00:00.000Z'),
+    nacionalidad: 'España',
     direccion: 'Plaza Central, 890',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
   },
   {
-    numeroExpediente: '24000008',
+    numeroExpediente: 'R24000008',
     nombre: 'Sara Sánchez Pérez',
     apellidos: 'Sánchez Pérez',
     documentoIdentidad: '89012345H',
-    fechaNacimiento: new Date(2002, 10, 13),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2002-11-12T23:00:00.000Z'),
+    nacionalidad: 'Italia',
     direccion: 'Calle Mayor, 901',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
@@ -102,19 +101,19 @@ export const estudiantes: Alumno[] = [
     nombre: 'Javier Gómez Rodríguez',
     apellidos: 'Gómez Rodríguez',
     documentoIdentidad: '90123456I',
-    fechaNacimiento: new Date(2003, 1, 26),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2003-02-25T23:00:00.000Z'),
+    nacionalidad: 'España',
     direccion: 'Avenida Real, 234',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
   },
   {
-    numeroExpediente: '24000010',
+    numeroExpediente: 'R24000010',
     nombre: 'Elena Martín Sánchez',
     apellidos: 'Martín Sánchez',
     documentoIdentidad: '01234567J',
-    fechaNacimiento: new Date(2004, 3, 9),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2004-04-08T22:00:00.000Z'),
+    nacionalidad: 'Francia',
     direccion: 'Calle Principal, 567',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
@@ -124,19 +123,19 @@ export const estudiantes: Alumno[] = [
     nombre: 'Alejandro Pérez Gómez',
     apellidos: 'Pérez Gómez',
     documentoIdentidad: '12345678K',
-    fechaNacimiento: new Date(2005, 5, 22),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2005-06-21T22:00:00.000Z'),
+    nacionalidad: 'España',
     direccion: 'Avenida Central, 890',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
   },
   {
-    numeroExpediente: '24000012',
+    numeroExpediente: 'R24000012',
     nombre: 'Carmen García Rodríguez',
     apellidos: 'García Rodríguez',
     documentoIdentidad: '23456789L',
-    fechaNacimiento: new Date(2006, 7, 4),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2006-08-03T22:00:00.000Z'),
+    nacionalidad: 'Alemania',
     direccion: 'Plaza Mayor, 123',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
@@ -146,19 +145,19 @@ export const estudiantes: Alumno[] = [
     nombre: 'Roberto López Martínez',
     apellidos: 'López Martínez',
     documentoIdentidad: '34567890M',
-    fechaNacimiento: new Date(2007, 9, 17),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2007-10-16T22:00:00.000Z'),
+    nacionalidad: 'España',
     direccion: 'Calle Real, 456',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
   },
   {
-    numeroExpediente: '24000014',
+    numeroExpediente: 'R24000014',
     nombre: 'Isabel Martínez Sánchez',
     apellidos: 'Martínez Sánchez',
     documentoIdentidad: '45678901N',
-    fechaNacimiento: new Date(2008, 11, 30),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2008-12-29T23:00:00.000Z'),
+    nacionalidad: 'Italia',
     direccion: 'Avenida Principal, 789',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
@@ -168,19 +167,19 @@ export const estudiantes: Alumno[] = [
     nombre: 'Daniel Rodríguez López',
     apellidos: 'Rodríguez López',
     documentoIdentidad: '56789012O',
-    fechaNacimiento: new Date(2009, 2, 12),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2009-03-11T23:00:00.000Z'),
+    nacionalidad: 'España',
     direccion: 'Plaza Central, 012',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
   },
   {
-    numeroExpediente: '24000016',
+    numeroExpediente: 'R24000016',
     nombre: 'Lucía Fernández García',
     apellidos: 'Fernández García',
     documentoIdentidad: '67890123P',
-    fechaNacimiento: new Date(2010, 4, 25),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2010-05-24T22:00:00.000Z'),
+    nacionalidad: 'Francia',
     direccion: 'Calle Mayor, 345',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
@@ -190,8 +189,8 @@ export const estudiantes: Alumno[] = [
     nombre: 'Hugo Torres Martín',
     apellidos: 'Torres Martín',
     documentoIdentidad: '78901234Q',
-    fechaNacimiento: new Date(2011, 7, 8),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2011-08-07T22:00:00.000Z'),
+    nacionalidad: 'España',
     direccion: 'Avenida Real, 567',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
@@ -201,19 +200,19 @@ export const estudiantes: Alumno[] = [
     nombre: 'Marcos Gómez Rodríguez',
     apellidos: 'Gómez Rodríguez',
     documentoIdentidad: '90123456S',
-    fechaNacimiento: new Date(2013, 11, 3),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2013-12-02T23:00:00.000Z'),
+    nacionalidad: 'España',
     direccion: 'Avenida Central, 123',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
   },
   {
-    numeroExpediente: '24000020',
+    numeroExpediente: 'R24000020',
     nombre: 'Laura García Rodríguez',
     apellidos: 'García Rodríguez',
     documentoIdentidad: '01234567T',
-    fechaNacimiento: new Date(2014, 1, 16),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2014-02-15T23:00:00.000Z'),
+    nacionalidad: 'Alemania',
     direccion: 'Plaza Mayor, 456',
     sexo: 'Femenino',
     tipoConvenio: 'extranjero',
@@ -223,15 +222,15 @@ export const estudiantes: Alumno[] = [
     nombre: 'Miguel López Martínez',
     apellidos: 'López Martínez',
     documentoIdentidad: '12345678U',
-    fechaNacimiento: new Date(2015, 3, 1),
-    nacionalidad: 'Española',
+    fechaNacimiento: new Date('2015-03-31T22:00:00.000Z'),
+    nacionalidad: 'España',
     direccion: 'Calle Real, 789',
     sexo: 'Masculino',
     tipoConvenio: 'propio',
-  }
+  },
 ];
 
-export const universidades:Universidad[] = [
+export const universidades: Universidad[] = [
   {
     id: '00001',
     nombre: 'Universidad europea de Madrid',
@@ -239,8 +238,8 @@ export const universidades:Universidad[] = [
   {
     id: '00002',
     nombre: 'Universidad de Alcalá de Henares',
-  }
-]
+  },
+];
 
 export const campus: Campus[] = [
   {
@@ -257,10 +256,10 @@ export const campus: Campus[] = [
     id: '00003',
     idUniversidad: '00002',
     nombre: 'Alcalá de Henares',
-  }
-]
+  },
+];
 
-export const titulaciones:Titulacion[] = [
+export const titulaciones: Titulacion[] = [
   {
     id: '00001',
     nombre: 'Ingeniería Informática',
@@ -272,23 +271,22 @@ export const titulaciones:Titulacion[] = [
   {
     id: '00003',
     nombre: 'Ingeniería de Software',
-  }
-]
+  },
+];
 
 export const matriculas: Matricula[] = [
   {
     idTitulacion: '00001',
     idExpediente: '24000001',
     numeroMatricula: '240000011',
-    estadoMatriculacion: "Activo",
+    estadoMatriculacion: 'Activo',
     fechaMatriculacion: new Date(2021, 1, 1),
   },
   {
     idTitulacion: '00002',
     idExpediente: '24000001',
     numeroMatricula: '240000012',
-    estadoMatriculacion: "Anulada",
+    estadoMatriculacion: 'Anulada',
     fechaMatriculacion: new Date(2021, 1, 1),
-  }
-]
-
+  },
+];

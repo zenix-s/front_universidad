@@ -17,7 +17,7 @@ import { StudentsService } from '@app/core/services/students-service/students.se
 export interface SearchFilters {
   nombre: string | null;
   apellidos: string | null;
-  universidad: string | null;
+  nacionalidad: string | null;
   estadoMatricula: EstadoMatriculacion | null;
   tipoConvenio: TipoConvenio | null;
   numeroExpediente: string | null;
@@ -56,7 +56,7 @@ export class SearchStudentsService {
   filters: SearchFilters = {
     nombre: null,
     apellidos: null,
-    universidad: null,
+    nacionalidad: null,
     estadoMatricula: null,
     tipoConvenio: null,
     numeroExpediente: null,
@@ -70,7 +70,7 @@ export class SearchStudentsService {
     const {
       nombre,
       apellidos,
-      universidad,
+      nacionalidad,
       estadoMatricula,
       tipoConvenio,
       numeroExpediente,
@@ -100,6 +100,11 @@ export class SearchStudentsService {
           ? student.tipoConvenio
               .toLowerCase()
               .includes(tipoConvenio.toLowerCase())
+          : true) &&
+        (nacionalidad
+          ? student.nacionalidad
+              .toLowerCase()
+              .includes(nacionalidad.toLowerCase())
           : true)
       );
     });
@@ -183,18 +188,21 @@ export class SearchStudentsService {
     apellidos,
     tipoConvenio,
     estadoMatricula,
+    nacionalidad,
   }: {
     nExpediente: string;
     nombre: string;
     apellidos: string;
     tipoConvenio: TipoConvenio;
     estadoMatricula: EstadoMatriculacion;
+    nacionalidad: string;
   }) {
     this.filters.numeroExpediente = nExpediente;
     this.filters.nombre = nombre;
     this.filters.apellidos = apellidos;
     this.filters.tipoConvenio = tipoConvenio;
     this.filters.estadoMatricula = estadoMatricula;
+    this.filters.nacionalidad = nacionalidad;
     this.filters.page = 1;
 
     this._filteredStudents.next(
@@ -207,7 +215,7 @@ export class SearchStudentsService {
       numeroExpediente: '',
       nombre: '',
       apellidos: '',
-      universidad: '',
+      nacionalidad: '',
       estadoMatricula: null,
       tipoConvenio: null,
       page: 1,

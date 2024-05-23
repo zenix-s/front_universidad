@@ -8,18 +8,9 @@
         <app-select role="content" formControlName="tipoConvenio" [options]="listTipoConvenio"></app-select>
       </app-section>
       <!-- UNIVERSIDAD -->
-      <app-section [title]="'Universidad'">
-        <i class="ri-community-fill" role="icon"></i>
-        <app-select role="content" formControlName="universidad" [options]="[
-            {
-              value: '1',
-              label: 'Universidad de Sevilla'
-            },
-            {
-              value: '2',
-              label: 'Universidad de Huelva'
-            }
-          ]"></app-select>
+      <app-section [title]="'Nacionalidad'">
+        <i class="ri-earth-fill" role="icon"></i>
+        <app-select role="content" formControlName="nacionalidad" [options]="getNacionalidades()"></app-select>
       </app-section>
     </div>
   </div>
