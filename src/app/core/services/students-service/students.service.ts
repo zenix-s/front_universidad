@@ -51,5 +51,9 @@ export class StudentsService {
     return this._students.getValue();
   }
 
+  getIdExpedientes() {
+    return estudiantes.map((e) => e.numeroExpediente);
+  }
+
   constructor() {}
 }
