@@ -7,7 +7,9 @@
           'bg-secondary/30': column === columnOrder,
           'border-r border-black/20': $index !== columns.length - 1,
         }">
-        <button class="cursor-pointer w-max h-10 flex items-center justify-center gap-4 px-20">
+        <button class="cursor-default w-max h-10 flex items-center justify-center gap-4 px-20" [ngClass]="{
+            'cursor-pointer':columnClickable
+          }">
           <span class="p-2">
             {{transformTitle(column) | titlecase}}
           </span>

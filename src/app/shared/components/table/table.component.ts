@@ -32,18 +32,16 @@ export class TableComponent<T extends object> implements OnChanges {
   @Output() rowClicked = new EventEmitter<T>();
 
   columnClicked(column: keyof T): void {
+    if (!this.columnClickable) return;
     if (this.columnOrder === column)
       this.orderType = this.orderType === 'asc' ? 'desc' : 'asc';
-    else
-      this.orderType = 'asc';
+    else this.orderType = 'asc';
     this.columnOrder = column;
     this.columnHeadClicked.emit({
       column: this.columnOrder,
       order: this.orderType,
     });
   }
-
-
 
   isDate(value: any): boolean {
     return value instanceof Date;
@@ -53,13 +51,17 @@ export class TableComponent<T extends object> implements OnChanges {
   }
 
   transformTitle(column: keyof T): string {
-    return column.toString().replace(/([A-Z])/g, ' $1').trim();
+    return column
+      .toString()
+      .replace(/([A-Z])/g, ' $1')
+      .trim();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data'] && this.data.length > 0 && this.columns.length === 0) {
       this.columns = Object.keys(this.data[0]) as (keyof T)[];
-      this.columnOrder = this.columns[0];
+      if (this.columns.length > 0 && !this.columnOrder && this.columnClickable)
+        this.columnOrder = this.columns[0];
     }
   }
 }
