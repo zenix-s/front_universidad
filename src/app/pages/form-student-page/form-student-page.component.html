@@ -15,7 +15,6 @@
   </app-section>
   <app-section [title]="'Fecha Nacimiento *'">
     <i class="ri-calendar-line" role="icon"></i>
-    <!-- <app-input role="content" formControlName="fechaNacimiento"></app-input> -->
     <app-date-input formControlName="fechaNacimiento" role="content"></app-date-input>
   </app-section>
   <app-section [title]="'Nacionalidad *'">
@@ -36,6 +35,14 @@
   </app-section>
   <div class="flex gap-2">
     <app-button [themeType]="'primary'" (onClick)="onSubmit()"> Guardar </app-button>
+    @if(this.formStudentService.student?.numeroExpediente !== null && this.formStudentService.student?.numeroExpediente
+    !== undefined) {
+    <!-- <app-button [themeType]="'outline'"> Eliminar </app-button> -->
+    <app-button [themeType]="'outline'"
+      (onClick)="this.matriculaFormService.openNewExpedienteMatricula(this.formStudentService.student?.numeroExpediente || '')">
+      Añadir Matricula </app-button>
+    }@else {
     <app-button [themeType]="'outline'" (onClick)="clearForm()"> Limpiar </app-button>
+    }
   </div>
 </form>

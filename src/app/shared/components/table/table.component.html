@@ -1,14 +1,15 @@
 <table class="border-collapse">
   <thead>
     <tr>
+      <th></th>
       @for (column of columns; track $index) {
-      <th (click)="columnClicked(column)" class=" hover:bg-secondary/20" [ngClass]="{
+      <th (click)="columnClicked(column)" class=" hover:bg-secondary/20 border border-black/20" [ngClass]="{
           'cursor-pointer': column !== 'actions',
           'bg-secondary/30': column === columnOrder,
-          'border-r border-black/20': $index !== columns.length - 1,
         }">
-        <button class="cursor-default w-max h-10 flex items-center justify-center gap-4 px-20" [ngClass]="{
-            'cursor-pointer':columnClickable
+        <button class=" w-max h-10 flex items-center justify-center gap-4 px-20" [ngClass]="{
+            'cursor-pointer':columnClickable,
+            'cursor-default':!columnClickable
           }">
           <span class="p-2">
             {{transformTitle(column) | titlecase}}
@@ -30,6 +31,11 @@
   <tbody>
     @for (item of data; track $index) {
     <tr class=" hover:bg-secondary/30 border-black/20 border" (click)="this.rowClicked.emit(item)">
+      <td class="text-start px-1 py-2">
+        <span class="w-full flex m-1">
+          <i tabindex="0"  class="material-icons cursor-pointer" (click)="this.rowClicked.emit(item)">edit</i>
+        </span>
+      </td>
       @for (column of columns; track $index) {
       <td class="text-start px-1 py-2">
         <span class="w-full flex m-1">

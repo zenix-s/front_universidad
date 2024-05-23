@@ -1,12 +1,12 @@
-<div class="select">
+<div class="relative flex flex-col w-full">
   @if(label){
-  <div class="select__label">
+  <div class="">
     {{label}}
   </div>
   }
-  <div class="select__label">
-    <button (click)="toggleOptionsVisibility()">
-      <!-- {{label}} -->
+  <div>
+    <button class="flex justify-between items-center w-full p-2 text-lg border border-black rounded-md bg-whiter"
+      (click)="toggleOptionsVisibility()">
       @if (selectedOption()) {
       {{selectedOption().label}}
       } @else {
@@ -19,17 +19,19 @@
       }
     </button>
   </div>
-  <ul class="options" [class]="isOptionsVisible ? 'options--visible' : 'options--hidden'">
+  <ul class="absolute top-[110%] flex-col border border-black rounded-md bg-whiter z-10 w-full max-h-44 overflow-y-auto"
+    [class]="isOptionsVisible ? 'flex' : 'hidden'">
     @if(selectedOption() !== null){
-    <li class="option">
-      <button (click)="selectOption(null)">
+    <li>
+      <button (click)="selectOption(null)" class="p-2 text-lg bg-whiter cursor-pointer w-full text-left hover:bg-white/20">
         Deshacer selección
       </button>
     </li>
     }
     @for (option of options; track $index) {
-    <li class="option">
-      <button (click)="selectOption(option)" [class]="selectedOption === option ? 'option--selected' : ''">
+    <li>
+      <button (click)="selectOption(option)" class="p-2 text-lg bg-whiter cursor-pointer w-full text-left hover:bg-white/20"
+        [class]="selectedOption === option ? 'option--selected' : ''">
         {{option.label}}
       </button>
     </li>

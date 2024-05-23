@@ -52,7 +52,12 @@ export class StudentsService {
   }
 
   getIdExpedientes() {
-    return estudiantes.map((e) => e.numeroExpediente);
+    return estudiantes.map((e) => {
+      return {
+        label: e.numeroExpediente + ' - ' + e.nombre,
+        value: e.numeroExpediente,
+      }
+    });
   }
 
   constructor() {}

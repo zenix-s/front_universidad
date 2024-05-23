@@ -1,29 +1,24 @@
-<app-modal
-  [isOpen]="isOpen()"
-  [title]="'title'"
-  (onClose)="this.matriculaFormService.close()"
->
+<app-modal [isOpen]="isOpen()" [title]="'Matricula'" (onClose)="this.matriculaFormService.close()">
   <form class="flex flex-col gap-2" [formGroup]="matriculaForm">
-    <app-input
+    <!-- <app-input
       [label]="'Id Expediente'"
       formControlName="idExpediente"
       [disabled]="this.matricula()?.numeroMatricula !== null"
-    ></app-input>
-    <app-input
+    ></app-input> -->
+    <app-select [label]="'Id Expediente'" [options]="this.estuantesService.getIdExpedientes()"
+      formControlName="idExpediente"></app-select>
+    <!-- <app-input
       [label]="'Id Titulacion'"
       formControlName="idTitulacion"
       [disabled]="this.matricula()?.numeroMatricula !== null"
-      ></app-input>
+      ></app-input> -->
+    <app-select [label]="'Id Titulacion'" [options]="this.titulacionesService.getIdTitulaciones()"
+      formControlName="idTitulacion"></app-select>
     @if (this.matricula()?.numeroMatricula) {
-      <app-input
-        [label]="'Estado Matriculación'"
-        formControlName="estadoMatriculacion"
-      ></app-input>
+    <app-input [label]="'Estado Matriculación'" formControlName="estadoMatriculacion"></app-input>
     }
-    <app-date-input
-      [label]="'Fecha Matriculacion'"
-      formControlName="fechaMatriculacion"></app-date-input>
+    <app-date-input [label]="'Fecha Matriculacion'" formControlName="fechaMatriculacion"></app-date-input>
 
-    <app-button> Guardar </app-button>
+    <app-button (onClick)="onSubmit()"> Guardar </app-button>
   </form>
 </app-modal>

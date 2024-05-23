@@ -54,5 +54,14 @@ export class TitulacionesService {
     return this._titulaciones.getValue();
   }
 
+  getIdTitulaciones() {
+    return titulaciones.map((e) => {
+      return {
+        label: e.id + ' - ' + e.nombre,
+        value: e.id,
+      };
+    });
+  }
+
   constructor() {}
 }

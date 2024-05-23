@@ -16,6 +16,7 @@ import { InputComponent } from '@app/shared/components/input/input.component';
 import { DateInputComponent } from '@app/shared/components/date-input/date-input.component';
 import { FormStudentService } from './services/form-student.service';
 import { ToasterService } from '../../core/toaster/service/toaster.service';
+import { MatriculaFormService } from '../matriculas-page/components/matricula-form/matricula-form.service';
 
 @Component({
   selector: 'app-form-student-page',
@@ -35,8 +36,9 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private studentService = inject(StudentsService);
   private router = inject(Router);
-  private formStudentService = inject(FormStudentService);
+  formStudentService = inject(FormStudentService);
   private ToasterService = inject(ToasterService);
+  matriculaFormService = inject(MatriculaFormService);
 
   studentForm = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(3)]],
