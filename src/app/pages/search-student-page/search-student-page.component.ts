@@ -125,8 +125,8 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
   }
 
   rowClicked(student: Alumno) {
-    this.studentForm.student = student;
-    this.router.navigate(['student/form']);
+    // this.studentForm.student = student;
+    this.router.navigate(['expediente', student.numeroExpediente]);
   }
 
   ngOnInit(): void {

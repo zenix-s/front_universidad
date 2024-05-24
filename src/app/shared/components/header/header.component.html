@@ -2,7 +2,7 @@
   <button (click)="openSidebar()" class="text-2xl">
     <i class="ri-menu-line" role="icon"></i>
   </button>
-  <div class="self-stretch w-28 flex">
+  <a [routerLink]="['/']" class="self-stretch w-28 flex">
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       viewBox="0 0 378.14 103.96" style="enable-background:new 0 0 378.14 103.96;" xml:space="preserve">
       <style type="text/css">
@@ -69,6 +69,6 @@
       </g>
     </svg>
 
-  </div>
+  </a>
   <app-breadcrumbs></app-breadcrumbs>
 </header>

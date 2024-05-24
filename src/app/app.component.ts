@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { ToasterProviderComponent } from './core/toaster/toaster-provider/toaster-provider.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { MatriculaFormComponent } from './pages/matriculas-page/components/matricula-form/matricula-form.component';
+import { MatriculaFormComponent } from './shared/components/matricula-form/matricula-form.component';
 
 @Component({
   selector: 'app-root',

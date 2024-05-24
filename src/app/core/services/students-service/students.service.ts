@@ -34,6 +34,10 @@ export class StudentsService {
     this.toasterService.success('Estudiante añadido correctamente');
   }
 
+  getEstudiante(numeroExpediente: string) {
+    return estudiantes.find((e) => e.numeroExpediente === numeroExpediente);
+  }
+
   updateStudent(student: Alumno) {
     const index = estudiantes.findIndex(
       (e) => e.numeroExpediente === student.numeroExpediente

@@ -14,6 +14,7 @@ import { TableComponent } from '@app/shared/components/table/table.component';
 import { Subscription } from 'rxjs';
 import { TitulacionesFormService } from './components/titulaciones-form/titulaciones-form.service';
 import { TitulacionesFormComponent } from './components/titulaciones-form/titulaciones-form.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-titulaciones-page',
@@ -26,8 +27,13 @@ export class TitulacionesPageComponent implements OnInit, OnDestroy {
   titulacionesService = inject(TitulacionesService);
   titulaciones: WritableSignal<Titulacion[]> = signal<Titulacion[]>([]);
   titulacionesFormService = inject(TitulacionesFormService);
+  router = inject(Router)
 
   subcriptions: Subscription[] = [];
+
+  openTitulacion(titulacion:Titulacion): void {
+    this.router.navigate(['titulacion', titulacion.id]);
+  }
 
   ngOnInit(): void {
     this.titulacionesService.getTitulaciones();

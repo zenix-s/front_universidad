@@ -1,48 +1,74 @@
-<form class="flex flex-col m-4 gap-4 bg-whiter p-4 rounded-md" [formGroup]="studentForm">
-  <div class="flex gap-2">
-    <app-section [title]="'Nombre *'">
-      <i class="ri-user-line" role="icon"></i>
-      <app-input role="content" formControlName="nombre"></app-input>
+<div class="overflow-y-scroll">
+  <form class=" m-4 bg-whiter p-4 rounded-md" [formGroup]="studentForm">
+    <app-section [title]="mode === 'create' ? 'Crear Estudiante' : this.editHeader" [divider]="true">
+      <i role="icon" class="ri-user-line" role="icon"></i>
+      <div class="flex flex-col gap-4 " role="content">
+        <div class="flex flex-col gap-4 md:flex-row">
+          <app-section [title]="'Nombre *'">
+            <i class="ri-id-card-line" role="icon"></i>
+            <app-input role="content" formControlName="nombre"></app-input>
+          </app-section>
+          <app-section [title]="'Apellidos *'">
+            <i class="ri-id-card-line" role="icon"></i>
+            <app-input role="content" formControlName="apellidos"></app-input>
+          </app-section>
+        </div>
+        <div class="flex flex-col gap-4 lg:flex-row">
+          <app-section [title]="'Documento Identidad *'">
+            <i class="ri-id-card-line" role="icon"></i>
+            <app-input role="content" formControlName="documentoIdentidad"></app-input>
+          </app-section>
+          <app-section [title]="'Fecha Nacimiento *'">
+            <i class="ri-calendar-line" role="icon"></i>
+            <app-date-input formControlName="fechaNacimiento" role="content"></app-date-input>
+          </app-section>
+        </div>
+        <div class="flex flex-col gap-4 lg:flex-row">
+          <app-section [title]="'Nacionalidad *'">
+            <i class="ri-earth-line" role="icon"></i>
+            <app-input role="content" formControlName="nacionalidad"></app-input>
+          </app-section>
+          <app-section [title]="'Dirección *'">
+            <i class="ri-map-pin-line" role="icon"></i>
+            <app-input role="content" formControlName="direccion"></app-input>
+          </app-section>
+        </div>
+        <div class="flex flex-col gap-4 lg:flex-row">
+          <app-section [title]="'Genero *'">
+            <i class="ri-genderless-line" role="icon"></i>
+            <app-select role="content" formControlName="sexo" [options]="listSexo"></app-select>
+          </app-section>
+          <app-section [title]="'Tipo Convenio *'">
+            <i class="ri-file-list-3-line" role="icon"></i>
+            <app-select role="content" formControlName="tipoConvenio" [options]="listTipoConvenio"></app-select>
+          </app-section>
+        </div>
+        <div class="flex gap-2">
+          <app-button [themeType]="'primary'" (onClick)="onSubmit()"> Guardar </app-button>
+          @if(this.formStudentService.student?.numeroExpediente !== null &&
+          this.formStudentService.student?.numeroExpediente
+          !== undefined) {
+          <!-- <app-button [themeType]="'outline'"> Eliminar </app-button> -->
+          <app-button [themeType]="'outline'"
+            (onClick)="this.matriculaFormService.openNewExpedienteMatricula(this.formStudentService.student?.numeroExpediente || '')">
+            Añadir Matricula </app-button>
+          }@else {
+          <app-button [themeType]="'outline'" (onClick)="clearForm()"> Limpiar </app-button>
+          }
+        </div>
+      </div>
     </app-section>
-    <app-section [title]="'Apellidos *'">
-      <i class="ri-user-line" role="icon"></i>
-      <app-input role="content" formControlName="apellidos"></app-input>
+  </form>
+
+  @if(mode === 'edit'){
+  <div class="flex flex-col m-4 gap-4 bg-whiter p-4 rounded-md">
+    <app-section [title]="'Matriculas'" [divider]="true">
+      <i class="ri-file-list-3-line" role="icon"></i>
+      <div class="overflow-auto" role="content">
+        <app-table [data]="matriculas">
+        </app-table>
+      </div>
     </app-section>
   </div>
-  <app-section [title]="'Documento Identidad *'">
-    <i class="ri-id-card-line" role="icon"></i>
-    <app-input role="content" formControlName="documentoIdentidad"></app-input>
-  </app-section>
-  <app-section [title]="'Fecha Nacimiento *'">
-    <i class="ri-calendar-line" role="icon"></i>
-    <app-date-input formControlName="fechaNacimiento" role="content"></app-date-input>
-  </app-section>
-  <app-section [title]="'Nacionalidad *'">
-    <i class="ri-earth-line" role="icon"></i>
-    <app-input role="content" formControlName="nacionalidad"></app-input>
-  </app-section>
-  <app-section [title]="'Dirección *'">
-    <i class="ri-map-pin-line" role="icon"></i>
-    <app-input role="content" formControlName="direccion"></app-input>
-  </app-section>
-  <app-section [title]="'Genero *'">
-    <i class="ri-genderless-line" role="icon"></i>
-    <app-select role="content" formControlName="sexo" [options]="listSexo"></app-select>
-  </app-section>
-  <app-section [title]="'Tipo Convenio *'">
-    <i class="ri-file-list-3-line" role="icon"></i>
-    <app-select role="content" formControlName="tipoConvenio" [options]="listTipoConvenio"></app-select>
-  </app-section>
-  <div class="flex gap-2">
-    <app-button [themeType]="'primary'" (onClick)="onSubmit()"> Guardar </app-button>
-    @if(this.formStudentService.student?.numeroExpediente !== null && this.formStudentService.student?.numeroExpediente
-    !== undefined) {
-    <!-- <app-button [themeType]="'outline'"> Eliminar </app-button> -->
-    <app-button [themeType]="'outline'"
-      (onClick)="this.matriculaFormService.openNewExpedienteMatricula(this.formStudentService.student?.numeroExpediente || '')">
-      Añadir Matricula </app-button>
-    }@else {
-    <app-button [themeType]="'outline'" (onClick)="clearForm()"> Limpiar </app-button>
-    }
-  </div>
-</form>
+  }
+</div>

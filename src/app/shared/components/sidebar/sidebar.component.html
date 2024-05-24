@@ -4,9 +4,9 @@
     <button (click)="close()" class="bg-transparent cursor-pointer text-2xl">
       <i class="ri-menu-line" role="icon"></i>
     </button>
-    <div class="w-28 self-stretch">
+    <a [routerLink]="['/']" class="w-28 self-stretch">
       <app-ue-logo></app-ue-logo>
-    </div>
+    </a>
   </div>
   <hr class="divide-x-2 border-black my-4">
   <nav class="flex grow w-full">
@@ -20,10 +20,10 @@
         <i class="ri-group-line" role="icon"></i>
         <app-submenu role="submenu">
           <li>
-            <app-sidebar-nav-item [label]="'Nuevo expediente'" [url]="'/student/form'"></app-sidebar-nav-item>
+            <app-sidebar-nav-item [label]="'Nuevo expediente'" [url]="'/expediente/nuevo'"></app-sidebar-nav-item>
           </li>
           <li>
-            <app-sidebar-nav-item [label]="'Consulta Alumnos'" [url]="'/student/search'"></app-sidebar-nav-item>
+            <app-sidebar-nav-item [label]="'Consulta expediente'" [url]="'/expediente/busqueda'"></app-sidebar-nav-item>
           </li>
         </app-submenu>
       </app-sidebar-nav-item>

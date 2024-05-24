@@ -36,7 +36,11 @@ export class MatriculasService {
     return this._matriculas.getValue();
   }
 
-  getMatriculasByStudent(numeroExpediente: string) {
+  getMatriculasByExpediente(numeroExpediente: string) {
     return matriculas.filter((m) => m.idExpediente === numeroExpediente);
+  }
+
+  getMatriculasByTitulacion(codigoTitulacion: string) {
+    return matriculas.filter((m) => m.idTitulacion === codigoTitulacion);
   }
 }

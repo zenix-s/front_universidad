@@ -20,6 +20,7 @@ export class TableComponent<T extends object> implements OnChanges {
   @Input() data: T[] = [];
   @Input() columns: (keyof T)[] = [];
   @Input() columnClickable = false;
+  @Input() rowClickable = false
 
   orderType: 'asc' | 'desc' = 'asc';
   columnOrder: keyof T = this.columns[0];

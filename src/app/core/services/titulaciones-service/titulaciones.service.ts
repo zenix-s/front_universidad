@@ -63,5 +63,9 @@ export class TitulacionesService {
     });
   }
 
+  getTitulacion(id: string) {
+    return titulaciones.find((e) => e.id === id);
+  }
+
   constructor() {}
 }

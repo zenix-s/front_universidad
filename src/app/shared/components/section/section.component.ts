@@ -11,4 +11,6 @@ export class SectionComponent {
   @Input()
   title: string = '';
 
+  @Input()
+  divider: boolean = false;
 }

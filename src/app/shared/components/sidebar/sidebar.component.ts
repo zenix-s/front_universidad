@@ -13,10 +13,11 @@ import { SidebarService } from '@app/shared/components/sidebar/sidebar-service/s
 import { SidebarNavItemComponent } from './sidebar-nav-item/sidebar-nav-item.component';
 import { SubmenuComponent } from './submenu/submenu.component';
 import { UeLogoComponent } from '../ue-logo/ue-logo.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, SidebarNavItemComponent, SubmenuComponent, UeLogoComponent],
+  imports: [CommonModule, SidebarNavItemComponent, SubmenuComponent, UeLogoComponent, RouterLink],
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',

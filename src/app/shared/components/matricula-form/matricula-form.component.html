@@ -1,17 +1,7 @@
 <app-modal [isOpen]="isOpen()" [title]="'Matricula'" (onClose)="this.matriculaFormService.close()">
   <form class="flex flex-col gap-2" [formGroup]="matriculaForm">
-    <!-- <app-input
-      [label]="'Id Expediente'"
-      formControlName="idExpediente"
-      [disabled]="this.matricula()?.numeroMatricula !== null"
-    ></app-input> -->
     <app-select [label]="'Id Expediente'" [options]="this.estuantesService.getIdExpedientes()"
       formControlName="idExpediente"></app-select>
-    <!-- <app-input
-      [label]="'Id Titulacion'"
-      formControlName="idTitulacion"
-      [disabled]="this.matricula()?.numeroMatricula !== null"
-      ></app-input> -->
     <app-select [label]="'Id Titulacion'" [options]="this.titulacionesService.getIdTitulaciones()"
       formControlName="idTitulacion"></app-select>
     @if (this.matricula()?.numeroMatricula) {

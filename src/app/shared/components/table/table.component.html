@@ -1,7 +1,9 @@
 <table class="border-collapse">
   <thead>
     <tr>
+      @if (rowClickable) {
       <th></th>
+      }
       @for (column of columns; track $index) {
       <th (click)="columnClicked(column)" class=" hover:bg-secondary/20 border border-black/20" [ngClass]="{
           'cursor-pointer': column !== 'actions',
@@ -28,12 +30,15 @@
   </thead>
   <tbody>
     @for (item of data; track $index) {
-    <tr class=" hover:bg-secondary/30 border-black/20 border" (click)="this.rowClicked.emit(item)">
+    <tr class=" hover:bg-secondary/30 border-black/20 border" (click)="rowClickable && this.rowClicked.emit(item)">
+      @if (rowClickable) {
       <td class="text-start px-1 py-2">
         <span class="w-full flex m-1">
-          <i tabindex="0" class="material-icons cursor-pointer" (click)="this.rowClicked.emit(item)">edit</i>
+          <i tabindex="0" class="material-icons cursor-pointer ri-external-link-line"
+            (click)="this.rowClicked.emit(item)"></i>
         </span>
       </td>
+      }
       @for (column of columns; track $index) {
       <td class="px-1 py-2">
         <span class="w-full flex m-1 justify-center">

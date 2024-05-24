@@ -4,11 +4,11 @@ import {
   listTipoConvenio,
   TipoConvenio,
   Genero,
-  listGenero
+  listGenero,
 } from '@app/core/entities/interfaces.entity';
-import {Alumno} from "@app/core/entities/Alumno.entity"
+import { Alumno } from '@app/core/entities/Alumno.entity';
 import { StudentsService } from '@app/core/services/students-service/students.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SectionComponent } from '@app/shared/components/section/section.component';
 import { ButtonComponent } from '@app/shared/components/button/button.component';
 import { SelectComponent } from '@app/shared/components/select/select.component';
@@ -16,7 +16,11 @@ import { InputComponent } from '@app/shared/components/input/input.component';
 import { DateInputComponent } from '@app/shared/components/date-input/date-input.component';
 import { FormStudentService } from './services/form-student.service';
 import { ToasterService } from '../../core/toaster/service/toaster.service';
-import { MatriculaFormService } from '../matriculas-page/components/matricula-form/matricula-form.service';
+import { MatriculaFormService } from '../../shared/components/matricula-form/matricula-form.service';
+import { TableComponent } from '@app/shared/components/table/table.component';
+import { MatriculasService } from '@app/core/services/matriculas-service/matriculas.service';
+import { Matricula } from '@app/core/entities/Matricula.entity';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form-student-page',
@@ -28,6 +32,7 @@ import { MatriculaFormService } from '../matriculas-page/components/matricula-fo
     SelectComponent,
     InputComponent,
     DateInputComponent,
+    TableComponent,
   ],
   templateUrl: './form-student-page.component.html',
   styleUrl: './form-student-page.component.css',
@@ -39,6 +44,13 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
   formStudentService = inject(FormStudentService);
   private ToasterService = inject(ToasterService);
   matriculaFormService = inject(MatriculaFormService);
+  ActivatedRoute = inject(ActivatedRoute);
+  matriculaService = inject(MatriculasService);
+
+  mode: 'create' | 'edit' = 'create';
+  editHeader = '';
+
+  subscripciones: Subscription[] = [];
 
   studentForm = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(3)]],
@@ -50,6 +62,8 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
     sexo: [null as Genero | null, Validators.required],
     tipoConvenio: [null as TipoConvenio | null, Validators.required],
   });
+
+  matriculas: Matricula[] = [];
 
   get listTipoConvenio() {
     return listTipoConvenio.map((tipoConvenio) => {
@@ -71,7 +85,7 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    if (!this.studentForm.valid){
+    if (!this.studentForm.valid) {
       this.ToasterService.error('Formulario inválido');
       return;
     }
@@ -96,7 +110,9 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
         direccion: this.studentForm.value.direccion
           ? this.studentForm.value.direccion
           : '',
-        sexo: this.studentForm.value.sexo ? this.studentForm.value.sexo : 'Otro',
+        sexo: this.studentForm.value.sexo
+          ? this.studentForm.value.sexo
+          : 'Otro',
         tipoConvenio: this.studentForm.value.tipoConvenio
           ? this.studentForm.value.tipoConvenio
           : 'propio',
@@ -134,20 +150,39 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
     this.studentForm.reset();
   }
 
-	something() {
-		this.studentForm.setValue({
-			fechaNacimiento: new Date(0),
-			apellidos: 'Perez',
-			direccion: 'Calle 123',
-			documentoIdentidad: '12345678',
-			nacionalidad: 'Venezolano',
-			nombre: 'Juan',
-			sexo: 'Masculino',
-			tipoConvenio: 'propio',
-		})
-	}
+  something() {
+    this.studentForm.setValue({
+      fechaNacimiento: new Date(0),
+      apellidos: 'Perez',
+      direccion: 'Calle 123',
+      documentoIdentidad: '12345678',
+      nacionalidad: 'Venezolano',
+      nombre: 'Juan',
+      sexo: 'Masculino',
+      tipoConvenio: 'propio',
+    });
+  }
 
   ngOnInit(): void {
+    this.subscripciones.push(
+      this.ActivatedRoute.paramMap.subscribe((params) => {
+        if (!params.has('idExpediente')) {
+          return;
+        }
+        let idExpediente = params.get('idExpediente');
+        if (idExpediente) {
+          const estudiante = this.studentService.getEstudiante(idExpediente);
+          if (estudiante) {
+            this.formStudentService.student = estudiante;
+            this.matriculas =
+              this.matriculaService.getMatriculasByExpediente(idExpediente);
+            console.log(this.matriculas);
+            this.mode = 'edit';
+            this.editHeader = `${estudiante.numeroExpediente} ${estudiante.nombre}`;
+          }
+        }
+      })
+    );
     if (this.formStudentService.student !== null) {
       const estudiante = this.formStudentService.student;
       this.studentForm.patchValue({
@@ -165,5 +200,6 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.formStudentService.student = null;
+    this.subscripciones.forEach((sub) => sub.unsubscribe());
   }
 }

@@ -12,8 +12,8 @@ import { MatriculasService } from "@app/core/services/matriculas-service/matricu
 import { ButtonComponent } from "@app/shared/components/button/button.component";
 import { TableComponent } from "@app/shared/components/table/table.component";
 import { Subscription } from "rxjs";
-import { MatriculaFormService } from "./components/matricula-form/matricula-form.service";
-import { MatriculaFormComponent } from "./components/matricula-form/matricula-form.component";
+import { MatriculaFormService } from "../../shared/components/matricula-form/matricula-form.service";
+import { MatriculaFormComponent } from "../../shared/components/matricula-form/matricula-form.component";
 
 @Component({
   selector: "app-matriculas-page",

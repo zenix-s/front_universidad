@@ -4,15 +4,20 @@ import { FormStudentPageComponent } from "./pages/form-student-page/form-student
 import { TestPageComponent } from "./pages/test-page/test-page.component";
 import { TitulacionesPageComponent } from "./pages/titulaciones-page/titulaciones-page.component";
 import { MatriculasPageComponent } from "./pages/matriculas-page/matriculas-page.component";
+import { TitulacionPageComponent } from "./pages/titulacion-page/titulacion-page.component";
 
 export const routes: Routes = [
   {
-    path: "student/search",
+    path: "expediente/busqueda",
     component: SearchStudentPageComponent,
   },
   {
-    path: "student/form",
+    path: "expediente/nuevo",
     component: FormStudentPageComponent,
+  },
+  {
+    path: "expediente/:idExpediente",
+    component: FormStudentPageComponent
   },
   {
     path: "student/form/:id",
@@ -21,6 +26,10 @@ export const routes: Routes = [
   {
     path: "titulaciones",
     component: TitulacionesPageComponent,
+  },
+  {
+    path: "titulacion/:codigo",
+    component: TitulacionPageComponent
   },
   {
     path: "tests",
@@ -32,6 +41,6 @@ export const routes: Routes = [
   },
   {
     path: "**",
-    redirectTo: "student/search",
+    redirectTo: "expediente/busqueda",
   },
 ];
