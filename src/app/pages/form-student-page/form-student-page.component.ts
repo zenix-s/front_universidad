@@ -21,6 +21,7 @@ import { TableComponent } from '@app/shared/components/table/table.component';
 import { MatriculasService } from '@app/core/services/matriculas-service/matriculas.service';
 import { Matricula } from '@app/core/entities/Matricula.entity';
 import { Subscription } from 'rxjs';
+import { MatriculaFormComponent } from '@app/shared/components/matricula-form/matricula-form.component';
 
 @Component({
   selector: 'app-form-student-page',
@@ -33,6 +34,7 @@ import { Subscription } from 'rxjs';
     InputComponent,
     DateInputComponent,
     TableComponent,
+    MatriculaFormComponent,
   ],
   templateUrl: './form-student-page.component.html',
   styleUrl: './form-student-page.component.css',
@@ -64,11 +66,11 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
   });
 
   matriculas: Matricula[] = [];
+  idExpeditente: string = '';
 
   get listTipoConvenio() {
     return listTipoConvenio.map((tipoConvenio) => {
       return {
-        // label: tipoConvenio.capitalize(),
         label: tipoConvenio.charAt(0).toUpperCase() + tipoConvenio.slice(1),
         value: tipoConvenio,
       };
@@ -150,17 +152,13 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
     this.studentForm.reset();
   }
 
-  something() {
-    this.studentForm.setValue({
-      fechaNacimiento: new Date(0),
-      apellidos: 'Perez',
-      direccion: 'Calle 123',
-      documentoIdentidad: '12345678',
-      nacionalidad: 'Venezolano',
-      nombre: 'Juan',
-      sexo: 'Masculino',
-      tipoConvenio: 'propio',
-    });
+  openMatricula(matricula: Matricula) {
+    this.matriculaFormService.matricula = matricula;
+    this.matriculaFormService.open();
+  }
+
+  updateMatriculas(){
+    this.matriculas = this.matriculaService.getMatriculasByExpediente(this.idExpeditente);
   }
 
   ngOnInit(): void {
@@ -174,9 +172,9 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
           const estudiante = this.studentService.getEstudiante(idExpediente);
           if (estudiante) {
             this.formStudentService.student = estudiante;
+            this.idExpeditente = idExpediente;
             this.matriculas =
               this.matriculaService.getMatriculasByExpediente(idExpediente);
-            console.log(this.matriculas);
             this.mode = 'edit';
             this.editHeader = `${estudiante.numeroExpediente} ${estudiante.nombre}`;
           }

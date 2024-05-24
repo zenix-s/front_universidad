@@ -1,7 +1,9 @@
 import {
   Component,
+  EventEmitter,
   OnDestroy,
   OnInit,
+  Output,
   WritableSignal,
   inject,
   signal,
@@ -53,6 +55,8 @@ export class MatriculaFormComponent implements OnInit, OnDestroy {
 
   subscripciones: Subscription[] = [];
 
+  @Output() formSubmited = new EventEmitter<void>()
+
   matriculaForm: FormGroup = this.fb.group({
     numeroMatricula: [null],
     idExpediente: ['', Validators.required],
@@ -60,6 +64,7 @@ export class MatriculaFormComponent implements OnInit, OnDestroy {
     estadoMatriculacion: [null as EstadoMatriculacion | null],
     fechaMatriculacion: [null as Date | null, [Validators.required]],
   });
+
 
   getidExpedientes() {
     return this.estuantesService.getIdExpedientes().map((expediente) => {
@@ -82,6 +87,7 @@ export class MatriculaFormComponent implements OnInit, OnDestroy {
       this.matriculaService.updateMatricula(matricula);
     }
     this.matriculaFormService.close();
+		this.formSubmited.emit();
   }
 
   ngOnInit(): void {

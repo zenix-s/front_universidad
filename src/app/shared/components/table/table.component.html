@@ -30,12 +30,12 @@
   </thead>
   <tbody>
     @for (item of data; track $index) {
-    <tr class=" hover:bg-secondary/30 border-black/20 border" (click)="rowClickable && this.rowClicked.emit(item)">
+    <tr class=" hover:bg-secondary/30 border-black/20 border">
       @if (rowClickable) {
       <td class="text-start px-1 py-2">
         <span class="w-full flex m-1">
           <i tabindex="0" class="material-icons cursor-pointer ri-external-link-line"
-            (click)="this.rowClicked.emit(item)"></i>
+            (click)="rowClickable && this.rowClicked.emit(item)"></i>
         </span>
       </td>
       }

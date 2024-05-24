@@ -5,7 +5,10 @@
     <app-select [label]="'Id Titulacion'" [options]="this.titulacionesService.getIdTitulaciones()"
       formControlName="idTitulacion"></app-select>
     @if (this.matricula()?.numeroMatricula) {
-    <app-input [label]="'Estado Matriculación'" formControlName="estadoMatriculacion"></app-input>
+    <!-- <app-input [label]="'Estado Matriculación'" formControlName="estadoMatriculacion"></app-input> -->
+    <app-select [label]="'Estado Matriculación'" [options]="this.matriculaService.getEstadosMatriculacion()"
+      formControlName="estadoMatriculacion"></app-select>
+    }@else {
     }
     <app-date-input [label]="'Fecha Matriculacion'" formControlName="fechaMatriculacion"></app-date-input>
 

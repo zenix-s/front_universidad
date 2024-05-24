@@ -1,11 +1,12 @@
-import { Injectable, inject } from "@angular/core";
-import { Matricula } from "@app/core/entities/Matricula.entity";
-import { ToasterService } from "@app/core/toaster/service/toaster.service";
-import { BehaviorSubject } from "rxjs";
-import { matriculas } from "@app/core/data/data";
+import { Injectable, inject } from '@angular/core';
+import { Matricula } from '@app/core/entities/Matricula.entity';
+import { ToasterService } from '@app/core/toaster/service/toaster.service';
+import { BehaviorSubject } from 'rxjs';
+import { matriculas } from '@app/core/data/data';
+import { listEstadoMatriculacion } from '@app/core/entities/interfaces.entity';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class MatriculasService {
   private toasterService = inject(ToasterService);
@@ -16,16 +17,16 @@ export class MatriculasService {
   addMatricula(matricula: Matricula) {
     matriculas.push(matricula);
     this._matriculas.next(matriculas);
-    this.toasterService.success("Matrícula añadida correctamente");
+    this.toasterService.success('Matrícula añadida correctamente');
   }
 
   updateMatricula(matricula: Matricula) {
     const index = matriculas.findIndex(
-      (e) => e.numeroMatricula === matricula.numeroMatricula,
+      (e) => e.numeroMatricula === matricula.numeroMatricula
     );
     matriculas[index] = matricula;
     this._matriculas.next(matriculas);
-    this.toasterService.success("Matrícula actualizada correctamente");
+    this.toasterService.success('Matrícula actualizada correctamente');
   }
 
   getMatriculas() {
@@ -42,5 +43,14 @@ export class MatriculasService {
 
   getMatriculasByTitulacion(codigoTitulacion: string) {
     return matriculas.filter((m) => m.idTitulacion === codigoTitulacion);
+  }
+
+  getEstadosMatriculacion() {
+    return listEstadoMatriculacion.map((estado) => {
+      return {
+        value: estado,
+        label: estado,
+      };
+    });
   }
 }

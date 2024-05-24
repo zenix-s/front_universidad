@@ -1,3 +1,6 @@
+<app-matricula-form
+  (formSubmited)="updateMatriculas()"
+></app-matricula-form>
 <div class="overflow-y-scroll">
   <form class=" m-4 bg-whiter p-4 rounded-md" [formGroup]="studentForm">
     <app-section [title]="mode === 'create' ? 'Crear Estudiante' : this.editHeader" [divider]="true">
@@ -65,7 +68,12 @@
     <app-section [title]="'Matriculas'" [divider]="true">
       <i class="ri-file-list-3-line" role="icon"></i>
       <div class="overflow-auto" role="content">
-        <app-table [data]="matriculas">
+        <app-table
+          [data]="matriculas"
+          [columns]="['numeroMatricula', 'idTitulacion', 'estadoMatriculacion', 'fechaMatriculacion']"
+          [rowClickable]="true"
+          (rowClicked)="openMatricula($event)"
+        >
         </app-table>
       </div>
     </app-section>

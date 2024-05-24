@@ -9,17 +9,16 @@
       </div>
     </app-section>
   </div>
-
   <div class="p-2 mx-4 my-2 bg-whiter rounded-md ">
     <app-section [divider]="true" [title]="'Matriculas'">
       <i class="ri-add-line" role="icon"></i>
       <div role="content" class="overflow-x-auto">
         <app-table [data]="matriculas()"
           [columns]="['numeroMatricula','idExpediente', 'idTitulacion', 'estadoMatriculacion', 'fechaMatriculacion']"
-          [rowClickable]="true" (rowClicked)="this.router.navigate(['/expediente', $event.idExpediente])">
+          [rowClickable]="true"
+          (rowClicked)="this.router.navigate(['/expediente', $event.idExpediente])">
         </app-table>
       </div>
-
     </app-section>
   </div>
 </div>
