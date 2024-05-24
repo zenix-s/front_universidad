@@ -1,5 +1,7 @@
-<aside class="fixed flex-col top-0 left-0 h-full w-64 bg-whiter transition-all py-2 px-4"
-  [ngClass]="isOpen ? 'w-64 transition-all flex': 'hidden'">
+<aside
+  class="fixed flex-col top-0 flex h-full w-64 bg-whiter transition-all py-2 px-4"
+  [ngClass]="isOpen ? 'left-0': '-left-full'"
+>
   <div class="flex gap-4">
     <button (click)="close()" class="bg-transparent cursor-pointer text-2xl">
       <i class="ri-menu-line" role="icon"></i>
@@ -57,5 +59,8 @@
     </ul>
   </div>
 </aside>
-<div class="bg-black/10 fixed h-full w-full top-0 left-64 grow" [ngClass]="isOpen ? 'flex': 'hidden'" (click)="close()">
+<div
+  class=" fixed flex h-full top-0 grow transition-all"
+  [ngClass]="isOpen ? 'left-64 w-full bg-black/10': 'w-0 -left-full bg-transparent'"
+  (click)="close()">
 </div>
