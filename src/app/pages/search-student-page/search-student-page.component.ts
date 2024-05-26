@@ -26,7 +26,7 @@ import {
   listTipoConvenio,
 } from '@app/core/entities/interfaces.entity';
 import { Alumno } from '@app/core/entities/Alumno.entity';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { TableComponent } from '@app/shared/components/table/table.component';
 import { FormStudentService } from '../form-student-page/services/form-student.service';
 import { Router } from '@angular/router';
@@ -56,7 +56,7 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
   students: WritableSignal<Alumno[]> = signal<Alumno[]>([]);
   filteredStudents: WritableSignal<Alumno[]> = signal<Alumno[]>([]);
 
-  subscripciones: Subscription[] = [];
+  private ngUnsubscribe = new Subject<void>();
 
   searchForm: FormGroup = this.fb.group({
     nombre: [null, Validators.required],
@@ -97,20 +97,6 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
     }));
   }
 
-  doordie() {
-    // // console.log(this.studentsService.generarNumeroExpediente())
-    // console.log(this.students().map((student) => {
-    //   if (student.tipoConvenio == 'propio') {
-    //     student.nacionalidad = 'España'
-    //   }
-    //   if(student.tipoConvenio == 'extranjero'){
-    //     const bool = Math.random() < 0.5;
-    //     if (bool) student.nacionalidad = 'Francia';
-    //     else student.nacionalidad = 'Alemania';
-    //   }
-    //   return student;
-    // }));
-  }
 
   getNacionalidades() {
     const nacionalidades: { value: string; label: string }[] = [];
@@ -118,7 +104,10 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
       .map((student) => student.nacionalidad)
       .forEach((nacionalidad) => {
         if (!nacionalidades.find((n) => n.value === nacionalidad)) {
-          nacionalidades.push({ value: nacionalidad, label: nacionalidad.charAt(0).toUpperCase() + nacionalidad.slice(1)});
+          nacionalidades.push({
+            value: nacionalidad,
+            label: nacionalidad.charAt(0).toUpperCase() + nacionalidad.slice(1),
+          });
         }
       });
     return nacionalidades;
@@ -131,20 +120,23 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.studentsService.getstudents();
-    this.subscripciones.push(
-      this.studentsService.students$.subscribe((students) => {
+
+    this.studentsService.students$
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((students) => {
         this.students.set(students);
         this.searchStudentsService.filterStudents(students);
-      })
-    );
-    this.subscripciones.push(
-      this.searchStudentsService.filteredStudents$.subscribe((students) => {
+      });
+
+    this.searchStudentsService.filteredStudents$
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((students) => {
         this.filteredStudents.set(students);
-      })
-    );
+      });
   }
 
   ngOnDestroy(): void {
-    this.subscripciones.forEach((sub) => sub.unsubscribe());
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }
