@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  OnDestroy,
   OnInit,
   WritableSignal,
   effect,
@@ -14,18 +15,27 @@ import { SidebarNavItemComponent } from './sidebar-nav-item/sidebar-nav-item.com
 import { SubmenuComponent } from './submenu/submenu.component';
 import { UeLogoComponent } from '../ue-logo/ue-logo.component';
 import { RouterLink } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, SidebarNavItemComponent, SubmenuComponent, UeLogoComponent, RouterLink],
+  imports: [
+    CommonModule,
+    SidebarNavItemComponent,
+    SubmenuComponent,
+    UeLogoComponent,
+    RouterLink,
+  ],
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   sidebarService = inject(SidebarService);
   elementRef = inject(ElementRef<HTMLElement>);
   private _isOpen: WritableSignal<boolean> = signal(false);
+
+  private ngUnsubscribe = new Subject<void>();
 
   get isOpen() {
     return this._isOpen();
@@ -43,17 +53,16 @@ export class SidebarComponent implements OnInit {
     this.sidebarService.open();
   }
 
-  constructor() {
-    effect(() => {
-      if (this.isOpen) {
-      } else {
-      }
-    });
+  ngOnInit(): void {
+    this.sidebarService.sidebarState$
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((state) => {
+        this.isOpen = state;
+      });
   }
 
-  ngOnInit(): void {
-    this.sidebarService.sidebarState$.subscribe((state) => {
-      this.isOpen = state;
-    });
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

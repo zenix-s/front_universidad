@@ -17,7 +17,7 @@ import {
 import { MatriculaFormService } from './matricula-form.service';
 import { Matricula } from '@app/core/entities/Matricula.entity';
 import { EstadoMatriculacion } from '@app/core/entities/interfaces.entity';
-import { Subscription, map } from 'rxjs';
+import { Subject, Subscription, map, takeUntil } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { InputComponent } from '@app/shared/components/input/input.component';
 import { ButtonComponent } from '@app/shared/components/button/button.component';
@@ -53,9 +53,10 @@ export class MatriculaFormComponent implements OnInit, OnDestroy {
   isOpen: WritableSignal<boolean> = signal<boolean>(false);
   matricula: WritableSignal<Matricula | null> = signal<Matricula | null>(null);
 
-  subscripciones: Subscription[] = [];
+  // subscripciones: Subscription[] = [];
+  private ngUnsubscribe = new Subject<void>();
 
-  @Output() formSubmited = new EventEmitter<void>()
+  @Output() formSubmited = new EventEmitter<void>();
 
   matriculaForm: FormGroup = this.fb.group({
     numeroMatricula: [null],
@@ -64,7 +65,6 @@ export class MatriculaFormComponent implements OnInit, OnDestroy {
     estadoMatriculacion: [null as EstadoMatriculacion | null],
     fechaMatriculacion: [null as Date | null, [Validators.required]],
   });
-
 
   getidExpedientes() {
     return this.estuantesService.getIdExpedientes().map((expediente) => {
@@ -81,21 +81,28 @@ export class MatriculaFormComponent implements OnInit, OnDestroy {
     }
 
     const matricula = this.matriculaForm.value as Matricula;
-    if (matricula.numeroMatricula === null || matricula.numeroMatricula === '') {
+    if (
+      matricula.numeroMatricula === null ||
+      matricula.numeroMatricula === ''
+    ) {
       this.matriculaService.addMatricula(matricula);
     } else {
       this.matriculaService.updateMatricula(matricula);
     }
     this.matriculaFormService.close();
-		this.formSubmited.emit();
+    this.formSubmited.emit();
   }
 
   ngOnInit(): void {
-    this.subscripciones.push(
-      this.matriculaFormService.isOpen$.subscribe((isOpen) => {
+    this.matriculaFormService.isOpen$
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((isOpen) => {
         this.isOpen.set(isOpen);
-      }),
-      this.matriculaFormService.matricula$.subscribe((matricula) => {
+      });
+
+    this.matriculaFormService.matricula$
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((matricula) => {
         if (!matricula) {
           this.matriculaForm.reset();
           return;
@@ -108,11 +115,11 @@ export class MatriculaFormComponent implements OnInit, OnDestroy {
           estadoMatriculacion: matricula?.estadoMatriculacion,
           fechaMatriculacion: matricula?.fechaMatriculacion,
         });
-      })
-    );
+      });
   }
 
   ngOnDestroy(): void {
-    this.subscripciones.forEach((s) => s.unsubscribe());
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

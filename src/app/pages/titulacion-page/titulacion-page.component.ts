@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SectionComponent } from '@app/shared/components/section/section.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { TitulacionesService } from '@app/core/services/titulaciones-service/titulaciones.service';
 import { Titulacion } from '@app/core/entities/Titulacion.entity';
 import { TableComponent } from '@app/shared/components/table/table.component';
@@ -13,7 +13,12 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-titulacion-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, SectionComponent, TableComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    SectionComponent,
+    TableComponent,
+  ],
   templateUrl: './titulacion-page.component.html',
   styleUrl: './titulacion-page.component.css',
 })
@@ -23,13 +28,14 @@ export class TitulacionPageComponent implements OnInit, OnDestroy {
   router = inject(Router);
   matriculasService = inject(MatriculasService);
 
-  subscripciones: Subscription[] = [];
+  private ngUnsubscribe = new Subject<void>();
 
   titulacion: Titulacion | null = null;
   matriculas = signal<Matricula[]>([]);
   ngOnInit(): void {
-    this.subscripciones.push(
-      this.ActivatedRoute.paramMap.subscribe((params) => {
+    this.ActivatedRoute.paramMap
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((params) => {
         if (!params.has('codigo')) {
           this.router.navigate(['/']);
           return;
@@ -42,12 +48,14 @@ export class TitulacionPageComponent implements OnInit, OnDestroy {
           return;
         }
         this.titulacion = titulacion;
-        this.matriculas.set(this.matriculasService.getMatriculasByTitulacion(this.titulacion.id));
-      })
-    );
+        this.matriculas.set(
+          this.matriculasService.getMatriculasByTitulacion(this.titulacion.id)
+        );
+      });
   }
 
   ngOnDestroy(): void {
-    this.subscripciones.forEach((sub) => sub.unsubscribe());
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

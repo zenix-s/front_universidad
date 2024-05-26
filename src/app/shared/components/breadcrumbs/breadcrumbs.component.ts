@@ -17,18 +17,6 @@ export class BreadcrumbsComponent implements OnInit {
     url: string;
   }[] = [];
 
-  // createBreadcrumbs(root: ActivatedRoute): { label: string; url: string; }[] {
-
-  //   const items = [];
-  //   let currentRoute = root;
-  //   while (currentRoute.children[0] !== undefined) {
-  //     console.log(currentRoute.children[0].snapshot.url);
-  //   }
-
-  //   return []
-
-  // }
-
   ngOnInit(): void {
     this.activatedRoute.url.subscribe((url) => {
       console.log(url);

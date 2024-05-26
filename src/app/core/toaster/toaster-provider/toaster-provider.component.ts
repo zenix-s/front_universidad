@@ -9,7 +9,7 @@ import {
 import { ToastComponent } from './toast/toast.component';
 import { ToasterService } from '../service/toaster.service';
 import { Toaster } from '../toaster.entity';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-toaster-provider',
@@ -24,15 +24,18 @@ export class ToasterProviderComponent implements OnInit, OnDestroy {
   toasts: WritableSignal<Toaster[]> = signal<Toaster[]>([]);
   toastSubscription!: Subscription;
 
+  private ngUnsubscribe = new Subject<void>();
+
   ngOnInit(): void {
-    this.toastSubscription = this.toasterService.toaster$.subscribe(
-      (toasts) => {
+    this.toasterService.toaster$
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((toasts) => {
         this.toasts.set(toasts);
-      }
-    );
+      });
   }
 
   ngOnDestroy(): void {
-    this.toastSubscription.unsubscribe();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

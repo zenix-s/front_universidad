@@ -20,7 +20,7 @@ import { MatriculaFormService } from '../../shared/components/matricula-form/mat
 import { TableComponent } from '@app/shared/components/table/table.component';
 import { MatriculasService } from '@app/core/services/matriculas-service/matriculas.service';
 import { Matricula } from '@app/core/entities/Matricula.entity';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { MatriculaFormComponent } from '@app/shared/components/matricula-form/matricula-form.component';
 
 @Component({
@@ -52,7 +52,7 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
   mode: 'create' | 'edit' = 'create';
   editHeader = '';
 
-  subscripciones: Subscription[] = [];
+  private ngUnsubscribe = new Subject<void>();
 
   studentForm = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(3)]],
@@ -157,13 +157,16 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
     this.matriculaFormService.open();
   }
 
-  updateMatriculas(){
-    this.matriculas = this.matriculaService.getMatriculasByExpediente(this.idExpeditente);
+  updateMatriculas() {
+    this.matriculas = this.matriculaService.getMatriculasByExpediente(
+      this.idExpeditente
+    );
   }
 
   ngOnInit(): void {
-    this.subscripciones.push(
-      this.ActivatedRoute.paramMap.subscribe((params) => {
+    this.ActivatedRoute.paramMap
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((params) => {
         if (!params.has('idExpediente')) {
           return;
         }
@@ -179,8 +182,8 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
             this.editHeader = `${estudiante.numeroExpediente} ${estudiante.nombre}`;
           }
         }
-      })
-    );
+      });
+
     if (this.formStudentService.student !== null) {
       const estudiante = this.formStudentService.student;
       this.studentForm.patchValue({
@@ -198,6 +201,8 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.formStudentService.student = null;
-    this.subscripciones.forEach((sub) => sub.unsubscribe());
+
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

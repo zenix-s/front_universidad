@@ -97,7 +97,10 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
     }));
   }
 
-
+  /**
+   *
+   * @returns Array de nacionalidades de los alumnos sin repetir
+   */
   getNacionalidades() {
     const nacionalidades: { value: string; label: string }[] = [];
     this.students()
@@ -114,7 +117,6 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
   }
 
   rowClicked(student: Alumno) {
-    // this.studentForm.student = student;
     this.router.navigate(['expediente', student.numeroExpediente]);
   }
 
