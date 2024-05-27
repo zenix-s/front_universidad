@@ -36,7 +36,7 @@
   </div>
 </form>
 <!-- <app-students-table></app-students-table> -->
-<div class="my-1 mx-4 bg-whiter rounded-md grow overflow-auto">
+<div class="section grow overflow-auto">
   <app-table
     [data]="filteredStudents()"
     (columnHeadClicked)="this.searchStudentsService.orderByColumn($event)"

@@ -8,7 +8,7 @@
 }
 
 .section {
-  @apply bg-whiter p-2 m-4 rounded-md;
+  @apply bg-whiter p-2 mx-2 my-1 rounded-md;
 }
 
 .filter-container {
