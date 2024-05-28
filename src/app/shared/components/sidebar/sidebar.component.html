@@ -1,31 +1,33 @@
-<aside
-  class="fixed flex-col top-0 flex h-full w-64 bg-whiter transition-all py-2 px-4"
-  [ngClass]="isOpen ? 'left-0': '-left-full'"
->
+<aside class="fixed flex-col top-0 flex h-full w-64 bg-whiter transition-all py-2 px-4"
+  [ngClass]="isOpen ? 'left-0': '-left-full'">
   <div class="flex gap-4">
     <button (click)="close()" class="bg-transparent cursor-pointer text-2xl">
       <i class="ri-menu-line" role="icon"></i>
     </button>
-    <a [routerLink]="['/']" class="w-28 self-stretch">
+    <a [routerLink]="['/dashboard']" class="w-28 self-stretch">
       <app-ue-logo></app-ue-logo>
     </a>
   </div>
   <hr class="divide-x-2 border-black my-4">
   <nav class="flex grow w-full">
-    <ul class="w-full">
-      <app-sidebar-nav-item [label]="'Home'" [url]="'/'">
-        <!-- <app-home-icon role="icon"></app-home-icon> -->
-        <i class="ri-home-4-line" role="icon"></i>
+    <div class="w-full flex flex-col gap-1">
+      <app-sidebar-nav-item [label]="'Home'" [url]="'/dashboard'">
+        <i class="ri-home-2-line" role="icon"></i>
+        <span>Home</span>
       </app-sidebar-nav-item>
       <app-sidebar-nav-item [label]="'Alumnos'" [hasSubmenu]="true">
         <!-- <app-group-icon role="icon"></app-group-icon> -->
         <i class="ri-group-line" role="icon"></i>
         <app-submenu role="submenu">
           <li>
-            <app-sidebar-nav-item [label]="'Nuevo expediente'" [url]="'/expediente/nuevo'"></app-sidebar-nav-item>
+            <app-sidebar-nav-item [label]="'Nuevo expediente'" [url]="'/expediente/nuevo'">
+              <i class="ri-add-line" role="icon"></i>
+            </app-sidebar-nav-item>
           </li>
           <li>
-            <app-sidebar-nav-item [label]="'Consulta expediente'" [url]="'/expediente/busqueda'"></app-sidebar-nav-item>
+            <app-sidebar-nav-item [label]="'Consulta expediente'" [url]="'/expediente/busqueda'">
+              <i class="ri-search-line" role="icon"></i>
+            </app-sidebar-nav-item>
           </li>
         </app-submenu>
       </app-sidebar-nav-item>
@@ -36,7 +38,7 @@
       <app-sidebar-nav-item [label]="'Matriculas'" [url]="'/matriculas'">
         <i class="ri-file-list-3-line" role="icon"></i>
       </app-sidebar-nav-item>
-    </ul>
+    </div>
   </nav>
   <div>
     <ul>
@@ -44,14 +46,14 @@
         <!-- <button>
           ajustes
         </button> -->
-        <app-sidebar-nav-item [label]="'Ajustes'" [url]="'/'">
+        <app-sidebar-nav-item [label]="'Ajustes'" [url]="'/settings'">
           <!-- <app-settings-icon role="icon"></app-settings-icon> -->
           <i class="ri-settings-3-line" role="icon"></i>
         </app-sidebar-nav-item>
 
       </li>
       <li>
-        <app-sidebar-nav-item [label]="'Salir'" [url]="'/'">
+        <app-sidebar-nav-item [label]="'Salir'" [url]="'/exit'">
           <!-- <app-logout-icon role="icon"></app-logout-icon> -->
           <i class="ri-logout-box-line" role="icon"></i>
         </app-sidebar-nav-item>
@@ -59,8 +61,6 @@
     </ul>
   </div>
 </aside>
-<div
-  class=" fixed flex h-full top-0 grow transition-all"
-  [ngClass]="isOpen ? 'left-64 w-full bg-black/10': 'w-0 -left-full bg-transparent'"
-  (click)="close()">
+<div class=" fixed flex h-full top-0 grow transition-all"
+  [ngClass]="isOpen ? 'left-64 w-full bg-black/10': 'w-0 -left-full bg-transparent'" (click)="close()">
 </div>

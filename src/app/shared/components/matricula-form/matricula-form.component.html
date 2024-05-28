@@ -12,6 +12,11 @@
     }
     <app-date-input [label]="'Fecha Matriculacion'" formControlName="fechaMatriculacion"></app-date-input>
 
-    <app-button (onClick)="onSubmit()"> Guardar </app-button>
+    <div class="w-full flex justify-end mt-2">
+      <app-button (onClick)="onSubmit()">
+        Guardar
+
+      </app-button>
+    </div>
   </form>
 </app-modal>

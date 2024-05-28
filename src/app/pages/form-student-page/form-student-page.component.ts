@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   listTipoConvenio,
@@ -22,11 +22,13 @@ import { MatriculasService } from '@app/core/services/matriculas-service/matricu
 import { Matricula } from '@app/core/entities/Matricula.entity';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { MatriculaFormComponent } from '@app/shared/components/matricula-form/matricula-form.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-form-student-page',
   standalone: true,
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     SectionComponent,
     ButtonComponent,
@@ -50,7 +52,12 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
   matriculaService = inject(MatriculasService);
 
   mode: 'create' | 'edit' = 'create';
+  tab = signal<'datos' | 'matriculas'>('datos')
   editHeader = '';
+
+  changeTab(tab: 'datos' | 'matriculas') {
+    this.tab.set(tab);
+  }
 
   private ngUnsubscribe = new Subject<void>();
 
