@@ -34,8 +34,9 @@
       @if (rowClickable) {
       <td class="text-start px-1 py-2">
         <span class="w-full flex m-1">
-          <i tabindex="0" class="material-icons cursor-pointer ri-external-link-line"
-            (click)="rowClickable && this.rowClicked.emit(item)"></i>
+          <button (click)="rowClickable && this.rowClicked.emit(item)">
+            <i class="material-icons cursor-pointer ri-external-link-line"></i>
+          </button>
         </span>
       </td>
       }

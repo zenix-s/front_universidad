@@ -1,8 +1,10 @@
 <div class="flex flex-col items-center w-full">
 
-  <div
+  <button
     class="flex items-center gap-2 hover:bg-comment/20 w-full rounded-md cursor-pointer py-1.5 px-2 element"
-    (click)="toggleCollapsed()">
+    (click)="toggleCollapsed()"
+    tabindex="0"
+    >
     <span class="text-primary icon font-bold">
       <ng-content select="[role=icon]"></ng-content>
     </span>
@@ -18,7 +20,7 @@
       {{ label }}
     </a>
     }
-  </div>
+  </button>
 
   @if(hasSubmenu) {
   <div class="w-full submenu" [ngClass]="isOpen ? 'block': 'hidden'">
@@ -26,4 +28,4 @@
     <hr class="divide-x-2 border-black">
   </div>
   }
-</div>
+  </div>
