@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TestTableComponent } from './test-table/test-table.component';
+import { TestCompComponent } from './test-comp/test-comp.component';
 interface TestData {
   name: string;
   age: number;
@@ -8,7 +9,7 @@ interface TestData {
 @Component({
   selector: 'app-test-page',
   standalone: true,
-  imports: [TestTableComponent],
+  imports: [TestTableComponent, TestCompComponent],
   templateUrl: './test-page.component.html',
   styleUrl: './test-page.component.css'
 })

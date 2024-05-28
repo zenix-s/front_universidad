@@ -1,2 +1,8 @@
 <p>test-page works!</p>
-<app-test-table [data]="data" (rowClicked)="something($event)"></app-test-table>
+<app-test-table
+  [data]="data"
+  (rowClicked)="something($event)"
+></app-test-table>
+<app-test-comp
+  [title]="'Something'"
+></app-test-comp>
