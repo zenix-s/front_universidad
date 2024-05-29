@@ -53,7 +53,6 @@ export class MatriculaFormComponent implements OnInit, OnDestroy {
   isOpen: WritableSignal<boolean> = signal<boolean>(false);
   matricula: WritableSignal<Matricula | null> = signal<Matricula | null>(null);
 
-  // subscripciones: Subscription[] = [];
   private ngUnsubscribe = new Subject<void>();
 
   @Output() formSubmited = new EventEmitter<void>();

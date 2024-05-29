@@ -1,4 +1,15 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { SectionComponent } from '../section/section.component';
 import { ButtonComponent } from '../button/button.component';
 
@@ -9,13 +20,14 @@ import { ButtonComponent } from '../button/button.component';
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css',
 })
-export class ModalComponent {
+export class ModalComponent implements AfterViewInit, OnDestroy {
   @ViewChild('dialog') dialog: ElementRef<HTMLDialogElement> | undefined;
 
   @Input() title: string = '';
 
   @Input()
   set isOpen(isOpen: boolean) {
+    console.log('isOpen', isOpen);
     if (this.dialog) {
       if (isOpen) {
         this.dialog.nativeElement.showModal();
@@ -26,4 +38,20 @@ export class ModalComponent {
   }
 
   @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
+
+  private closeHandler = () => {
+    this.onClose.emit();
+  };
+
+  ngAfterViewInit(): void {
+    if (this.dialog) {
+      this.dialog.nativeElement.addEventListener('close', this.closeHandler);
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.dialog) {
+      this.dialog.nativeElement.removeEventListener('close', this.closeHandler);
+    }
+  }
 }
