@@ -210,6 +210,20 @@ export class SearchStudentsService {
     );
   }
 
+  clearFilter(filter: keyof SearchFilters) {
+    if (
+      filter === 'page' ||
+      filter === 'pageSize' ||
+      filter === 'order' ||
+      filter === 'orderBy'
+    )
+      return;
+    this.filters[filter] = null;
+    this._filteredStudents.next(
+      this._filterStudents(this.StudentsService.getStudentsSnapshot())
+    );
+  }
+
   clearFilters() {
     this.filters = {
       numeroExpediente: '',

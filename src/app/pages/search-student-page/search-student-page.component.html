@@ -1,50 +1,95 @@
-<form [formGroup]="searchForm" class="filter-form-container">
-  <!-- CONTAINER 1 -->
-  <div class="section">
-    <div class="filter-container">
-      <!-- TIPO DE CONVENIO -->
-      <app-section [title]="'Tipo de alumnos'">
-        <i class="ri-group-line" role="icon"></i>
-        <app-select role="content" formControlName="tipoConvenio" [options]="listTipoConvenio"></app-select>
-      </app-section>
-      <!-- UNIVERSIDAD -->
-      <app-section [title]="'Nacionalidad'">
-        <i class="ri-earth-fill" role="icon"></i>
-        <app-select role="content" formControlName="nacionalidad" [options]="getNacionalidades()"></app-select>
-      </app-section>
-    </div>
-  </div>
-  <!-- CONTAINER 2 -->
-  <div class="section">
-    <app-section [title]="'Criterios Alumnos'">
-      <i class="ri-article-line" role="icon"></i>
-      <div class="filter-container" role="content">
-        <!--NºEXPEDIENTE  -->
-        <app-input formControlName="numeroExpediente" [label]="'Nº Expediente'"></app-input>
-        <div class="flex gap-2 w-full">
-          <!-- NOMBRE -->
-          <app-input formControlName="nombre" [label]="'Nombre'"></app-input>
-          <!-- APELLIDOS -->
-          <app-input formControlName="apellidos" [label]="'Apellidos'"></app-input>
-        </div>
-        <div class="flex gap-2">
-          <app-button [themeType]="'primary'" (onClick)="onSubmit()" [size]="'lg'"> Buscar </app-button>
-          <app-button [themeType]="'outline'" (onClick)="clearForm()" [size]="'lg'"> Limpiar </app-button>
-        </div>
+<app-modal [isOpen]="isOpen()" (onClose)="this.isOpen.set(false)">
+  <form [formGroup]="searchForm" class="flex flex-col">
+    <div class="flex flex-wrap w-full">
+      <div class="w-full">
+        <app-section [title]="'Nº Expediente'">
+          <i class="ri-article-line" role="icon"></i>
+          <app-input formControlName="numeroExpediente" role="content"></app-input>
+        </app-section>
       </div>
-    </app-section>
-  </div>
-</form>
-<!-- <app-students-table></app-students-table> -->
-<div class="section grow overflow-auto">
-  <app-table
-    [data]="filteredStudents()"
-    (columnHeadClicked)="this.searchStudentsService.orderByColumn($event)"
-    (rowClicked)="this.rowClicked($event)"
-    [columnClickable]="true"
-    [rowClickable]="true"
-    ></app-table>
+      <div class="w-max">
+        <app-section [title]="'Nombre'">
+          <i class="ri-article-line" role="icon"></i>
+          <app-input formControlName="nombre" role="content"></app-input>
+        </app-section>
+      </div>
+      <div class="w-max">
+        <app-section [title]="'Apellidos'">
+          <i class="ri-article-line" role="icon"></i>
+          <app-input formControlName="apellidos" role="content"></app-input>
+        </app-section>
+      </div>
+      <div class="w-max">
+        <app-section [title]="'Tipo de alumnos'">
+          <i class="ri-group-line" role="icon"></i>
+          <app-select role="content" formControlName="tipoConvenio" [options]="listTipoConvenio"></app-select>
+        </app-section>
+      </div>
+      <div class="w-max">
+        <app-section [title]="'Nacionalidad'">
+          <i class="ri-earth-fill" role="icon"></i>
+          <app-select role="content" formControlName="nacionalidad" [options]="getNacionalidades()"></app-select>
+        </app-section>
+      </div>
+    </div>
 
+    <div class="flex w-full justify-end">
+      <app-button [themeType]="'primary'" (onClick)="onSubmit()" [size]="'lg'"> Buscar </app-button>
+      <app-button [themeType]="'outline'" (onClick)="clearForm()" [size]="'lg'"> Limpiar </app-button>
+    </div>
+  </form>
+</app-modal>
+<div class="section flex justify-between">
+  <div class="flex items-center gap-2">
+    @if (this.searchStudentsService.filters.numeroExpediente) {
+    <div class="badge" (click)="removeFilter('numeroExpediente')">
+      <i class="ri-close-line"></i>
+      Nº Expediente: {{this.searchStudentsService.filters.numeroExpediente}}
+    </div>
+    }
+
+    @if (this.searchStudentsService.filters.nombre) {
+    <div class="badge" (click)="removeFilter('nombre')">
+      <i class="ri-close-line"></i>
+      Nombre: {{this.searchStudentsService.filters.nombre}}
+    </div>
+    }
+
+    @if (this.searchStudentsService.filters.apellidos) {
+    <div class="badge" (click)="removeFilter('apellidos')">
+      <i class="ri-close-line"></i>
+      Apellidos: {{this.searchStudentsService.filters.apellidos}}
+    </div>
+    }
+
+    @if (this.searchStudentsService.filters.tipoConvenio) {
+    <div class="badge" (click)="removeFilter('tipoConvenio')">
+      <i class="ri-close-line"></i>
+      Tipo de alumnos: {{this.searchStudentsService.filters.tipoConvenio}}
+    </div>
+    }
+
+    @if (this.searchStudentsService.filters.nacionalidad) {
+    <div class="badge" (click)="removeFilter('nacionalidad')">
+      <i class="ri-close-line"></i>
+      Nacionalidad: {{this.searchStudentsService.filters.nacionalidad}}
+    </div>
+    }
+
+
+
+  </div>
+  <app-button [themeType]="'primary'" (onClick)="isOpen.set(true)" [size]="'lg'">
+    <span>
+      <i class="ri-filter-3-line" role="icon"></i>
+      Filtros
+    </span>
+  </app-button>
+</div>
+
+<div class="section grow overflow-auto">
+  <app-table [data]="filteredStudents()" (columnHeadClicked)="this.searchStudentsService.orderByColumn($event)"
+    (rowClicked)="this.rowClicked($event)" [columnClickable]="true" [rowClickable]="true"></app-table>
 </div>
 <div class="section">
   <app-pagination [totalItems]="this.searchStudentsService.searchInformation.totalStudents"

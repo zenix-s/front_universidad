@@ -17,7 +17,7 @@ import { InputComponent } from '@app/shared/components/input/input.component';
 import { SectionComponent } from '@app/shared/components/section/section.component';
 import { SelectComponent } from '@app/shared/components/select/select.component';
 import { PaginationComponent } from '@app/shared/components/pagination/pagination.component';
-import { SearchStudentsService } from './search-student-service/search-students.service';
+import { SearchFilters, SearchStudentsService } from './search-student-service/search-students.service';
 import { StudentsService } from '@app/core/services/students-service/students.service';
 import {
   EstadoMatriculacion,
@@ -30,6 +30,7 @@ import { Subject, Subscription, takeUntil } from 'rxjs';
 import { TableComponent } from '@app/shared/components/table/table.component';
 import { FormStudentService } from '../form-student-page/services/form-student.service';
 import { Router } from '@angular/router';
+import { ModalComponent } from '@app/shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-search-student-page',
@@ -42,6 +43,7 @@ import { Router } from '@angular/router';
     ButtonComponent,
     PaginationComponent,
     TableComponent,
+    ModalComponent
   ],
   templateUrl: './search-student-page.component.html',
   styleUrl: './search-student-page.component.css',
@@ -58,6 +60,7 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
 
   private ngUnsubscribe = new Subject<void>();
 
+  isOpen = signal<boolean>(false)
   searchForm: FormGroup = this.fb.group({
     nombre: [null, Validators.required],
     apellidos: [null, Validators.required],
@@ -77,6 +80,10 @@ export class SearchStudentPageComponent implements OnInit, OnDestroy {
       tipoConvenio: this.searchForm.value.tipoConvenio as TipoConvenio,
       nacionalidad: this.searchForm.value.nacionalidad as string,
     });
+  }
+
+  removeFilter(filter: keyof SearchFilters) {
+    this.searchStudentsService.clearFilter(filter);
   }
 
   clearForm() {

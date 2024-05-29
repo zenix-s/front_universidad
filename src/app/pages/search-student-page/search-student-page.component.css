@@ -14,3 +14,7 @@
 .filter-container {
   @apply flex flex-col gap-2 w-full h-full justify-between;
 }
+
+.badge {
+  @apply bg-whiter text-sm border border-comment rounded-full px-2 flex items-center cursor-pointer hover:bg-comment/10 transition-colors;
+}
