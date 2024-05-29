@@ -14,7 +14,7 @@ import { SidebarService } from '@app/shared/components/sidebar/sidebar-service/s
 import { SidebarNavItemComponent } from './sidebar-nav-item/sidebar-nav-item.component';
 import { SubmenuComponent } from './submenu/submenu.component';
 import { UeLogoComponent } from '../ue-logo/ue-logo.component';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -25,6 +25,7 @@ import { Subject, takeUntil } from 'rxjs';
     SubmenuComponent,
     UeLogoComponent,
     RouterLink,
+    RouterModule
   ],
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',

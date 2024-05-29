@@ -3,11 +3,11 @@
 }
 
 
-.element:has(.active_link) {
+.active_link {
   @apply bg-primary text-whiter
 }
 
-.element:has(.active_link) .icon {
+.active_link .icon {
   @apply !text-whiter
 }
 

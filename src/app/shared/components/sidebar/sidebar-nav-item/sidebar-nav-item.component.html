@@ -1,26 +1,14 @@
 <div class="flex flex-col items-center w-full">
-
-  <button
-    class="flex items-center gap-2 hover:bg-comment/20 w-full rounded-md cursor-pointer py-1.5 px-2 element"
-    (click)="toggleCollapsed()"
-    tabindex="0"
-    >
+  <a class="flex items-start gap-2 hover:bg-comment/20 w-full rounded-md cursor-pointer py-1.5 px-2 element"
+    [routerLink]="!hasSubmenu ? url : null" routerLinkActive="active_link" (click)="hasSubmenu && toggleCollapsed()">
     <span class="text-primary icon font-bold">
       <ng-content select="[role=icon]"></ng-content>
     </span>
-    @if(hasSubmenu) {
     <span class="bg-transparent text-lg grow select-none">{{ label }}</span>
-    @if (isOpen) {
-    <i class="ri-arrow-down-s-fill"></i>
-    } @else {
-    <i class="ri-arrow-right-s-fill"></i>
+    @if(hasSubmenu) {
+    <i [ngClass]="isOpen ? 'ri-arrow-down-s-fill': 'ri-arrow-right-s-fill'"></i>
     }
-    } @else {
-    <a class="bg-transparent text-lg grow select-none peer" routerLink="{{ url }}" routerLinkActive="active_link">
-      {{ label }}
-    </a>
-    }
-  </button>
+  </a>
 
   @if(hasSubmenu) {
   <div class="w-full submenu" [ngClass]="isOpen ? 'block': 'hidden'">
@@ -28,4 +16,4 @@
     <hr class="divide-x-2 border-black">
   </div>
   }
-  </div>
+</div>
