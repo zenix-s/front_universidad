@@ -1,39 +1,45 @@
-<app-modal [isOpen]="isOpen()" (onClose)="this.isOpen.set(false)">
-  <form [formGroup]="searchForm" class="flex flex-col">
-    <div class="flex flex-wrap w-full">
+<app-modal [isOpen]="isOpen()" (onClose)="this.isOpen.set(false)" [title]="'Filtro Estudiantes'">
+  <form [formGroup]="searchForm" class="flex flex-col gap-4">
+    <div class="flex flex-wrap w-full gap-2">
       <div class="w-full">
         <app-section [title]="'Nº Expediente'">
           <i class="ri-article-line" role="icon"></i>
           <app-input formControlName="numeroExpediente" role="content"></app-input>
         </app-section>
       </div>
-      <div class="w-max">
+      <div class="w-max flex-1">
         <app-section [title]="'Nombre'">
           <i class="ri-article-line" role="icon"></i>
           <app-input formControlName="nombre" role="content"></app-input>
         </app-section>
       </div>
-      <div class="w-max">
+      <div class="w-max flex-1">
         <app-section [title]="'Apellidos'">
           <i class="ri-article-line" role="icon"></i>
           <app-input formControlName="apellidos" role="content"></app-input>
         </app-section>
       </div>
-      <div class="w-max">
+      <div class="w-max flex-1">
         <app-section [title]="'Tipo de alumnos'">
           <i class="ri-group-line" role="icon"></i>
           <app-select role="content" formControlName="tipoConvenio" [options]="listTipoConvenio"></app-select>
         </app-section>
       </div>
-      <div class="w-max">
+      <div class="w-max flex-1">
         <app-section [title]="'Nacionalidad'">
           <i class="ri-earth-fill" role="icon"></i>
           <app-select role="content" formControlName="nacionalidad" [options]="getNacionalidades()"></app-select>
         </app-section>
       </div>
+      <!-- <div class="w-max flex-1">
+        <app-section [title]="'Nacionalidad'">
+          <i class="ri-earth-fill" role="icon"></i>
+          <app-select role="content" formControlName="nacionalidad" [options]="getNacionalidades()"></app-select>
+        </app-section>
+      </div> -->
     </div>
 
-    <div class="flex w-full justify-end">
+    <div class="flex w-full justify-end gap-2">
       <app-button [themeType]="'primary'" (onClick)="onSubmit()" [size]="'lg'"> Buscar </app-button>
       <app-button [themeType]="'outline'" (onClick)="clearForm()" [size]="'lg'"> Limpiar </app-button>
     </div>
@@ -41,43 +47,14 @@
 </app-modal>
 <div class="section flex justify-between">
   <div class="flex items-center gap-2">
-    @if (this.searchStudentsService.filters.numeroExpediente) {
-    <div class="badge" (click)="removeFilter('numeroExpediente')">
-      <i class="ri-close-line"></i>
-      Nº Expediente: {{this.searchStudentsService.filters.numeroExpediente}}
-    </div>
+    @for (filter of this.searchStudentsService.filtersAsArray; track $index) {
+      @if (this.searchStudentsService.filters[filter]) {
+        <div class="badge" (click)="removeFilter(filter)">
+          <i class="ri-close-line"></i>
+          {{this.searchStudentsService.getFormatedFilter(filter)}}: {{this.searchStudentsService.filters[filter]}}
+        </div>
+      }
     }
-
-    @if (this.searchStudentsService.filters.nombre) {
-    <div class="badge" (click)="removeFilter('nombre')">
-      <i class="ri-close-line"></i>
-      Nombre: {{this.searchStudentsService.filters.nombre}}
-    </div>
-    }
-
-    @if (this.searchStudentsService.filters.apellidos) {
-    <div class="badge" (click)="removeFilter('apellidos')">
-      <i class="ri-close-line"></i>
-      Apellidos: {{this.searchStudentsService.filters.apellidos}}
-    </div>
-    }
-
-    @if (this.searchStudentsService.filters.tipoConvenio) {
-    <div class="badge" (click)="removeFilter('tipoConvenio')">
-      <i class="ri-close-line"></i>
-      Tipo de alumnos: {{this.searchStudentsService.filters.tipoConvenio}}
-    </div>
-    }
-
-    @if (this.searchStudentsService.filters.nacionalidad) {
-    <div class="badge" (click)="removeFilter('nacionalidad')">
-      <i class="ri-close-line"></i>
-      Nacionalidad: {{this.searchStudentsService.filters.nacionalidad}}
-    </div>
-    }
-
-
-
   </div>
   <app-button [themeType]="'primary'" (onClick)="isOpen.set(true)" [size]="'lg'">
     <span>

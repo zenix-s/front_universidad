@@ -210,6 +210,22 @@ export class SearchStudentsService {
     );
   }
 
+  get filtersAsArray(): (keyof SearchFilters)[] {
+    return Object.keys(this.filters).filter((filter) => {
+      if (
+        filter === 'page' ||
+        filter === 'pageSize' ||
+        filter === 'order' ||
+        filter === 'orderBy'
+      )
+        return false;
+      return true;
+    }) as (keyof SearchFilters)[];
+  }
+
+  getFormatedFilter(filter: keyof SearchFilters): string {
+    return filter.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase());
+  }
   clearFilter(filter: keyof SearchFilters) {
     if (
       filter === 'page' ||

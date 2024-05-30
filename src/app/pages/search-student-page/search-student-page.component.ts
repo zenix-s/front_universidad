@@ -31,11 +31,13 @@ import { TableComponent } from '@app/shared/components/table/table.component';
 import { FormStudentService } from '../form-student-page/services/form-student.service';
 import { Router } from '@angular/router';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-search-student-page',
   standalone: true,
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     SectionComponent,
     SelectComponent,

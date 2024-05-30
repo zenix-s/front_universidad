@@ -2,11 +2,6 @@
   @apply flex flex-col overflow-hidden flex-grow;
 }
 
-.filter-form-container {
-  @apply grid;
-  grid-template-columns: 1fr 4fr;
-}
-
 .section {
   @apply bg-whiter p-2 mx-2 my-1 rounded-md;
 }
@@ -16,5 +11,5 @@
 }
 
 .badge {
-  @apply bg-whiter text-sm border border-comment rounded-full px-2 flex items-center cursor-pointer hover:bg-comment/10 transition-colors;
+  @apply bg-whiter text-sm border border-comment rounded-md px-2 flex items-center cursor-pointer hover:bg-comment/10 transition-colors;
 }
