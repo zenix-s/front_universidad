@@ -1,21 +1,40 @@
 <app-modal [isOpen]="isOpen()" [title]="'Matricula'" (onClose)="this.matriculaFormService.close()">
-  <form class="flex flex-col gap-2" [formGroup]="matriculaForm">
-    <app-select [label]="'Id Expediente'" [options]="this.estuantesService.getIdExpedientes()"
-      formControlName="idExpediente"></app-select>
-    <app-select [label]="'Id Titulacion'" [options]="this.titulacionesService.getIdTitulaciones()"
-      formControlName="idTitulacion"></app-select>
-    @if (this.matricula()?.numeroMatricula) {
-    <!-- <app-input [label]="'Estado Matriculación'" formControlName="estadoMatriculacion"></app-input> -->
-    <app-select [label]="'Estado Matriculación'" [options]="this.matriculaService.getEstadosMatriculacion()"
-      formControlName="estadoMatriculacion"></app-select>
-    }@else {
-    }
-    <app-date-input [label]="'Fecha Matriculacion'" formControlName="fechaMatriculacion"></app-date-input>
-
+  <form class="flex flex-col gap-4" [formGroup]="matriculaForm">
+    <div class="flex flex-wrap gap-2">
+      <div class="w-full">
+        <app-section [title]="'Numero Matricula *'">
+          <i class="ri-id-card-line" role="icon"></i>
+          <app-select role="content" [options]="this.estuantesService.getIdExpedientes()"
+            formControlName="idExpediente"></app-select>
+        </app-section>
+      </div>
+      <div class="w-full">
+        <app-section [title]="'Id Titulacion *'">
+          <i class="ri-id-card-line" role="icon"></i>
+          <app-select [options]="this.titulacionesService.getIdTitulaciones()" formControlName="idTitulacion"
+            role="content"></app-select>
+        </app-section>
+      </div>
+      @if (this.matricula()?.numeroMatricula) {
+      <div class="w-max flex-1">
+        <app-section [title]="'Numero Matricula *'">
+          <i class="ri-id-card-line" role="icon"></i>
+          <app-select  [options]="this.matriculaService.getEstadosMatriculacion()"
+            role="content" formControlName="estadoMatriculacion"></app-select>
+        </app-section>
+      </div>
+      }@else {
+      }
+      <div class="w-max flex-1">
+        <app-section [title]="'Fecha Matriculacion *'">
+          <i class="ri-calendar-line" role="icon"></i>
+          <app-date-input formControlName="fechaMatriculacion" role="content"></app-date-input>
+        </app-section>
+      </div>
+    </div>
     <div class="w-full flex justify-end mt-2">
       <app-button (onClick)="onSubmit()">
         Guardar
-
       </app-button>
     </div>
   </form>

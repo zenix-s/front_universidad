@@ -27,6 +27,7 @@ import { MatriculasService } from '@app/core/services/matriculas-service/matricu
 import { SelectComponent } from '@app/shared/components/select/select.component';
 import { StudentsService } from '@app/core/services/students-service/students.service';
 import { TitulacionesService } from '@app/core/services/titulaciones-service/titulaciones.service';
+import { SectionComponent } from '../section/section.component';
 
 @Component({
   selector: 'app-matricula-form',
@@ -39,6 +40,7 @@ import { TitulacionesService } from '@app/core/services/titulaciones-service/tit
     ModalComponent,
     DateInputComponent,
     SelectComponent,
+    SectionComponent
   ],
   templateUrl: './matricula-form.component.html',
   styleUrl: './matricula-form.component.css',
