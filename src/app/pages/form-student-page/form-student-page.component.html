@@ -1,102 +1,164 @@
 <app-matricula-form (formSubmited)="updateMatriculas()"></app-matricula-form>
-<div class="overflow-y-scroll grow flex flex-col">
-  @if (mode=='edit') {
-  <div class="w-full flex mx-auto max-w-96">
-    <button class="border border-white flex-1  px-4 py-2 font-bold text-xl" [ngClass]="{
-        'bg-primary text-whiter border-primary': tab() === 'datos',
-        'bg-whiter': tab() !== 'datos'
-      }" (click)="changeTab('datos')">Datos</button>
-    <button class="border border-white flex-1  px-4 py-2 font-bold text-xl" [ngClass]="{
+<div class="flex grow flex-col overflow-y-scroll">
+  @if (mode == "edit") {
+    <div class="mx-auto flex w-full max-w-96">
+      <button
+        class="flex-1 border border-white px-4 py-2 text-xl font-bold"
+        [ngClass]="{
+          'border-primary bg-primary text-whiter': tab() === 'datos',
+          'bg-whiter': tab() !== 'datos',
+        }"
+        (click)="changeTab('datos')"
+      >
+        Datos
+      </button>
+      <button
+        class="flex-1 border border-white px-4 py-2 text-xl font-bold"
+        [ngClass]="{
           'bg-primary text-whiter': tab() === 'matriculas',
-          'bg-whiter': tab() !== 'matriculas'
-        }" (click)="changeTab('matriculas')">Matriculas</button>
-  </div>
+          'bg-whiter': tab() !== 'matriculas',
+        }"
+        (click)="changeTab('matriculas')"
+      >
+        Matriculas
+      </button>
+    </div>
   }
-  @if (tab() === 'datos'){
-  <div class=" m-4 bg-whiter flex flex-col p-4 rounded-md w-full max-w-3xl mx-auto">
-    <form [formGroup]="studentForm">
-      <app-section [title]="mode === 'create' ? 'Crear Estudiante' : this.editHeader" [divider]="true">
-        <i role="icon" class="ri-user-line" role="icon"></i>
-        <div class="flex gap-4 flex-wrap" role="content">
-          <div class="flex gap-4 flex-wrap">
-            <div class="w-max flex-1">
-              <app-section [title]="'Nombre *'">
-                <i class="ri-id-card-line" role="icon"></i>
-                <app-input role="content" formControlName="nombre"></app-input>
-              </app-section>
+  @if (tab() === "datos") {
+    <div
+      class="m-4 mx-auto flex w-full max-w-3xl flex-col rounded-md bg-whiter p-4"
+    >
+      <form [formGroup]="studentForm">
+        <app-section
+          [title]="mode === 'create' ? 'Crear Estudiante' : this.editHeader"
+          [divider]="true"
+        >
+          <i role="icon" class="ri-user-line" role="icon"></i>
+          <div class="flex flex-wrap gap-4" role="content">
+            <div class="flex flex-wrap gap-4">
+              <div class="w-max flex-1">
+                <app-section [title]="'Nombre *'">
+                  <i class="ri-id-card-line" role="icon"></i>
+                  <app-input
+                    role="content"
+                    formControlName="nombre"
+                  ></app-input>
+                </app-section>
+              </div>
+              <div class="w-max flex-1">
+                <app-section [title]="'Apellidos *'">
+                  <i class="ri-id-card-line" role="icon"></i>
+                  <app-input
+                    role="content"
+                    formControlName="apellidos"
+                  ></app-input>
+                </app-section>
+              </div>
+              <div class="w-max flex-1">
+                <app-section [title]="'Documento Identidad *'">
+                  <i class="ri-id-card-line" role="icon"></i>
+                  <app-input
+                    role="content"
+                    formControlName="documentoIdentidad"
+                  ></app-input>
+                </app-section>
+              </div>
+              <div class="w-max flex-1">
+                <app-section [title]="'Fecha Nacimiento *'">
+                  <i class="ri-calendar-line" role="icon"></i>
+                  <app-date-input
+                    formControlName="fechaNacimiento"
+                    role="content"
+                  ></app-date-input>
+                </app-section>
+              </div>
+              <div class="w-max flex-1">
+                <app-section [title]="'Nacionalidad *'">
+                  <i class="ri-earth-line" role="icon"></i>
+                  <app-input
+                    role="content"
+                    formControlName="nacionalidad"
+                  ></app-input>
+                </app-section>
+              </div>
+              <div class="w-max flex-1">
+                <app-section [title]="'Dirección *'">
+                  <i class="ri-map-pin-line" role="icon"></i>
+                  <app-input
+                    role="content"
+                    formControlName="direccion"
+                  ></app-input>
+                </app-section>
+              </div>
+              <div class="w-max flex-1">
+                <app-section [title]="'Genero *'">
+                  <i class="ri-genderless-line" role="icon"></i>
+                  <app-select
+                    role="content"
+                    formControlName="sexo"
+                    [options]="listSexo"
+                  ></app-select>
+                </app-section>
+              </div>
+              <div class="w-max flex-1">
+                <app-section [title]="'Tipo Convenio *'">
+                  <i class="ri-file-list-3-line" role="icon"></i>
+                  <app-select
+                    role="content"
+                    formControlName="tipoConvenio"
+                    [options]="listTipoConvenio"
+                  ></app-select>
+                </app-section>
+              </div>
             </div>
-            <div class="w-max flex-1">
-              <app-section [title]="'Apellidos *'">
-                <i class="ri-id-card-line" role="icon"></i>
-                <app-input role="content" formControlName="apellidos"></app-input>
-              </app-section>
-            </div>
-            <div class="w-max flex-1">
-              <app-section [title]="'Documento Identidad *'">
-                <i class="ri-id-card-line" role="icon"></i>
-                <app-input role="content" formControlName="documentoIdentidad"></app-input>
-              </app-section>
-            </div>
-            <div class="w-max flex-1">
-              <app-section [title]="'Fecha Nacimiento *'">
-                <i class="ri-calendar-line" role="icon"></i>
-                <app-date-input formControlName="fechaNacimiento" role="content"></app-date-input>
-              </app-section>
-            </div>
-            <div class="w-max flex-1">
-              <app-section [title]="'Nacionalidad *'">
-                <i class="ri-earth-line" role="icon"></i>
-                <app-input role="content" formControlName="nacionalidad"></app-input>
-              </app-section>
-            </div>
-            <div class="w-max flex-1">
-              <app-section [title]="'Dirección *'">
-                <i class="ri-map-pin-line" role="icon"></i>
-                <app-input role="content" formControlName="direccion"></app-input>
-              </app-section>
-            </div>
-            <div class="w-max flex-1">
-              <app-section [title]="'Genero *'">
-                <i class="ri-genderless-line" role="icon"></i>
-                <app-select role="content" formControlName="sexo" [options]="listSexo"></app-select>
-              </app-section>
-            </div>
-            <div class="w-max flex-1">
-              <app-section [title]="'Tipo Convenio *'">
-                <i class="ri-file-list-3-line" role="icon"></i>
-                <app-select role="content" formControlName="tipoConvenio" [options]="listTipoConvenio"></app-select>
-              </app-section>
+            <div class="flex w-full justify-end gap-2">
+              @if (
+                this.formStudentService.student?.numeroExpediente !== null &&
+                this.formStudentService.student?.numeroExpediente !== undefined
+              ) {
+                <app-button
+                  [themeType]="'outline'"
+                  (onClick)="
+                    this.matriculaFormService.openNewExpedienteMatricula(
+                      this.formStudentService.student?.numeroExpediente || ''
+                    )
+                  "
+                >
+                  Añadir Matricula
+                </app-button>
+              } @else {
+                <app-button [themeType]="'outline'" (onClick)="clearForm()">
+                  Limpiar
+                </app-button>
+              }
+              <app-button [themeType]="'primary'" (onClick)="onSubmit()">
+                Guardar
+              </app-button>
             </div>
           </div>
-          <div class="flex gap-2 justify-end w-full">
-            @if(this.formStudentService.student?.numeroExpediente !== null &&
-            this.formStudentService.student?.numeroExpediente
-            !== undefined) {
-            <app-button [themeType]="'outline'"
-              (onClick)="this.matriculaFormService.openNewExpedienteMatricula(this.formStudentService.student?.numeroExpediente || '')">
-              Añadir Matricula </app-button>
-            }@else {
-            <app-button [themeType]="'outline'" (onClick)="clearForm()"> Limpiar </app-button>
-            }
-            <app-button [themeType]="'primary'" (onClick)="onSubmit()"> Guardar </app-button>
-          </div>
+        </app-section>
+      </form>
+    </div>
+  }
+  @if (mode === "edit" && tab() === "matriculas") {
+    <div class="m-4 flex grow flex-col gap-4 rounded-md bg-whiter p-4">
+      <app-section [title]="'Matriculas'" [divider]="true">
+        <i class="ri-file-list-3-line" role="icon"></i>
+        <div class="h-full overflow-auto" role="content">
+          <app-table
+            [data]="matriculas"
+            [columns]="[
+              'numeroMatricula',
+              'idTitulacion',
+              'estadoMatriculacion',
+              'fechaMatriculacion',
+            ]"
+            [rowClickable]="true"
+            (rowClicked)="openMatricula($event)"
+          >
+          </app-table>
         </div>
       </app-section>
-    </form>
-  </div>
-
-  }
-  @if(mode === 'edit' && tab() === 'matriculas'){
-  <div class="flex flex-col m-4 gap-4 bg-whiter p-4 rounded-md grow">
-    <app-section [title]="'Matriculas'" [divider]="true">
-      <i class="ri-file-list-3-line" role="icon"></i>
-      <div class="h-full overflow-auto" role="content">
-        <app-table [data]="matriculas"
-          [columns]="['numeroMatricula', 'idTitulacion', 'estadoMatriculacion', 'fechaMatriculacion']"
-          [rowClickable]="true" (rowClicked)="openMatricula($event)">
-        </app-table>
-      </div>
-    </app-section>
-  </div>
+    </div>
   }
 </div>

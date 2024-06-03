@@ -1,7 +1,7 @@
 .pagination-section {
-  @apply flex justify-center items-center gap-2;
+  @apply flex items-center justify-center gap-2;
 }
 
 .data {
-  @apply border border-black px-2 text-sm bg-transparent rounded-md h-full flex justify-center items-center;
+  @apply flex h-full items-center justify-center rounded-md border border-black bg-transparent px-2 text-sm;
 }

@@ -1,10 +1,17 @@
-<app-modal [isOpen]="isOpen()" (onClose)="this.isOpen.set(false)" [title]="'Filtro Estudiantes'">
+<app-modal
+  [isOpen]="isOpen()"
+  (onClose)="this.isOpen.set(false)"
+  [title]="'Filtro Estudiantes'"
+>
   <form [formGroup]="searchForm" class="flex flex-col gap-4">
-    <div class="flex flex-wrap w-full gap-2">
+    <div class="flex w-full flex-wrap gap-2">
       <div class="w-full">
         <app-section [title]="'Nº Expediente'">
           <i class="ri-article-line" role="icon"></i>
-          <app-input formControlName="numeroExpediente" role="content"></app-input>
+          <app-input
+            formControlName="numeroExpediente"
+            role="content"
+          ></app-input>
         </app-section>
       </div>
       <div class="w-max flex-1">
@@ -22,13 +29,21 @@
       <div class="w-max flex-1">
         <app-section [title]="'Tipo de alumnos'">
           <i class="ri-group-line" role="icon"></i>
-          <app-select role="content" formControlName="tipoConvenio" [options]="listTipoConvenio"></app-select>
+          <app-select
+            role="content"
+            formControlName="tipoConvenio"
+            [options]="listTipoConvenio"
+          ></app-select>
         </app-section>
       </div>
       <div class="w-max flex-1">
         <app-section [title]="'Nacionalidad'">
           <i class="ri-earth-fill" role="icon"></i>
-          <app-select role="content" formControlName="nacionalidad" [options]="getNacionalidades()"></app-select>
+          <app-select
+            role="content"
+            formControlName="nacionalidad"
+            [options]="getNacionalidades()"
+          ></app-select>
         </app-section>
       </div>
       <!-- <div class="w-max flex-1">
@@ -40,8 +55,12 @@
     </div>
 
     <div class="flex w-full justify-end gap-2">
-      <app-button [themeType]="'primary'" (onClick)="onSubmit()" [size]="'lg'"> Buscar </app-button>
-      <app-button [themeType]="'outline'" (onClick)="clearForm()" [size]="'lg'"> Limpiar </app-button>
+      <app-button [themeType]="'primary'" (onClick)="onSubmit()" [size]="'lg'">
+        Buscar
+      </app-button>
+      <app-button [themeType]="'outline'" (onClick)="clearForm()" [size]="'lg'">
+        Limpiar
+      </app-button>
     </div>
   </form>
 </app-modal>
@@ -51,12 +70,17 @@
       @if (this.searchStudentsService.filters[filter]) {
         <div class="badge" (click)="removeFilter(filter)">
           <i class="ri-close-line"></i>
-          {{this.searchStudentsService.getFormatedFilter(filter)}}: {{this.searchStudentsService.filters[filter]}}
+          {{ this.searchStudentsService.getFormatedFilter(filter) }}:
+          {{ this.searchStudentsService.filters[filter] }}
         </div>
       }
     }
   </div>
-  <app-button [themeType]="'primary'" (onClick)="isOpen.set(true)" [size]="'lg'">
+  <app-button
+    [themeType]="'primary'"
+    (onClick)="isOpen.set(true)"
+    [size]="'lg'"
+  >
     <span>
       <i class="ri-filter-3-line" role="icon"></i>
       Filtros
@@ -65,14 +89,23 @@
 </div>
 
 <div class="section grow overflow-auto">
-  <app-table [data]="filteredStudents()" (columnHeadClicked)="this.searchStudentsService.orderByColumn($event)"
-    (rowClicked)="this.rowClicked($event)" [columnClickable]="true" [rowClickable]="true"></app-table>
+  <app-table
+    [data]="filteredStudents()"
+    (columnHeadClicked)="this.searchStudentsService.orderByColumn($event)"
+    (rowClicked)="this.rowClicked($event)"
+    [columnClickable]="true"
+    [rowClickable]="true"
+  ></app-table>
 </div>
 <div class="section">
-  <app-pagination [totalItems]="this.searchStudentsService.searchInformation.totalStudents"
-    [currentPage]="this.searchStudentsService.filters.page" [itemsPerPage]="this.searchStudentsService.filters.pageSize"
+  <app-pagination
+    [totalItems]="this.searchStudentsService.searchInformation.totalStudents"
+    [currentPage]="this.searchStudentsService.filters.page"
+    [itemsPerPage]="this.searchStudentsService.filters.pageSize"
     [totalPages]="this.searchStudentsService.searchInformation.totalPage"
-    (nextPage)="this.searchStudentsService.nextPage()" (previousPage)="this.searchStudentsService.previousPage()"
-    (goToPage)="this.searchStudentsService.goToPage($event)">
+    (nextPage)="this.searchStudentsService.nextPage()"
+    (previousPage)="this.searchStudentsService.previousPage()"
+    (goToPage)="this.searchStudentsService.goToPage($event)"
+  >
   </app-pagination>
 </div>

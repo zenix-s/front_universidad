@@ -1,13 +1,11 @@
 :host {
-  @apply w-full
+  @apply w-full;
 }
 
-
 .active_link {
-  @apply bg-primary text-whiter
+  @apply bg-primary text-whiter;
 }
 
 .active_link .icon {
-  @apply !text-whiter
+  @apply !text-whiter;
 }
-

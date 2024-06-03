@@ -1,9 +1,14 @@
-<div class="flex flex-col w-full">
+<div class="flex w-full flex-col">
   @if (label) {
-  <div>
-    <label class="text-lg mb-2">{{ label }}</label>
-  </div>
+    <div>
+      <label class="mb-2 text-lg">{{ label }}</label>
+    </div>
   }
-  <input type="text" [placeholder]="placeholder" [value]="value" (input)="onInput($event)"
-    class="p-2 border border-black rounded-md bg-whiter" />
+  <input
+    type="text"
+    [placeholder]="placeholder"
+    [value]="value"
+    (input)="onInput($event)"
+    class="rounded-md border border-black bg-whiter p-2"
+  />
 </div>

@@ -1,13 +1,12 @@
 <div class="flex gap-2">
   @for (item of items; track $index) {
-  <span>
-    @if (items.length !== $index) {
-    <a [routerLink]="item.url" class="text-blue-500">{{ item.label }}</a>
-    <i class="ri-arrow-right-s-line"></i>
-    }
-    @else {
-    {{ item.label }}
-    }
-  </span>
+    <span>
+      @if (items.length !== $index) {
+        <a [routerLink]="item.url" class="text-blue-500">{{ item.label }}</a>
+        <i class="ri-arrow-right-s-line"></i>
+      } @else {
+        {{ item.label }}
+      }
+    </span>
   }
 </div>

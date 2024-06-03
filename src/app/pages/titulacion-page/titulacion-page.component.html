@@ -1,22 +1,32 @@
 <div class="flex flex-col overflow-y-auto">
-  <div class="p-2 mx-4 my-2 bg-whiter rounded-md">
+  <div class="mx-4 my-2 rounded-md bg-whiter p-2">
     <app-section [divider]="true" [title]="'Información'">
       <i class="ri-add-line" role="icon"></i>
       <div role="content">
         <h1 class="text-xl">
-          {{this.titulacion?.nombre | titlecase}}
+          {{ this.titulacion?.nombre | titlecase }}
         </h1>
       </div>
     </app-section>
   </div>
-  <div class="p-2 mx-4 my-2 bg-whiter rounded-md ">
+  <div class="mx-4 my-2 rounded-md bg-whiter p-2">
     <app-section [divider]="true" [title]="'Matriculas'">
       <i class="ri-add-line" role="icon"></i>
       <div role="content" class="overflow-x-auto">
-        <app-table [data]="matriculas()"
-          [columns]="['numeroMatricula','idExpediente', 'idTitulacion', 'estadoMatriculacion', 'fechaMatriculacion']"
+        <app-table
+          [data]="matriculas()"
+          [columns]="[
+            'numeroMatricula',
+            'idExpediente',
+            'idTitulacion',
+            'estadoMatriculacion',
+            'fechaMatriculacion',
+          ]"
           [rowClickable]="true"
-          (rowClicked)="this.router.navigate(['/expediente', $event.idExpediente])">
+          (rowClicked)="
+            this.router.navigate(['/expediente', $event.idExpediente])
+          "
+        >
         </app-table>
       </div>
     </app-section>

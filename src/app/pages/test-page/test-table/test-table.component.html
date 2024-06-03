@@ -2,27 +2,25 @@
   <thead>
     <tr>
       @for (column of columns; track $index) {
-      <th (click)="columnClicked(column)" class="cursor-pointer">
-        {{column}}
-      </th>
+        <th (click)="columnClicked(column)" class="cursor-pointer">
+          {{ column }}
+        </th>
       }
     </tr>
   </thead>
   <tbody>
     @for (item of data; track $index) {
-    <tr>
-      @for (column of columns; track $index) {
-      <td>
-        {{item[column]}}
-      </td>
-      }
-    </tr>
+      <tr>
+        @for (column of columns; track $index) {
+          <td>
+            {{ item[column] }}
+          </td>
+        }
+      </tr>
     }
   </tbody>
 </table>
 
 @if (columns.length === 0 && data.length === 0) {
-  <div>
-    No data to display
-  </div>
+  <div>No data to display</div>
 }

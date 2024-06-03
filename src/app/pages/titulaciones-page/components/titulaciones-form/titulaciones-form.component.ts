@@ -40,7 +40,7 @@ export class TitulacionesFormComponent implements OnInit, OnDestroy {
 
   isOpen: WritableSignal<boolean> = signal<boolean>(false);
   titulacion: WritableSignal<Titulacion | null> = signal<Titulacion | null>(
-    null
+    null,
   );
 
   private ngUnsubscribe = new Subject<void>();

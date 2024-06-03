@@ -1,15 +1,15 @@
 :host {
-  @apply flex flex-col overflow-hidden flex-grow;
+  @apply flex flex-grow flex-col overflow-hidden;
 }
 
 .section {
-  @apply bg-whiter p-2 mx-2 my-1 rounded-md;
+  @apply mx-2 my-1 rounded-md bg-whiter p-2;
 }
 
 .filter-container {
-  @apply flex flex-col gap-2 w-full h-full justify-between;
+  @apply flex h-full w-full flex-col justify-between gap-2;
 }
 
 .badge {
-  @apply bg-whiter text-sm border border-comment rounded-md px-2 flex items-center cursor-pointer hover:bg-comment/10 transition-colors;
+  @apply flex cursor-pointer items-center rounded-md border border-comment bg-whiter px-2 text-sm transition-colors hover:bg-comment/10;
 }

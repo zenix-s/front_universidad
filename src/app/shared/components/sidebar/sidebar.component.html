@@ -1,16 +1,18 @@
-<aside class="fixed flex-col top-0 flex h-full w-64 bg-whiter transition-all py-2 px-4"
-  [ngClass]="isOpen ? 'left-0': '-left-full'">
+<aside
+  class="fixed top-0 flex h-full w-64 flex-col bg-whiter px-4 py-2 transition-all"
+  [ngClass]="isOpen ? 'left-0' : '-left-full'"
+>
   <div class="flex gap-4">
-    <button (click)="close()" class="bg-transparent cursor-pointer text-2xl">
+    <button (click)="close()" class="cursor-pointer bg-transparent text-2xl">
       <i class="ri-menu-line" role="icon"></i>
     </button>
     <a [routerLink]="['/dashboard']" class="w-28 self-stretch">
       <app-ue-logo></app-ue-logo>
     </a>
   </div>
-  <hr class="divide-x-2 border-black my-4">
-  <nav class="flex grow w-full">
-    <div class="w-full flex flex-col gap-1">
+  <hr class="my-4 divide-x-2 border-black" />
+  <nav class="flex w-full grow">
+    <div class="flex w-full flex-col gap-1">
       <app-sidebar-nav-item [label]="'Home'" [url]="'/dashboard'">
         <i class="ri-home-2-line" role="icon"></i>
         <span>Home</span>
@@ -20,18 +22,23 @@
         <i class="ri-group-line" role="icon"></i>
         <app-submenu role="submenu">
           <li>
-            <app-sidebar-nav-item [label]="'Nuevo expediente'" [url]="'/expediente/nuevo'">
+            <app-sidebar-nav-item
+              [label]="'Nuevo expediente'"
+              [url]="'/expediente/nuevo'"
+            >
               <i class="ri-add-line" role="icon"></i>
             </app-sidebar-nav-item>
           </li>
           <li>
-            <app-sidebar-nav-item [label]="'Consulta expediente'" [url]="'/expediente/busqueda'">
+            <app-sidebar-nav-item
+              [label]="'Consulta expediente'"
+              [url]="'/expediente/busqueda'"
+            >
               <i class="ri-search-line" role="icon"></i>
             </app-sidebar-nav-item>
           </li>
         </app-submenu>
       </app-sidebar-nav-item>
-
 
       <app-sidebar-nav-item [label]="'Titulaciones'" [url]="'/titulaciones'">
         <i class="ri-book-2-line" role="icon"></i>
@@ -51,7 +58,6 @@
           <!-- <app-settings-icon role="icon"></app-settings-icon> -->
           <i class="ri-settings-3-line" role="icon"></i>
         </app-sidebar-nav-item>
-
       </li>
       <li>
         <app-sidebar-nav-item [label]="'Salir'" [url]="'/exit'">
@@ -62,6 +68,10 @@
     </ul>
   </div>
 </aside>
-<div class=" fixed flex h-full top-0 grow transition-all"
-  [ngClass]="isOpen ? 'left-64 w-full bg-black/10': 'w-0 -left-full bg-transparent'" (click)="close()">
-</div>
+<div
+  class="fixed top-0 flex h-full grow transition-all"
+  [ngClass]="
+    isOpen ? 'left-64 w-full bg-black/10' : '-left-full w-0 bg-transparent'
+  "
+  (click)="close()"
+></div>

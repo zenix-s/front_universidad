@@ -2,62 +2,71 @@
   <thead>
     <tr>
       @if (rowClickable) {
-      <th></th>
+        <th></th>
       }
       @for (column of columns; track $index) {
-      <th (click)="columnClicked(column)" class=" hover:bg-secondary/20 border border-black/20" [ngClass]="{
-          'cursor-pointer': column !== 'actions',
-          'bg-secondary/30': column === columnOrder,
-        }">
-        <button class=" w-max h-10 flex items-center text-center justify-center gap-4 px-20" [ngClass]="{
-            'cursor-pointer':columnClickable,
-            'cursor-default':!columnClickable
-          }">
-          <span class="p-2">
-            {{transformTitle(column) | titlecase}}
-          </span>
-          @if (columnOrder === column) {
-          @if (orderType === 'asc') {
-          <i class="material-icons">expand_more</i>
-          }@else {
-          <i class="material-icons">expand_less</i>
-          }
-          }
-        </button>
-      </th>
+        <th
+          (click)="columnClicked(column)"
+          class="border border-black/20 hover:bg-secondary/20"
+          [ngClass]="{
+            'cursor-pointer': column !== 'actions',
+            'bg-secondary/30': column === columnOrder,
+          }"
+        >
+          <button
+            class="flex h-10 w-max items-center justify-center gap-4 px-20 text-center"
+            [ngClass]="{
+              'cursor-pointer': columnClickable,
+              'cursor-default': !columnClickable,
+            }"
+          >
+            <span class="p-2">
+              {{ transformTitle(column) | titlecase }}
+            </span>
+            @if (columnOrder === column) {
+              @if (orderType === "asc") {
+                <i class="material-icons">expand_more</i>
+              } @else {
+                <i class="material-icons">expand_less</i>
+              }
+            }
+          </button>
+        </th>
       }
     </tr>
   </thead>
   <tbody>
     @for (item of data; track $index) {
-    <tr class=" hover:bg-secondary/30 border-black/20 border">
-      @if (rowClickable) {
-      <td class="text-start px-1 py-2">
-        <span class="w-full flex m-1">
-          <button (click)="rowClickable && this.rowClicked.emit(item)">
-            <i class="material-icons cursor-pointer ri-external-link-line"></i>
-          </button>
-        </span>
-      </td>
-      }
-      @for (column of columns; track $index) {
-      <td class="px-1 py-2">
-        <span class="w-full flex m-1 justify-center">
-          @if (isDate(item[column])) {
-          {{anyToDate(item[column]) | date: 'dd/MM/yyyy'}}
-          }@else {
-          {{item[column]}}
-          }
-        </span>
-      </td>
-      }
-    </tr>
+      <tr class="border border-black/20 hover:bg-secondary/30">
+        @if (rowClickable) {
+          <td class="px-1 py-2 text-start">
+            <span class="m-1 flex w-full">
+              <button (click)="rowClickable && this.rowClicked.emit(item)">
+                <i
+                  class="material-icons ri-external-link-line cursor-pointer"
+                ></i>
+              </button>
+            </span>
+          </td>
+        }
+        @for (column of columns; track $index) {
+          <td class="px-1 py-2">
+            <span class="m-1 flex w-full justify-center">
+              @if (isDate(item[column])) {
+                {{ anyToDate(item[column]) | date: "dd/MM/yyyy" }}
+              } @else {
+                {{ item[column] }}
+              }
+            </span>
+          </td>
+        }
+      </tr>
     }
   </tbody>
 </table>
 
 @if (columns.length === 0 && data.length === 0) {
-<div class="w-full h-full flex items-center justify-center">
-  No data to display
-</div>
+  <div class="flex h-full w-full items-center justify-center">
+    No data to display
+  </div>
 }

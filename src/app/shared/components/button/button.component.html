@@ -1,5 +1,5 @@
 <button
-  class="cursor-pointer rounded-md border flex items-center justify-center gap-2 transition-colors"
+  class="flex cursor-pointer items-center justify-center gap-2 rounded-md border transition-colors"
   [ngClass]="{
     'btn-primary': (themeType === 'primary' || !themeType) && !disabled,
     'disabled-btn-primary': (themeType === 'primary' || !themeType) && disabled,
@@ -11,10 +11,14 @@
     'disabled-btn-light': themeType === 'light' && disabled,
     'btn-dark': themeType === 'dark' && !disabled,
     'disabled-btn-dark': themeType === 'dark' && disabled,
-    'py-0.5 px-1': size === 'sm',
-    'py-1 px-1.5': size === 'md',
-    'py-1.5 px-2': size === 'lg',
+    'px-1 py-0.5': size === 'sm',
+    'px-1.5 py-1': size === 'md',
+    'px-2 py-1.5': size === 'lg',
     'shadow-md hover:shadow-lg': shadow,
-  }" [disabled]="disabled" [type]="htmlType" (click)="onClick.emit()">
+  }"
+  [disabled]="disabled"
+  [type]="htmlType"
+  (click)="onClick.emit()"
+>
   <ng-content></ng-content>
 </button>

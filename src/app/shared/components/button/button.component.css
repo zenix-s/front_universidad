@@ -1,28 +1,27 @@
-
 .btn-primary {
-  @apply bg-primary/90 text-whiter border-primary;
+  @apply border-primary bg-primary/90 text-whiter;
 }
 .btn-primary:hover {
   @apply bg-primary;
 }
 
 .disabled-btn-primary {
-  @apply bg-primary/70 text-whiter border-primary cursor-not-allowed;
+  @apply cursor-not-allowed border-primary bg-primary/70 text-whiter;
 }
 
 .btn-secondary {
-  @apply bg-secondary/70 text-whiter border-secondary;
+  @apply border-secondary bg-secondary/70 text-whiter;
 }
 .btn-secondary:hover {
   @apply bg-secondary;
 }
 
 .disabled-btn-secondary {
-  @apply bg-secondary/70 text-whiter border-secondary cursor-not-allowed;
+  @apply cursor-not-allowed border-secondary bg-secondary/70 text-whiter;
 }
 
 .btn-outline {
-  @apply bg-transparent text-black border-black;
+  @apply border-black bg-transparent text-black;
 }
 
 .btn-outline:hover {
@@ -30,5 +29,5 @@
 }
 
 .disabled-btn-outline {
-  @apply border-black/70 bg-black/5 cursor-not-allowed;
+  @apply cursor-not-allowed border-black/70 bg-black/5;
 }
