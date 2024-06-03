@@ -4,7 +4,6 @@ import {
   Input,
   ViewChild,
   inject,
-  viewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 
