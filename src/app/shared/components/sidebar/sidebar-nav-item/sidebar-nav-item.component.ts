@@ -10,7 +10,7 @@ import { RouterLink, RouterModule } from '@angular/router';
   styleUrl: './sidebar-nav-item.component.css',
 })
 export class SidebarNavItemComponent {
-  @Input()
+  @Input ()
   label!: string;
   @Input()
   url!: string;

@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SectionComponent } from '@app/shared/components/section/section.component';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, Subscription, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { TitulacionesService } from '@app/core/services/titulaciones-service/titulaciones.service';
 import { Titulacion } from '@app/core/entities/Titulacion.entity';
 import { TableComponent } from '@app/shared/components/table/table.component';
@@ -21,9 +21,10 @@ import { CommonModule } from '@angular/common';
   ],
   templateUrl: './titulacion-page.component.html',
   styleUrl: './titulacion-page.component.css',
+  providers: [
+  ],
 })
 export class TitulacionPageComponent implements OnInit, OnDestroy {
-  ActivatedRoute = inject(ActivatedRoute);
   TitulacionesService = inject(TitulacionesService);
   router = inject(Router);
   matriculasService = inject(MatriculasService);
@@ -32,26 +33,22 @@ export class TitulacionPageComponent implements OnInit, OnDestroy {
 
   titulacion: Titulacion | null = null;
   matriculas = signal<Matricula[]>([]);
+
+  @Input() codigo?: string;
   ngOnInit(): void {
-    this.ActivatedRoute.paramMap
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((params) => {
-        if (!params.has('codigo')) {
-          this.router.navigate(['/']);
-          return;
-        }
-        let id = params.get('codigo');
-        if (!id) return;
-        const titulacion = this.TitulacionesService.getTitulacion(id);
-        if (!titulacion) {
-          this.router.navigate(['/']);
-          return;
-        }
-        this.titulacion = titulacion;
-        this.matriculas.set(
-          this.matriculasService.getMatriculasByTitulacion(this.titulacion.id)
-        );
-      });
+    if (!this.codigo) {
+      this.router.navigate(['/']);
+      return
+    }
+    const titulacion = this.TitulacionesService.getTitulacion(this.codigo);
+    if (!titulacion) {
+      this.router.navigate(['/']);
+      return
+    }
+    this.titulacion = titulacion;
+    this.matriculas.set(
+      this.matriculasService.getMatriculasByTitulacion(this.titulacion.id)
+    );
   }
 
   ngOnDestroy(): void {

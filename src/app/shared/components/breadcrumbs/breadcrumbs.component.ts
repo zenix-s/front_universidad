@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -7,9 +7,9 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
   imports: [RouterLink],
   templateUrl: './breadcrumbs.component.html',
   styleUrl: './breadcrumbs.component.css',
+  providers: [],
 })
 export class BreadcrumbsComponent implements OnInit {
-  activatedRoute = inject(ActivatedRoute);
   router = inject(Router)
 
   items: {
@@ -18,8 +18,5 @@ export class BreadcrumbsComponent implements OnInit {
   }[] = [];
 
   ngOnInit(): void {
-    this.activatedRoute.url.subscribe((url) => {
-      console.log(url);
-    })
   }
 }

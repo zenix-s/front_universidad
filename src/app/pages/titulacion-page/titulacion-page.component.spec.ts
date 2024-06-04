@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TitulacionPageComponent } from './titulacion-page.component';
+import { Router } from '@angular/router';
+
 
 describe('TitulacionPageComponent', () => {
   let component: TitulacionPageComponent;
@@ -8,10 +10,10 @@ describe('TitulacionPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TitulacionPageComponent]
+      imports: [TitulacionPageComponent],
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(TitulacionPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

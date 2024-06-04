@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  providers: [],
 })
 export class AppComponent {
   title = 're_front_universidad';

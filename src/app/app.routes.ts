@@ -1,7 +1,6 @@
 import { Routes } from "@angular/router";
 import { SearchStudentPageComponent } from "./pages/search-student-page/search-student-page.component";
 import { FormStudentPageComponent } from "./pages/form-student-page/form-student-page.component";
-import { TestPageComponent } from "./pages/test-page/test-page.component";
 import { TitulacionesPageComponent } from "./pages/titulaciones-page/titulaciones-page.component";
 import { MatriculasPageComponent } from "./pages/matriculas-page/matriculas-page.component";
 import { TitulacionPageComponent } from "./pages/titulacion-page/titulacion-page.component";
@@ -30,10 +29,6 @@ export const routes: Routes = [
   {
     path: "titulacion/:codigo",
     component: TitulacionPageComponent
-  },
-  {
-    path: "tests",
-    component: TestPageComponent,
   },
   {
     path: "matriculas",

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   listTipoConvenio,
@@ -6,9 +6,8 @@ import {
   Genero,
   listGenero,
 } from '@app/core/entities/interfaces.entity';
-import { Alumno } from '@app/core/entities/Alumno.entity';
 import { StudentsService } from '@app/core/services/students-service/students.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { SectionComponent } from '@app/shared/components/section/section.component';
 import { ButtonComponent } from '@app/shared/components/button/button.component';
 import { SelectComponent } from '@app/shared/components/select/select.component';
@@ -20,7 +19,7 @@ import { MatriculaFormService } from '../../shared/components/matricula-form/mat
 import { TableComponent } from '@app/shared/components/table/table.component';
 import { MatriculasService } from '@app/core/services/matriculas-service/matriculas.service';
 import { Matricula } from '@app/core/entities/Matricula.entity';
-import { Subject, Subscription, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 import { MatriculaFormComponent } from '@app/shared/components/matricula-form/matricula-form.component';
 import { CommonModule } from '@angular/common';
 
@@ -48,8 +47,10 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
   formStudentService = inject(FormStudentService);
   private ToasterService = inject(ToasterService);
   matriculaFormService = inject(MatriculaFormService);
-  ActivatedRoute = inject(ActivatedRoute);
   matriculaService = inject(MatriculasService);
+
+  // param idExpediente
+  @Input() idExpediente?: string;
 
   mode: 'create' | 'edit' = 'create';
   tab = signal<'datos' | 'matriculas'>('datos')
@@ -170,26 +171,21 @@ export class FormStudentPageComponent implements OnInit, OnDestroy {
     );
   }
 
+
   ngOnInit(): void {
-    this.ActivatedRoute.paramMap
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((params) => {
-        if (!params.has('idExpediente')) {
-          return;
-        }
-        let idExpediente = params.get('idExpediente');
-        if (idExpediente) {
-          const estudiante = this.studentService.getEstudiante(idExpediente);
-          if (estudiante) {
-            this.formStudentService.student = estudiante;
-            this.idExpeditente = idExpediente;
-            this.matriculas =
-              this.matriculaService.getMatriculasByExpediente(idExpediente);
-            this.mode = 'edit';
-            this.editHeader = `${estudiante.numeroExpediente} ${estudiante.nombre}`;
-          }
-        }
-      });
+    if (!this.idExpediente) {
+      return;
+    }
+    const estudiante = this.studentService.getEstudiante(this.idExpediente);
+    if (estudiante) {
+      this.formStudentService.student = estudiante;
+      this.idExpeditente = this.idExpediente;
+      this.matriculas = this.matriculaService.getMatriculasByExpediente(
+        this.idExpediente
+      );
+      this.mode = 'edit';
+      this.editHeader = `${estudiante.numeroExpediente} ${estudiante.nombre}`;
+    }
 
     if (this.formStudentService.student !== null) {
       const estudiante = this.formStudentService.student;

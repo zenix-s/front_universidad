@@ -8,10 +8,10 @@ describe('SubmenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SubmenuComponent]
+      imports: [SubmenuComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(SubmenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
