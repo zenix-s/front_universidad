@@ -41,7 +41,7 @@ export class DateInputComponent implements ControlValueAccessor{
   registerOnTouched(fn: any): void {
     this.onTouch = fn;
   }
-  setDisabledState?(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
     if (this.input){
       this.input.nativeElement.disabled = isDisabled;
